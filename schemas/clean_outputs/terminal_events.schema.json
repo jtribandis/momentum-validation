@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "title": "terminal_events",
+  "properties": {
+    "permaticker": {
+      "type": "integer"
+    },
+    "event_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "event_type": {
+      "type": "string"
+    },
+    "terminal_return": {
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "verification_status": {
+      "type": "string"
+    },
+    "conservative_baseline_used": {
+      "type": "boolean"
+    },
+    "data_vintage_id": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "permaticker",
+    "event_date",
+    "event_type",
+    "verification_status",
+    "conservative_baseline_used",
+    "data_vintage_id"
+  ]
+}

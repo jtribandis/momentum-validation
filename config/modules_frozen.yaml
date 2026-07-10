@@ -1,0 +1,8 @@
+M1_pharma_biotech_exclusion:
+  status: "STRUCTURAL_ABLATION_ONLY"
+M2_vol_stop:
+  status: "DISABLED_FOR_CORE"
+M3_quality_value:
+  status: "DISABLED_UNTIL_MODULE_INVENTORY"
+M4_volatility_bear_state:
+  status: "DISABLED_UNTIL_MODULE_INVENTORY"

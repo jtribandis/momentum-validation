@@ -1,0 +1,12 @@
+gate_id,status,claim_tier_allowed,fix_next,evidence_file
+B0-01,OPEN,T0_EXECUTABLE_SCAFFOLD,Create protocol_release.json and frozen YAML/config schemas before data access,results/phaseA/config_validation.json
+B0-02,OPEN,T0_EXECUTABLE_SCAFFOLD,Print live Sharadar headers and classify fields; quarantine unknown PIT fields,results/phaseB/vendor_semantics_report.json
+B0-03,OPEN,T0_EXECUTABLE_SCAFFOLD,"Save retrieval command, timestamp, row count, byte hash, schema hash, and vintage ID",manifests/raw_archive_manifest.json
+B0-04,OPEN,T0_EXECUTABLE_SCAFFOLD,"Resolve residual identities touching evaluated 1998+ members, selections, clones, terminal events, or review samples",results/phaseC/membership_audit.json
+B0-05,OPEN,T0_EXECUTABLE_SCAFFOLD,"Verify ACTIONS.value units, completion dates, security-master status, last tradable date, and exchange at delisting",results/phaseB/terminal_event_semantics.json
+B0-06,OPEN,T0_EXECUTABLE_SCAFFOLD,Record prior viewing status before opening 2006-2015 or 2024-2026,protocol/period_provenance.csv
+B0-07,OPEN,T0_EXECUTABLE_SCAFFOLD,Approve expected selections by executable and human-readable methods,results/phaseE/golden_report.json
+B0-08,OPEN,T0_EXECUTABLE_SCAFFOLD,Freeze validation vetoes and deployment-risk flags before confirmation results,config/risk_limits.yaml
+B0-09,OPEN,T0_EXECUTABLE_SCAFFOLD,Freeze module_inventory.yaml or keep modules disabled for CORE,config/module_inventory.yaml
+B0-10,OPEN,T0_EXECUTABLE_SCAFFOLD,Verify source links and source-claim map before public claims,evidence/source_verification/source_claim_map.csv
+B0-11,OPEN,T0_EXECUTABLE_SCAFFOLD,"Obtain external review for golden fixture, terminal events, holdout attestations, and final narrative",evidence/external_review/

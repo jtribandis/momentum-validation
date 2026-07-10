@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "title": "actions",
+  "properties": {
+    "permaticker": {
+      "type": "integer"
+    },
+    "date": {
+      "type": "string",
+      "format": "date"
+    },
+    "action": {
+      "type": "string"
+    },
+    "value": {
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "value_units_verified": {
+      "type": "boolean"
+    },
+    "source_row_hash": {
+      "type": "string"
+    },
+    "data_vintage_id": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "permaticker",
+    "date",
+    "action",
+    "value_units_verified",
+    "data_vintage_id"
+  ]
+}

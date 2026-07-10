@@ -1,0 +1,4 @@
+permaticker,ticker,name,category,exchange,siccode,firstpricedate,lastpricedate
+1001,AAA,Alpha Inc,Domestic Common Stock,NYSE,3571,2019-01-01,2021-01-01
+1002,BBB,Beta Inc,Domestic Common Stock,NASDAQ,2834,2019-01-01,2021-01-01
+1003,CCC,Gamma Inc,Domestic Common Stock,NYSE,3841,2019-01-01,2021-01-01

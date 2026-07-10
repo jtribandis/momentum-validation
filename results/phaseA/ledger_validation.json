@@ -1,0 +1,44 @@
+{
+  "created_utc": "2026-07-09T16:22:18.147653+00:00",
+  "checks": [
+    {
+      "file": "blocker_ledger.csv",
+      "result": "PASS",
+      "rows": 11,
+      "open_blockers": [
+        "B0-01",
+        "B0-02",
+        "B0-03",
+        "B0-04",
+        "B0-05",
+        "B0-06",
+        "B0-07",
+        "B0-08",
+        "B0-09",
+        "B0-10",
+        "B0-11"
+      ]
+    },
+    {
+      "file": "protocol/period_provenance.csv",
+      "result": "PASS",
+      "rows": 3,
+      "unattested_periods": [
+        "1998-2005",
+        "2006-2015",
+        "2024-2026"
+      ]
+    },
+    {
+      "file": "protocol/research_decisions.csv",
+      "result": "PASS",
+      "rows": 0
+    },
+    {
+      "file": "protocol/open_tasks.csv",
+      "result": "PASS",
+      "rows": 0
+    }
+  ],
+  "overall": "PASS"
+}

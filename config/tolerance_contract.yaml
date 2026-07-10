@@ -1,0 +1,5 @@
+discrete_decisions: "EXACT"
+signal_abs_tolerance: 1.0e-10
+return_nav_tolerance: "min(0.5_fixed_point_unit, 1e-8_return_units)"
+regression_tolerance: 1.0e-8
+near_tie_rule: "RECOMPUTE_IN_DECIMAL_ENGINE"

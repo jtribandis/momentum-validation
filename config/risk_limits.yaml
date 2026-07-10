@@ -1,0 +1,9 @@
+validation_vetoes:
+  track1_nav_le_zero: true
+  monthly_max_drawdown_le: -0.80
+  worst_12m_return_le: -0.70
+  external_capital_required: true
+deployment_risk_flags:
+  monthly_max_drawdown_le: -0.50
+  close_to_next_open_gap_loss_le: -0.25
+  daily_tail_audit_missing: true

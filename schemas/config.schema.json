@@ -1,0 +1,63 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "protocol_version",
+    "universe",
+    "membership",
+    "signal",
+    "selection_count",
+    "rebalance_frequency",
+    "holding_months",
+    "execution_price",
+    "repeat_lots",
+    "transaction_cost_bps_primary",
+    "clone_count",
+    "primary_effect_floor_annualized_excess",
+    "aggregate_performance_allowed_before_phaseF"
+  ],
+  "properties": {
+    "protocol_version": {
+      "type": "string"
+    },
+    "universe": {
+      "const": "US_COMMON_STOCKS"
+    },
+    "membership": {
+      "const": "PIT_SP500"
+    },
+    "signal": {
+      "const": "TRAIL_6_SKIP_1"
+    },
+    "selection_count": {
+      "const": 3
+    },
+    "rebalance_frequency": {
+      "const": "QUARTERLY"
+    },
+    "holding_months": {
+      "const": 6
+    },
+    "execution_price": {
+      "const": "FIRST_TRADABLE_OPENADJ_M_PLUS_1"
+    },
+    "repeat_lots": {
+      "const": "ALLOW_INDEPENDENT_LOTS"
+    },
+    "transaction_cost_bps_primary": {
+      "type": "number",
+      "minimum": 0
+    },
+    "clone_count": {
+      "type": "integer",
+      "minimum": 1000
+    },
+    "primary_effect_floor_annualized_excess": {
+      "const": 0.03
+    },
+    "aggregate_performance_allowed_before_phaseF": {
+      "const": false
+    }
+  }
+}

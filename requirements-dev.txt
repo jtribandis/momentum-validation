@@ -1,0 +1,7 @@
+pytest
+jsonschema
+pyyaml
+pandas
+pyarrow
+duckdb
+hypothesis

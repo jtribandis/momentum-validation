@@ -1,0 +1,266 @@
+{
+  "created_utc": "2026-07-09T16:39:05.993063+00:00",
+  "data_vintage_id": "SYNTH_TEST_V2",
+  "status": "DRAFT_MANUAL_REVIEW_REQUIRED",
+  "tables": {
+    "SEP": {
+      "live_header": [
+        [
+          "ticker",
+          "VARCHAR"
+        ],
+        [
+          "date",
+          "DATE"
+        ],
+        [
+          "open",
+          "DOUBLE"
+        ],
+        [
+          "high",
+          "DOUBLE"
+        ],
+        [
+          "low",
+          "DOUBLE"
+        ],
+        [
+          "close",
+          "DOUBLE"
+        ],
+        [
+          "volume",
+          "BIGINT"
+        ],
+        [
+          "closeadj",
+          "DOUBLE"
+        ],
+        [
+          "closeunadj",
+          "DOUBLE"
+        ],
+        [
+          "lastupdated",
+          "DATE"
+        ]
+      ],
+      "expected_present": [
+        "close",
+        "closeadj",
+        "closeunadj",
+        "date",
+        "high",
+        "lastupdated",
+        "low",
+        "open",
+        "ticker",
+        "volume"
+      ],
+      "expected_missing": [],
+      "unknown_review_required": []
+    },
+    "TICKERS": {
+      "live_header": [
+        [
+          "table",
+          "VARCHAR"
+        ],
+        [
+          "permaticker",
+          "BIGINT"
+        ],
+        [
+          "ticker",
+          "VARCHAR"
+        ],
+        [
+          "name",
+          "VARCHAR"
+        ],
+        [
+          "exchange",
+          "VARCHAR"
+        ],
+        [
+          "isdelisted",
+          "VARCHAR"
+        ],
+        [
+          "category",
+          "VARCHAR"
+        ],
+        [
+          "siccode",
+          "BIGINT"
+        ],
+        [
+          "firstpricedate",
+          "DATE"
+        ],
+        [
+          "lastpricedate",
+          "DATE"
+        ],
+        [
+          "lastupdated",
+          "DATE"
+        ]
+      ],
+      "expected_present": [
+        "category",
+        "exchange",
+        "firstpricedate",
+        "isdelisted",
+        "lastpricedate",
+        "lastupdated",
+        "name",
+        "permaticker",
+        "siccode",
+        "table",
+        "ticker"
+      ],
+      "expected_missing": [
+        "companysite",
+        "currency",
+        "cusips",
+        "famaindustry",
+        "famasector",
+        "firstadded",
+        "firstquarter",
+        "industry",
+        "lastquarter",
+        "location",
+        "relatedtickers",
+        "scalemarketcap",
+        "scalerevenue",
+        "secfilings",
+        "sector",
+        "sicindustry",
+        "sicsector"
+      ],
+      "unknown_review_required": []
+    },
+    "SP500": {
+      "live_header": [
+        [
+          "date",
+          "DATE"
+        ],
+        [
+          "action",
+          "VARCHAR"
+        ],
+        [
+          "ticker",
+          "VARCHAR"
+        ],
+        [
+          "name",
+          "VARCHAR"
+        ],
+        [
+          "contraticker",
+          "VARCHAR"
+        ],
+        [
+          "contraname",
+          "VARCHAR"
+        ],
+        [
+          "note",
+          "VARCHAR"
+        ]
+      ],
+      "expected_present": [
+        "action",
+        "contraname",
+        "contraticker",
+        "date",
+        "name",
+        "note",
+        "ticker"
+      ],
+      "expected_missing": [],
+      "unknown_review_required": []
+    },
+    "ACTIONS": {
+      "live_header": [
+        [
+          "date",
+          "DATE"
+        ],
+        [
+          "action",
+          "VARCHAR"
+        ],
+        [
+          "ticker",
+          "VARCHAR"
+        ],
+        [
+          "name",
+          "VARCHAR"
+        ],
+        [
+          "value",
+          "DOUBLE"
+        ],
+        [
+          "contraticker",
+          "VARCHAR"
+        ],
+        [
+          "contraname",
+          "VARCHAR"
+        ]
+      ],
+      "expected_present": [
+        "action",
+        "contraname",
+        "contraticker",
+        "date",
+        "name",
+        "ticker",
+        "value"
+      ],
+      "expected_missing": [],
+      "unknown_review_required": []
+    },
+    "SF1": {
+      "live_header": [
+        [
+          "ticker",
+          "VARCHAR"
+        ],
+        [
+          "dimension",
+          "VARCHAR"
+        ],
+        [
+          "datekey",
+          "DATE"
+        ],
+        [
+          "reportperiod",
+          "DATE"
+        ],
+        [
+          "revenue",
+          "BIGINT"
+        ]
+      ],
+      "expected_present": [],
+      "expected_missing": [],
+      "unknown_review_required": [
+        "ALL_FIELDS_REVIEW_REQUIRED"
+      ]
+    }
+  },
+  "notes": [
+    "openadj is not a Sharadar SEP column; downstream derivation rule: openadj = open * closeadj / close.",
+    "closeadj dividend/split basis must be manually confirmed against Sharadar docs before Phase B sign-off (OV-01).",
+    "SP500 table membership key and action vocabulary must be manually confirmed (feeds B0-04)."
+  ]
+}

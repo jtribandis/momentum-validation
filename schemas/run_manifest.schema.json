@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "protocol_version",
+    "code_commit",
+    "config_hash",
+    "data_vintage_id",
+    "outputs"
+  ],
+  "properties": {
+    "protocol_version": {
+      "type": "string"
+    },
+    "code_commit": {
+      "type": "string"
+    },
+    "dirty_state": {
+      "type": "boolean"
+    },
+    "config_hash": {
+      "type": "string"
+    },
+    "data_vintage_id": {
+      "type": "string"
+    },
+    "outputs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "path",
+          "content_hash",
+          "schema_version"
+        ],
+        "properties": {
+          "path": {
+            "type": "string"
+          },
+          "content_hash": {
+            "type": "string"
+          },
+          "file_hash": {
+            "type": "string"
+          },
+          "schema_version": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

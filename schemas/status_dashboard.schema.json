@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "title": "status_dashboard_row",
+  "properties": {
+    "gate_id": {
+      "type": "string"
+    },
+    "status": {
+      "enum": [
+        "PASS",
+        "FAIL",
+        "OPEN",
+        "RESOLVED",
+        "DOWNGRADED",
+        "NOT_APPLICABLE"
+      ]
+    },
+    "claim_tier_allowed": {
+      "type": "string"
+    },
+    "fix_next": {
+      "type": "string"
+    },
+    "evidence_file": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "gate_id",
+    "status",
+    "claim_tier_allowed",
+    "fix_next",
+    "evidence_file"
+  ]
+}

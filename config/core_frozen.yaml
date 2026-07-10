@@ -1,0 +1,13 @@
+protocol_version: "3.2.4"
+universe: "US_COMMON_STOCKS"
+membership: "PIT_SP500"
+signal: "TRAIL_6_SKIP_1"
+selection_count: 3
+rebalance_frequency: "QUARTERLY"
+holding_months: 6
+execution_price: "FIRST_TRADABLE_OPENADJ_M_PLUS_1"
+repeat_lots: "ALLOW_INDEPENDENT_LOTS"
+transaction_cost_bps_primary: 10
+clone_count: 10000
+primary_effect_floor_annualized_excess: 0.03
+aggregate_performance_allowed_before_phaseF: false

@@ -1,0 +1,66 @@
+{
+  "created_utc": "2026-07-09T16:22:18.177916+00:00",
+  "overall": "PASS",
+  "cases": [
+    {
+      "case": "empty attestation blocks",
+      "expect_allowed": false,
+      "got_allowed": false,
+      "reason": "attestation incomplete for 2006-2015: missing ['first_inspection_date', 'what_was_viewed', 'decision_made_after', 'data_vintage_id', 'attestor', 'timestamp']",
+      "result": "PASS"
+    },
+    {
+      "case": "missing row blocks",
+      "expect_allowed": false,
+      "got_allowed": false,
+      "reason": "no provenance row for 2024-2026",
+      "result": "PASS"
+    },
+    {
+      "case": "complete attestation permits",
+      "expect_allowed": true,
+      "got_allowed": true,
+      "reason": "2006-2015 attested by Jason on 2026-07-09T00:00:00Z, vintage V20260709",
+      "result": "PASS"
+    },
+    {
+      "case": "spent period blocks",
+      "expect_allowed": false,
+      "got_allowed": false,
+      "reason": "1998-2005 already SPENT; rerun requires new signed attestation row under rerun governance",
+      "result": "PASS"
+    },
+    {
+      "case": "partial attestation blocks",
+      "expect_allowed": false,
+      "got_allowed": false,
+      "reason": "attestation incomplete for 2024-2026: missing ['what_was_viewed', 'decision_made_after', 'timestamp']",
+      "result": "PASS"
+    },
+    {
+      "case": "non-governed period passes through",
+      "expect_allowed": true,
+      "got_allowed": true,
+      "reason": "2016-2023 is not a governed holdout period",
+      "result": "PASS"
+    },
+    {
+      "case": "live ledger 1998-2005",
+      "got_allowed": false,
+      "reason": "attestation incomplete for 1998-2005: missing ['first_inspection_date', 'what_was_viewed', 'decision_made_after', 'data_vintage_id', 'attestor', 'timestamp']",
+      "result": "INFO_BLOCKED_AS_EXPECTED"
+    },
+    {
+      "case": "live ledger 2006-2015",
+      "got_allowed": false,
+      "reason": "attestation incomplete for 2006-2015: missing ['first_inspection_date', 'what_was_viewed', 'decision_made_after', 'data_vintage_id', 'attestor', 'timestamp']",
+      "result": "INFO_BLOCKED_AS_EXPECTED"
+    },
+    {
+      "case": "live ledger 2024-2026",
+      "got_allowed": false,
+      "reason": "attestation incomplete for 2024-2026: missing ['first_inspection_date', 'what_was_viewed', 'decision_made_after', 'data_vintage_id', 'attestor', 'timestamp']",
+      "result": "INFO_BLOCKED_AS_EXPECTED"
+    }
+  ]
+}

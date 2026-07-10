@@ -1,0 +1,27 @@
+{
+  "release_type": "protocol_release",
+  "package_version": "3.2.4",
+  "created_utc": "2026-07-09T16:22:17.826863+00:00",
+  "file_hashes_sha256": {
+    "config/core_frozen.yaml": "15bb3eb226e01be0c57cc072c6f4bb500c6064a1ef5a9d58b596d91523bc1963",
+    "config/modules_frozen.yaml": "7efd503e8434a144560c67a28b4ae2b1cf0bfd63ffb1fc81a12f6023c2529a86",
+    "config/risk_limits.yaml": "54a8edf87cee1e298f8a809983a98c16ff1b4c1f02e687e3c83b0aec1a6d8322",
+    "config/tolerance_contract.yaml": "f4dcfb985871024dbcf771d636aa54c204a95f971f39c142c481bcdc4864d721",
+    "protocol/design_contract.md": "d267d3cf20967626bff4cd3b3a3d97480516189b298e185987eda582d7ab60c4",
+    "protocol_contracts/computational_assurance_contract.md": "249a167be3f4a4db196c896b7d63a0e3010887ec5658b6e599562ed87cbcfcde",
+    "protocol_contracts/data_fidelity_contract.md": "67e2f9b2ba881eb903679a552dcfff71a31457e4450639b36ca7a1286f22a986",
+    "protocol_contracts/scientific_design_contract.md": "2f472117cfa306eb262a4fe9db14aae744810230bf4eb740d6248a875233b113",
+    "protocol_contracts/statistical_validation_contract.md": "0eb4d5f3738ad74052012c2ddd24c57fbb53f495efb3a9462614879ab0053e32",
+    "schemas/clean_outputs/actions.schema.json": "90441cd4106bea21934fcd11ef55462c2512a39201f23adaf4d5ba21f7a8cd4b",
+    "schemas/clean_outputs/eligible_snapshots.schema.json": "3ad97a227be7a0abe5c3f411d16ed4c78a2e863bc3e25829e9b82b5dff9a3ba6",
+    "schemas/clean_outputs/sep_prices.schema.json": "34aeb8c133f9d1d5f9634f3ce8803a7634163a69212a3c4a3891b673df0d9b1f",
+    "schemas/clean_outputs/terminal_events.schema.json": "13bba50e384ed1ebd3bd87cc2162ceeef42979024893c3a50e352f28edd5c63e",
+    "schemas/clean_outputs/tickers_universe.schema.json": "e10692ee7ca1731f8fa495be866abe546f9f227096d7b397f3fe69ebd86daed3",
+    "schemas/config.schema.json": "1a1806f61114c0d2bae95e68570575fe11742373369460ce3cc4438b0e0af313",
+    "schemas/raw_archive_manifest.schema.json": "6e8b1c3de5c63ecc17fb25c7def9bbf67a754778d538bd38a30bf7ecb51d85ed",
+    "schemas/run_manifest.schema.json": "a556d37a00a16e464394d13427141208be570de3e668861b7a8a744edbb73641",
+    "schemas/status_dashboard.schema.json": "7bb4b7dc041c899d9fd2caa8bf535e88b635293570f469d4c04b92f3372e8d88"
+  },
+  "release_digest_sha256": "48d0841e6ff305aeefeed33baf5e8224d44a7bc477938cc6df2ba5a438ed7a4f",
+  "note": "Frozen at Phase A. Any hash change after Phase A exit requires a new release and ledger entry."
+}

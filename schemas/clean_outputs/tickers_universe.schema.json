@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "title": "tickers_universe",
+  "properties": {
+    "permaticker": {
+      "type": "integer"
+    },
+    "ticker": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "category": {
+      "type": "string"
+    },
+    "exchange": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "siccode": {
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "field_provenance": {
+      "type": "string"
+    },
+    "static_taxonomy_flag": {
+      "type": "boolean"
+    },
+    "data_vintage_id": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "permaticker",
+    "ticker",
+    "category",
+    "field_provenance",
+    "static_taxonomy_flag",
+    "data_vintage_id"
+  ]
+}

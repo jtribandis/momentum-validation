@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "title": "eligible_snapshots",
+  "properties": {
+    "formation_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "permaticker": {
+      "type": "integer"
+    },
+    "eligible_flag": {
+      "type": "boolean"
+    },
+    "membership_effective_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "snapshot_hash": {
+      "type": "string"
+    },
+    "data_vintage_id": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "formation_date",
+    "permaticker",
+    "eligible_flag",
+    "membership_effective_date",
+    "snapshot_hash",
+    "data_vintage_id"
+  ]
+}

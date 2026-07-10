@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "title": "sep_prices",
+  "properties": {
+    "permaticker": {
+      "type": "integer"
+    },
+    "date": {
+      "type": "string",
+      "format": "date"
+    },
+    "open": {
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "close": {
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "closeadj": {
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "openadj": {
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "source_row_hash": {
+      "type": "string"
+    },
+    "data_vintage_id": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "permaticker",
+    "date",
+    "closeadj",
+    "data_vintage_id"
+  ]
+}

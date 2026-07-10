@@ -1,0 +1,2 @@
+trade_id,lot_id,permaticker,trade_date,side,openadj,shares,cost,approval_status
+T1,L1,1001,2020-07-01,BUY,100.00,0.005,0.00001,SMOKE_NOT_APPROVED

@@ -1,0 +1,2 @@
+lot_id,formation_date,permaticker,entry_date,exit_date,entry_openadj,exit_openadj,net_pnl,approval_status
+L1,2020-06-30,1001,2020-07-01,2020-12-31,100.00,112.00,0.1190,SMOKE_NOT_APPROVED

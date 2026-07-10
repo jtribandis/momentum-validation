@@ -1,0 +1,28 @@
+{
+  "created_utc": "2026-07-09T16:22:18.096594+00:00",
+  "checks": [
+    {
+      "file": "config/core_frozen.yaml",
+      "schema": "schemas/config.schema.json",
+      "result": "PASS"
+    },
+    {
+      "file": "config/modules_frozen.yaml",
+      "result": "PASS_PARSED"
+    },
+    {
+      "file": "config/tolerance_contract.yaml",
+      "result": "PASS_PARSED"
+    },
+    {
+      "file": "config/risk_limits.yaml",
+      "result": "PASS_PARSED"
+    },
+    {
+      "invariant_set": "core_frozen_values",
+      "result": "PASS"
+    }
+  ],
+  "warnings": [],
+  "overall": "PASS"
+}
