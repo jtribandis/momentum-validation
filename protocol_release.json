@@ -1,7 +1,7 @@
 {
   "release_type": "protocol_release",
   "package_version": "3.2.4",
-  "created_utc": "2026-07-09T16:22:17.826863+00:00",
+  "created_utc": "2026-07-11T19:05:26.516662+00:00",
   "file_hashes_sha256": {
     "config/core_frozen.yaml": "15bb3eb226e01be0c57cc072c6f4bb500c6064a1ef5a9d58b596d91523bc1963",
     "config/modules_frozen.yaml": "7efd503e8434a144560c67a28b4ae2b1cf0bfd63ffb1fc81a12f6023c2529a86",
