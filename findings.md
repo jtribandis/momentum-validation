@@ -18,6 +18,9 @@ action scheduled at a later phase) · RESOLVED (evidence linked) · INFORMATIONA
 | F-005 | 2026-07-09 | B | REGISTERED (blocks Phase K window definition) |
 | F-006 | 2026-07-09 | B | REGISTERED (feeds Phase C identity audit) |
 | F-007 | 2026-07-09 | F-prep | OPEN_DECISION |
+| F-008 | 2026-07-14 | B | OPEN_DECISION (needs real vendor report re-upload) |
+| F-009 | 2026-07-14 | B | RESOLVED |
+| F-010 | 2026-07-14 | C | REGISTERED (Phase C audit worklist quantified) |
 
 ---
 
@@ -112,3 +115,41 @@ commit must reference this finding ID.
 the index table. Status changes edit the status line and index row only; original
 finding text is never rewritten. Each session branch that adds findings must
 mention the IDs in its commit message.*
+
+## F-008 — Synthetic fixture artifacts leaked into the shipped package and reached the repo
+**Date:** 2026-07-14 · **Phase:** B · **Status:** OPEN_DECISION (operator action required)
+
+The sandbox fixture test of the reducer wrote `manifests/raw_archive_manifest.json` and
+`results/phaseB/vendor_semantics_report.json` (vintage SYNTH_TEST_V2) into the package tree,
+which shipped in the r3 zip and was committed to the repo alongside the real data. The stale
+manifest was caught (renamed `raw_archive_manifest00.json` by Jason, deleted in this branch).
+**The `results/phaseB/vendor_semantics_report.json` currently in the repo is still the synthetic
+one.** Required action: Jason replaces it with the real report from
+`C:\Users\jason\Downloads\results\phaseB\vendor_semantics_report.json` and pushes.
+Root cause: fixture runs used repo-relative output paths. Prevention: future fixture runs write
+to temp dirs only. B0-02 review cannot proceed on the synthetic file.
+
+## F-009 — Windows CRLF changes the recorded manifest cross-hash
+**Date:** 2026-07-14 · **Phase:** B · **Status:** RESOLVED
+
+`reduced_manifest.json` records the raw-archive-manifest hash as computed on Windows (CRLF,
+`5e6c7658…`); git normalized the committed file to LF (`fa6715c6…`). Content is identical —
+re-CRLF'ing the repo file reproduces the recorded hash exactly. Resolution:
+`build/verify_reduced_upload.py` performs a CRLF-tolerant cross-hash check and this behavior
+is documented there. All parquet hashes (binary, unaffected by normalization) match exactly.
+
+## F-010 — Unmapped membership identities quantified: 1,120 rows / 883 tickers
+**Date:** 2026-07-14 · **Phase:** C · **Status:** REGISTERED — Phase C audit worklist
+
+`build_sp500_membership.py` mapped 58,040 of 59,160 membership rows (98.1%) to unique
+permatickers via date-covered TICKERS join. Residual: 1,120 rows across 883 distinct tickers,
+concentrated in pre-1998 added/removed events outside SEP coverage. Snapshot member counts
+post-mapping: 499–505 (avg 501.6) across 113 quarterly snapshots 1998Q1–2026Q1 — consistent
+with true index size, indicating the evaluated-window mapping is near-complete. Interval-vs-
+snapshot cross-validation disagreements (19,982 / 8,577 pairs) are dominated by incomplete
+pre-1998 event history; snapshots are designated the PIT source of truth for the rebalance
+gate, intervals retained as consistency check. **Required action:** Phase C membership audit
+(`qa/audit_membership.py`) classifies every unmapped/disagreeing identity that touches the
+evaluated 1998+ timeline; B0-04 stays OPEN until then. Supersedes the preliminary 25-ticker
+estimate in F-006 (that count was SEP-presence; this is the mapping-level count).
+

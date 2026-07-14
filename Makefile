@@ -24,8 +24,7 @@ phaseA:
 	python tools/holdout_guard.py --self-test
 
 phaseB: phaseA
-	python build/fetch_sharadar_raw.py
-	python build/archive_raw.py
+	python build/verify_reduced_upload.py  # venue-split: reducer ran on operator machine (see findings F-008/F-009)
 	python build/verify_vendor_semantics.py
 	python build/build_security_master.py
 	python build/build_price_panel.py
