@@ -1,0 +1,41 @@
+{
+  "data_vintage_id": "SYNTH_TEST_V2",
+  "retrieval_timestamp_utc": "2026-07-09T16:39:05.993063+00:00",
+  "tables": [
+    {
+      "table": "SEP",
+      "path": "/tmp/synth_raw/SHARADAR_SEP_test.csv",
+      "row_count": 10000,
+      "byte_hash": "175271ccb4809f6c6af2dcbc27ec0e902e496c798d74f78205d4798a711094ee",
+      "schema_hash": "17fefba7b2e725bd021309c7e60877b9f0b05a96fdce626315051f3b0a22e1b7"
+    },
+    {
+      "table": "TICKERS",
+      "path": "/tmp/synth_raw/SHARADAR_TICKERS_test.csv",
+      "row_count": 5,
+      "byte_hash": "b802afeab3a58efc12794f59ea3314728c38650314b3f3b26bd2490b74a90919",
+      "schema_hash": "a919cab78b796d5251b496d2214f1c63fd4d1c7cdae1004cd97ebd7b72cd1a79"
+    },
+    {
+      "table": "SP500",
+      "path": "/tmp/synth_raw/SHARADAR_SP500_test.csv",
+      "row_count": 4,
+      "byte_hash": "28e82b7dd42256677d9ce6aeaafda65c0e35193542adc75c8f1ad8eb0049fc2f",
+      "schema_hash": "3c38293fdca51ad8b4693bb3c86aea4dc4a16a8f4e0d7c05af7048e6f15f9212"
+    },
+    {
+      "table": "ACTIONS",
+      "path": "/tmp/synth_raw/SHARADAR_ACTIONS_test.csv",
+      "row_count": 3,
+      "byte_hash": "903147833b9a967140c7d2a967e8a8a582bed1d5ae6e93834c5260229b88c391",
+      "schema_hash": "ee7baa329121c0138217de5b04d3a6bdec098ed79285cdcc22ee22caf1fbe039"
+    },
+    {
+      "table": "SF1",
+      "path": "/tmp/synth_raw/SHARADAR_SF1_test.csv",
+      "row_count": 3,
+      "byte_hash": "1ffe7d872758e90538eda420bac1e335af2401b3fdd1766d380f6eff5cbeb4eb",
+      "schema_hash": "c0ab718bc12e88b22a344982ee84c3c1685aeeeb978e80d4510efee1e3e034cd"
+    }
+  ]
+}

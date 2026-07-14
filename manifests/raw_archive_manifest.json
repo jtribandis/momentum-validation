@@ -1,41 +1,41 @@
 {
-  "data_vintage_id": "SYNTH_TEST_V2",
-  "retrieval_timestamp_utc": "2026-07-09T16:39:05.993063+00:00",
+  "data_vintage_id": "SHARADAR_20260620",
+  "retrieval_timestamp_utc": "2026-07-14T13:55:12.671307+00:00",
   "tables": [
     {
       "table": "SEP",
-      "path": "/tmp/synth_raw/SHARADAR_SEP_test.csv",
-      "row_count": 10000,
-      "byte_hash": "175271ccb4809f6c6af2dcbc27ec0e902e496c798d74f78205d4798a711094ee",
-      "schema_hash": "17fefba7b2e725bd021309c7e60877b9f0b05a96fdce626315051f3b0a22e1b7"
+      "path": "C:\\Users\\jason\\Downloads\\sharadar_csvs\\SHARADAR_SEP.csv",
+      "row_count": 46079831,
+      "byte_hash": "8b149fe93132b9fef1ba66dce3e3ab751128f4c5d44452738ca54f367d6bdeff",
+      "schema_hash": "60144f23bd42faa884c125f0303dcc9be52ef20df6a516a2b69b9faf865f5a38"
     },
     {
       "table": "TICKERS",
-      "path": "/tmp/synth_raw/SHARADAR_TICKERS_test.csv",
-      "row_count": 5,
-      "byte_hash": "b802afeab3a58efc12794f59ea3314728c38650314b3f3b26bd2490b74a90919",
-      "schema_hash": "a919cab78b796d5251b496d2214f1c63fd4d1c7cdae1004cd97ebd7b72cd1a79"
+      "path": "C:\\Users\\jason\\Downloads\\sharadar_csvs\\SHARADAR_TICKERS.csv",
+      "row_count": 62199,
+      "byte_hash": "e774d8f1a1fc75573614d25b2259b54ffa86b2ddf87c6e2982f5d4e11c35ec82",
+      "schema_hash": "060f5d4f0ad70a07723a2c6b9958a02acbd4d23491d88b7aa36f1345a1dc681e"
     },
     {
       "table": "SP500",
-      "path": "/tmp/synth_raw/SHARADAR_SP500_test.csv",
-      "row_count": 4,
-      "byte_hash": "28e82b7dd42256677d9ce6aeaafda65c0e35193542adc75c8f1ad8eb0049fc2f",
+      "path": "C:\\Users\\jason\\Downloads\\sharadar_csvs\\SHARADAR_SP500.csv",
+      "row_count": 59160,
+      "byte_hash": "2b6fdac6747b49a5240330c4fca8fdbd941bc42c7de28720fc5158eec68541ac",
       "schema_hash": "3c38293fdca51ad8b4693bb3c86aea4dc4a16a8f4e0d7c05af7048e6f15f9212"
     },
     {
       "table": "ACTIONS",
-      "path": "/tmp/synth_raw/SHARADAR_ACTIONS_test.csv",
-      "row_count": 3,
-      "byte_hash": "903147833b9a967140c7d2a967e8a8a582bed1d5ae6e93834c5260229b88c391",
+      "path": "C:\\Users\\jason\\Downloads\\sharadar_csvs\\SHARADAR_ACTIONS.csv",
+      "row_count": 666628,
+      "byte_hash": "169553c7a3474c1bd319dbc3afe5aa60240b82f0a754fcd6b814fdb837625e1b",
       "schema_hash": "ee7baa329121c0138217de5b04d3a6bdec098ed79285cdcc22ee22caf1fbe039"
     },
     {
       "table": "SF1",
-      "path": "/tmp/synth_raw/SHARADAR_SF1_test.csv",
-      "row_count": 3,
-      "byte_hash": "1ffe7d872758e90538eda420bac1e335af2401b3fdd1766d380f6eff5cbeb4eb",
-      "schema_hash": "c0ab718bc12e88b22a344982ee84c3c1685aeeeb978e80d4510efee1e3e034cd"
+      "path": "C:\\Users\\jason\\Downloads\\sharadar_csvs\\SHARADAR_SF1.csv",
+      "row_count": 3195138,
+      "byte_hash": "59711fb7f014c929946c97d010f470243fc741fed8c3901d762090b466784ede",
+      "schema_hash": "bf11c52cdb42a494cc7b12999943f4d70fc39257531b9a9128f54fd238334427"
     }
   ]
 }

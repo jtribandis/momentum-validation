@@ -1,0 +1,78 @@
+{
+  "data_vintage_id": "SHARADAR_20260620",
+  "created_utc": "2026-07-14T13:55:12.671307+00:00",
+  "reduction_rules": {
+    "sep_filter": "ticker IN SP500-ever-members AND date >= 1997-01-01",
+    "sep_columns": [
+      "ticker",
+      "date",
+      "open",
+      "high",
+      "low",
+      "close",
+      "volume",
+      "closeadj",
+      "closeunadj",
+      "lastupdated"
+    ],
+    "sep_columns_missing_at_source": [],
+    "openadj_derivation_rule": "openadj = open * closeadj / close (applied downstream, not here)",
+    "sp500_join_key": "ticker",
+    "sf1_included": true,
+    "tables_kept_in_full": [
+      "TICKERS",
+      "SP500"
+    ]
+  },
+  "qc": {
+    "sep_rows": 5468910,
+    "tickers_rows": 62199,
+    "sp500_rows": 59160,
+    "actions_rows": 65321,
+    "sf1_rows": 186573,
+    "sep_date_min": "1997-12-31",
+    "sep_date_max": "2026-06-18",
+    "sep_distinct_tickers": 1174,
+    "sep_null_closeadj": 0,
+    "sep_bad_open": 0
+  },
+  "files": [
+    {
+      "table": "sep_prices",
+      "file": "sep_prices_part01.parquet",
+      "bytes": 70537541,
+      "sha256": "bf6618bb05e29099cdc5a314c88b729d92e2cfd078d82dca5df5e27b158a8391"
+    },
+    {
+      "table": "sep_prices",
+      "file": "sep_prices_part02.parquet",
+      "bytes": 69930661,
+      "sha256": "d48fb45d65c594c1d28cc8ab5b811ea0f36258a111fb4a47215db33674d70a13"
+    },
+    {
+      "table": "tickers_universe",
+      "file": "tickers_universe.parquet",
+      "bytes": 2096152,
+      "sha256": "8bf0088bd6b1391cba56d33da15805e8179ca2d17fd7576aca5610b733e5a0ef"
+    },
+    {
+      "table": "sp500_membership_raw",
+      "file": "sp500_membership_raw.parquet",
+      "bytes": 119314,
+      "sha256": "b97a4a9b68acc88539df2cdda4fd70b238f1a3ed29f93d85b5584f001459fd8b"
+    },
+    {
+      "table": "actions_clean_raw",
+      "file": "actions.parquet",
+      "bytes": 469229,
+      "sha256": "7de0df92de449db83a16184b6809dffd89b96fca7c4b1fb4a3ab7faa67f3ec52"
+    },
+    {
+      "table": "sf1_asreported_raw",
+      "file": "sf1_asreported.parquet",
+      "bytes": 49078901,
+      "sha256": "e2b89fc55aff5196081ff73a5eb123af2feec9d71f13f1fe9104c33c20927f6b"
+    }
+  ],
+  "raw_archive_manifest_sha256": "5e6c7658e52d794bb7a4a6bc8ddf6e50b7df27417f4668853899f6f9412d1c36"
+}
