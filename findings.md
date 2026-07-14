@@ -1,0 +1,114 @@
+# Findings Log — Momentum Validation Protocol v3.2.4
+
+Progressive, append-only log of material findings discovered during execution.
+Each finding gets an ID, a status, and a required action. Findings are REGISTERED
+here when discovered, and only marked RESOLVED with a pointer to the evidence
+(commit, ledger row, or results file) that closed them. Nothing is deleted;
+corrections are appended.
+
+Status vocabulary: OPEN_DECISION (needs Jason ruling) · REGISTERED (recorded,
+action scheduled at a later phase) · RESOLVED (evidence linked) · INFORMATIONAL.
+
+| ID | Date | Phase | Status |
+|----|------|-------|--------|
+| F-001 | 2026-07-09 | A | RESOLVED |
+| F-002 | 2026-07-09 | A | RESOLVED |
+| F-003 | 2026-07-09 | A | INFORMATIONAL |
+| F-004 | 2026-07-09 | B-prep | RESOLVED |
+| F-005 | 2026-07-09 | B | REGISTERED (blocks Phase K window definition) |
+| F-006 | 2026-07-09 | B | REGISTERED (feeds Phase C identity audit) |
+| F-007 | 2026-07-09 | F-prep | OPEN_DECISION |
+
+---
+
+## F-001 — DEFECT-A1: config schema rejected two legitimate frozen fields
+**Date:** 2026-07-09 · **Phase:** A · **Status:** RESOLVED
+
+`schemas/config.schema.json` used `additionalProperties: false` but omitted two
+fields present in `config/core_frozen.yaml`: `primary_effect_floor_annualized_excess`
+and `aggregate_performance_allowed_before_phaseF`. Phase A validation therefore
+failed against the project's own frozen config.
+
+**Fix:** both fields added to the schema as `const` (0.03 / false) and appended to
+`required`, so any future drift in these frozen values fails validation loudly.
+**Approved by Jason** (session 2026-07-09). Evidence: `results/phaseA/config_validation.json`,
+release digest `48d0841e6ff305ae…`, merged in PR #1.
+
+## F-002 — protocol_version drift (3.2.3 inside the v3.2.4 package)
+**Date:** 2026-07-09 · **Phase:** A · **Status:** RESOLVED
+
+`core_frozen.yaml` shipped with `protocol_version: "3.2.3"`. Jason directed the
+bump to `"3.2.4"`; full Phase A rerun passed with no warnings. The release digest
+was regenerated after this change (superseding `e81980c3…`) and frozen at merge
+of PR #1.
+
+## F-003 — Environment preconditions not vendored
+**Date:** 2026-07-09 · **Phase:** A · **Status:** INFORMATIONAL
+
+`pytest` and `jsonschema` are required by the make targets but not assumed
+installed; `duckdb` is required by the reducer. Recorded so a fresh machine can
+reproduce: `pip install -r requirements-dev.txt` plus `pip install duckdb`.
+Sandbox sessions additionally require `--break-system-packages`.
+
+## F-004 — Two reducer bugs caught in fixture testing before shipping
+**Date:** 2026-07-09 · **Phase:** B-prep · **Status:** RESOLVED
+
+During synthetic-fixture testing of `build/reduce_sharadar_local.py` (per the
+"py_compile passing does not prove a script runs" discipline): (1) chunk-count
+math raised ZeroDivisionError for `--max-part-mb <= 1`; guarded, argument made
+float. (2) The missing-raw-file FAIL path was exercised and behaves correctly.
+Shipped script SHA-256 `1ab17cb6f1322625…`; verified identical after Jason's
+download (his `py_compile` and `--help` runs matched, run completed exit 0).
+
+## F-005 — Sharadar SEP coverage begins 1997-12-31, not the requested 1997-01-01 floor
+**Date:** 2026-07-09 · **Phase:** B (first real-data run, vintage SHARADAR_20260620) · **Status:** REGISTERED — blocks Phase K window definition
+
+The reducer applied `--date-floor 1997-01-01`, but the earliest SEP row in the
+vendor data is `1997-12-31`. Sharadar's price coverage simply starts there; this
+is a vendor constraint, not a reduction defect.
+
+**Consequence:** the trail-6/skip-1 signal at formation month-end M requires the
+month-end close at M−7. With Dec-1997 as the earliest month-end, the earliest
+fully-formed signal lands mid-1998, so the dot-com stress window (1998–2005)
+likely loses its first one or two 1998 rebalances.
+
+**Required action:** register as an open decision on the Phase K window
+definition (effective start of the 1998–2005 stress holdout) **before that
+holdout is opened**. Do not resolve now; the holdout remains sealed. Exact first
+computable rebalance date must be derived mechanically in Phase C/D from the
+final month-end calendar, not assumed.
+
+## F-006 — 25 SP500-member tickers have no SEP price rows
+**Date:** 2026-07-09 · **Phase:** B · **Status:** REGISTERED — feeds Phase C identity audit (B0-04)
+
+Reduction QC: 1,199 distinct ever-member ticker keys in the SP500 table vs.
+1,174 distinct tickers present in the reduced SEP panel → 25 member tickers
+with zero price rows at/after the date floor. Working hypothesis: ticker-string
+mismatches between the SP500 table and SEP (same family as the 42 events in
+`_sp500_unmapped_events.csv`), and/or members whose entire price history
+predates 1997-12-31. Hypothesis is UNVERIFIED until the Phase C membership
+audit enumerates the 25 and classifies each.
+
+**Required action:** Phase C membership audit must list the 25 tickers, classify
+each (string mismatch / pre-1998 exit / vendor gap), and determine whether any
+touches the evaluated 1998+ timeline. B0-04 cannot close while any evaluated-
+timeline identity remains unresolved.
+
+## F-007 — Gap-loss flag discrepancy: protocol document vs. risk_limits.yaml
+**Date:** 2026-07-09 (carried from pre-repo review) · **Phase:** F-prep · **Status:** OPEN_DECISION
+
+The protocol document's FD-02 text describes a −35% gap-loss deployment flag;
+`config/risk_limits.yaml` encodes −25%. One of the two is wrong. Because
+`risk_limits.yaml` is one of the 18 frozen artifacts, correcting it after the
+Phase A freeze requires a new signed release per the design contract.
+
+**Required action:** Jason rules on the intended threshold **before FD-02/B0-08
+freeze and before any Phase F confirmation result is viewed**. The resolution
+commit must reference this finding ID.
+
+---
+
+*Maintenance rule: new findings are appended with the next F-NNN ID and added to
+the index table. Status changes edit the status line and index row only; original
+finding text is never rewritten. Each session branch that adds findings must
+mention the IDs in its commit message.*
