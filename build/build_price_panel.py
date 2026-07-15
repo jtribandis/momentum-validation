@@ -73,7 +73,18 @@ def main() -> int:
           SUM(CASE WHEN adj_log_move > LN(1.5) THEN 1 ELSE 0 END) AS extreme_adj_moves
         FROM f""").fetchone()
 
+    # chunked emission (Jason decision 2026-07-15): parts <=85MB so the clean panel is committed
     con.execute("COPY (SELECT * FROM panel ORDER BY permaticker, date) TO 'data/clean/sep_prices.parquet' (FORMAT PARQUET, COMPRESSION ZSTD)")
+    import math, os
+    size_mb = os.path.getsize('data/clean/sep_prices.parquet') / 1e6
+    if size_mb > 85:
+        n_all = con.execute('SELECT COUNT(*) FROM panel').fetchone()[0]
+        k = max(2, math.ceil(size_mb / 85)); per = n_all // k + 1
+        for i in range(k):
+            con.execute(f"COPY (SELECT * EXCLUDE rn FROM (SELECT *, row_number() OVER (ORDER BY permaticker, date) rn FROM panel) WHERE rn > {i*per} AND rn <= {(i+1)*per}) TO 'data/clean/sep_prices_part{i+1:02d}.parquet' (FORMAT PARQUET, COMPRESSION ZSTD)")
+        os.remove('data/clean/sep_prices.parquet')
+        con.execute("CREATE OR REPLACE VIEW _reread AS SELECT * FROM read_parquet('data/clean/sep_prices_part*.parquet')")
+        assert con.execute('SELECT COUNT(*) FROM _reread').fetchone()[0] == n_all, 'chunk row-count invariant violated'
 
     # month-end trading calendar
     con.execute("""CREATE TABLE cal AS
@@ -107,7 +118,7 @@ def main() -> int:
             'rule': 'signal at M requires month-ends at M-1 and M-7; rebalance months = {3,6,9,12}',
         },
         'outputs_sha256': {
-            'sep_prices.parquet (NOT COMMITTED - deterministic rebuild)': sha256(Path('data/clean/sep_prices.parquet')),
+            **({f'sep_prices_part{i+1:02d}.parquet': sha256(p) for i, p in enumerate(sorted(Path('data/clean').glob('sep_prices_part*.parquet')))} or {'sep_prices.parquet': sha256(Path('data/clean/sep_prices.parquet'))}),
             'month_end_calendar.parquet': sha256(Path('data/clean/month_end_calendar.parquet')),
         },
     }
