@@ -1,6 +1,6 @@
 {
-  "created_utc": "2026-07-09T16:39:05.993063+00:00",
-  "data_vintage_id": "SYNTH_TEST_V2",
+  "created_utc": "2026-07-14T13:55:12.671307+00:00",
+  "data_vintage_id": "SHARADAR_20260620",
   "status": "DRAFT_MANUAL_REVIEW_REQUIRED",
   "tables": {
     "SEP": {
@@ -31,7 +31,7 @@
         ],
         [
           "volume",
-          "BIGINT"
+          "DOUBLE"
         ],
         [
           "closeadj",
@@ -92,8 +92,64 @@
           "VARCHAR"
         ],
         [
+          "cusips",
+          "VARCHAR"
+        ],
+        [
           "siccode",
           "BIGINT"
+        ],
+        [
+          "sicsector",
+          "VARCHAR"
+        ],
+        [
+          "sicindustry",
+          "VARCHAR"
+        ],
+        [
+          "figi",
+          "VARCHAR"
+        ],
+        [
+          "famaindustry",
+          "VARCHAR"
+        ],
+        [
+          "sector",
+          "VARCHAR"
+        ],
+        [
+          "industry",
+          "VARCHAR"
+        ],
+        [
+          "scalemarketcap",
+          "VARCHAR"
+        ],
+        [
+          "scalerevenue",
+          "VARCHAR"
+        ],
+        [
+          "relatedtickers",
+          "VARCHAR"
+        ],
+        [
+          "currency",
+          "VARCHAR"
+        ],
+        [
+          "location",
+          "VARCHAR"
+        ],
+        [
+          "lastupdated",
+          "DATE"
+        ],
+        [
+          "firstadded",
+          "DATE"
         ],
         [
           "firstpricedate",
@@ -104,43 +160,57 @@
           "DATE"
         ],
         [
-          "lastupdated",
+          "firstquarter",
           "DATE"
+        ],
+        [
+          "lastquarter",
+          "DATE"
+        ],
+        [
+          "secfilings",
+          "VARCHAR"
+        ],
+        [
+          "companysite",
+          "VARCHAR"
         ]
       ],
       "expected_present": [
         "category",
-        "exchange",
-        "firstpricedate",
-        "isdelisted",
-        "lastpricedate",
-        "lastupdated",
-        "name",
-        "permaticker",
-        "siccode",
-        "table",
-        "ticker"
-      ],
-      "expected_missing": [
         "companysite",
         "currency",
         "cusips",
+        "exchange",
         "famaindustry",
-        "famasector",
         "firstadded",
+        "firstpricedate",
         "firstquarter",
         "industry",
+        "isdelisted",
+        "lastpricedate",
         "lastquarter",
+        "lastupdated",
         "location",
+        "name",
+        "permaticker",
         "relatedtickers",
         "scalemarketcap",
         "scalerevenue",
         "secfilings",
         "sector",
+        "siccode",
         "sicindustry",
-        "sicsector"
+        "sicsector",
+        "table",
+        "ticker"
       ],
-      "unknown_review_required": []
+      "expected_missing": [
+        "famasector"
+      ],
+      "unknown_review_required": [
+        "figi"
+      ]
     },
     "SP500": {
       "live_header": [
@@ -239,6 +309,10 @@
           "VARCHAR"
         ],
         [
+          "calendardate",
+          "DATE"
+        ],
+        [
           "datekey",
           "DATE"
         ],
@@ -247,7 +321,431 @@
           "DATE"
         ],
         [
+          "fiscalperiod",
+          "VARCHAR"
+        ],
+        [
+          "lastupdated",
+          "DATE"
+        ],
+        [
+          "accoci",
+          "BIGINT"
+        ],
+        [
+          "assets",
+          "BIGINT"
+        ],
+        [
+          "assetsavg",
+          "BIGINT"
+        ],
+        [
+          "assetsc",
+          "BIGINT"
+        ],
+        [
+          "assetsnc",
+          "BIGINT"
+        ],
+        [
+          "assetturnover",
+          "DOUBLE"
+        ],
+        [
+          "bvps",
+          "DOUBLE"
+        ],
+        [
+          "capex",
+          "BIGINT"
+        ],
+        [
+          "cashneq",
+          "BIGINT"
+        ],
+        [
+          "cashnequsd",
+          "BIGINT"
+        ],
+        [
+          "cor",
+          "BIGINT"
+        ],
+        [
+          "consolinc",
+          "BIGINT"
+        ],
+        [
+          "currentratio",
+          "DOUBLE"
+        ],
+        [
+          "de",
+          "DOUBLE"
+        ],
+        [
+          "debt",
+          "BIGINT"
+        ],
+        [
+          "debtc",
+          "BIGINT"
+        ],
+        [
+          "debtnc",
+          "BIGINT"
+        ],
+        [
+          "debtusd",
+          "BIGINT"
+        ],
+        [
+          "deferredrev",
+          "BIGINT"
+        ],
+        [
+          "depamor",
+          "BIGINT"
+        ],
+        [
+          "deposits",
+          "BIGINT"
+        ],
+        [
+          "divyield",
+          "DOUBLE"
+        ],
+        [
+          "dps",
+          "DOUBLE"
+        ],
+        [
+          "ebit",
+          "BIGINT"
+        ],
+        [
+          "ebitda",
+          "BIGINT"
+        ],
+        [
+          "ebitdamargin",
+          "DOUBLE"
+        ],
+        [
+          "ebitdausd",
+          "BIGINT"
+        ],
+        [
+          "ebitusd",
+          "BIGINT"
+        ],
+        [
+          "ebt",
+          "BIGINT"
+        ],
+        [
+          "eps",
+          "DOUBLE"
+        ],
+        [
+          "epsdil",
+          "DOUBLE"
+        ],
+        [
+          "epsusd",
+          "DOUBLE"
+        ],
+        [
+          "equity",
+          "BIGINT"
+        ],
+        [
+          "equityavg",
+          "BIGINT"
+        ],
+        [
+          "equityusd",
+          "BIGINT"
+        ],
+        [
+          "ev",
+          "BIGINT"
+        ],
+        [
+          "evebit",
+          "BIGINT"
+        ],
+        [
+          "evebitda",
+          "DOUBLE"
+        ],
+        [
+          "fcf",
+          "BIGINT"
+        ],
+        [
+          "fcfps",
+          "DOUBLE"
+        ],
+        [
+          "fxusd",
+          "DOUBLE"
+        ],
+        [
+          "gp",
+          "BIGINT"
+        ],
+        [
+          "grossmargin",
+          "DOUBLE"
+        ],
+        [
+          "intangibles",
+          "BIGINT"
+        ],
+        [
+          "intexp",
+          "BIGINT"
+        ],
+        [
+          "invcap",
+          "BIGINT"
+        ],
+        [
+          "invcapavg",
+          "BIGINT"
+        ],
+        [
+          "inventory",
+          "BIGINT"
+        ],
+        [
+          "investments",
+          "BIGINT"
+        ],
+        [
+          "investmentsc",
+          "BIGINT"
+        ],
+        [
+          "investmentsnc",
+          "BIGINT"
+        ],
+        [
+          "liabilities",
+          "BIGINT"
+        ],
+        [
+          "liabilitiesc",
+          "BIGINT"
+        ],
+        [
+          "liabilitiesnc",
+          "BIGINT"
+        ],
+        [
+          "marketcap",
+          "BIGINT"
+        ],
+        [
+          "ncf",
+          "BIGINT"
+        ],
+        [
+          "ncfbus",
+          "BIGINT"
+        ],
+        [
+          "ncfcommon",
+          "BIGINT"
+        ],
+        [
+          "ncfdebt",
+          "BIGINT"
+        ],
+        [
+          "ncfdiv",
+          "BIGINT"
+        ],
+        [
+          "ncff",
+          "BIGINT"
+        ],
+        [
+          "ncfi",
+          "BIGINT"
+        ],
+        [
+          "ncfinv",
+          "BIGINT"
+        ],
+        [
+          "ncfo",
+          "BIGINT"
+        ],
+        [
+          "ncfx",
+          "BIGINT"
+        ],
+        [
+          "netinc",
+          "BIGINT"
+        ],
+        [
+          "netinccmn",
+          "BIGINT"
+        ],
+        [
+          "netinccmnusd",
+          "BIGINT"
+        ],
+        [
+          "netincdis",
+          "BIGINT"
+        ],
+        [
+          "netincnci",
+          "BIGINT"
+        ],
+        [
+          "netmargin",
+          "DOUBLE"
+        ],
+        [
+          "opex",
+          "BIGINT"
+        ],
+        [
+          "opinc",
+          "BIGINT"
+        ],
+        [
+          "payables",
+          "BIGINT"
+        ],
+        [
+          "payoutratio",
+          "DOUBLE"
+        ],
+        [
+          "pb",
+          "DOUBLE"
+        ],
+        [
+          "pe",
+          "DOUBLE"
+        ],
+        [
+          "pe1",
+          "DOUBLE"
+        ],
+        [
+          "ppnenet",
+          "BIGINT"
+        ],
+        [
+          "prefdivis",
+          "BIGINT"
+        ],
+        [
+          "price",
+          "DOUBLE"
+        ],
+        [
+          "ps",
+          "DOUBLE"
+        ],
+        [
+          "ps1",
+          "DOUBLE"
+        ],
+        [
+          "receivables",
+          "BIGINT"
+        ],
+        [
+          "retearn",
+          "BIGINT"
+        ],
+        [
           "revenue",
+          "BIGINT"
+        ],
+        [
+          "revenueusd",
+          "BIGINT"
+        ],
+        [
+          "rnd",
+          "BIGINT"
+        ],
+        [
+          "roa",
+          "DOUBLE"
+        ],
+        [
+          "roe",
+          "DOUBLE"
+        ],
+        [
+          "roic",
+          "DOUBLE"
+        ],
+        [
+          "ros",
+          "DOUBLE"
+        ],
+        [
+          "sbcomp",
+          "BIGINT"
+        ],
+        [
+          "sgna",
+          "BIGINT"
+        ],
+        [
+          "sharefactor",
+          "DOUBLE"
+        ],
+        [
+          "sharesbas",
+          "BIGINT"
+        ],
+        [
+          "shareswa",
+          "BIGINT"
+        ],
+        [
+          "shareswadil",
+          "BIGINT"
+        ],
+        [
+          "sps",
+          "DOUBLE"
+        ],
+        [
+          "tangibles",
+          "BIGINT"
+        ],
+        [
+          "taxassets",
+          "BIGINT"
+        ],
+        [
+          "taxexp",
+          "BIGINT"
+        ],
+        [
+          "taxliabilities",
+          "BIGINT"
+        ],
+        [
+          "tbvps",
+          "DOUBLE"
+        ],
+        [
+          "workingcapital",
           "BIGINT"
         ]
       ],
