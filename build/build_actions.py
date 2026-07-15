@@ -18,7 +18,7 @@ def main() -> int:
     Path('data/clean').mkdir(parents=True, exist_ok=True)
     con.execute("""CREATE VIEW tk AS
         SELECT permaticker, ticker,
-               MIN(COALESCE(firstpricedate, DATE '1900-01-01')) fp,
+               MIN(COALESCE(firstpricedate, DATE '1900-01-01')) - INTERVAL 10 DAY fp,
                MAX(COALESCE(lastpricedate,  DATE '2999-12-31')) + INTERVAL 30 DAY lp
         FROM read_parquet('data/compact_upload/tickers_universe.parquet')
         WHERE ticker IS NOT NULL GROUP BY permaticker, ticker""")
@@ -31,7 +31,7 @@ def main() -> int:
         QUALIFY COUNT(DISTINCT t.permaticker) OVER (PARTITION BY a.ticker, a.date, a.action) = 1""")
     n_raw = con.execute("SELECT COUNT(*) FROM read_parquet('data/compact_upload/actions.parquet')").fetchone()[0]
     n = con.execute('SELECT COUNT(*) FROM ac').fetchone()[0]
-    con.execute("COPY (SELECT * FROM ac ORDER BY permaticker, date) TO 'data/clean/actions_clean.parquet' (FORMAT PARQUET, COMPRESSION ZSTD)")
+    con.execute("COPY (SELECT * FROM ac ORDER BY permaticker, date, action, ticker, value NULLS FIRST, contraticker NULLS FIRST) TO 'data/clean/actions_clean.parquet' (FORMAT PARQUET, COMPRESSION ZSTD)")
     vocab = con.execute("SELECT action, COUNT(*) FROM ac GROUP BY 1 ORDER BY 2 DESC").fetchall()
     report = {'created_utc': datetime.datetime.now(datetime.timezone.utc).isoformat(),
               'rows': {'raw': n_raw, 'mapped': n, 'unmapped': n_raw - n},

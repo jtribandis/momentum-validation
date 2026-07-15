@@ -1,0 +1,63 @@
+{
+  "protocol_version": "3.2.4",
+  "code_commit": "db3e12304c5758b3e1b34b6d97f8972cea009053",
+  "dirty_state": true,
+  "config_hash": "48d0841e6ff305aeefeed33baf5e8224d44a7bc477938cc6df2ba5a438ed7a4f",
+  "data_vintage_id": "SHARADAR_20260620",
+  "outputs": [
+    {
+      "path": "data/clean/actions_clean.parquet",
+      "content_hash": "a7a473ffb429ef7e566b5a49ef99726de37aff00918a41b362ded4d2f28f30d4",
+      "file_hash": "a7a473ffb429ef7e566b5a49ef99726de37aff00918a41b362ded4d2f28f30d4",
+      "schema_version": "clean_v1"
+    },
+    {
+      "path": "data/clean/eligible_snapshots.parquet",
+      "content_hash": "1bce526545aa5fc48a39378737701b8a07ad71fbb0457bbeba3d0662c2fd3f2f",
+      "file_hash": "1bce526545aa5fc48a39378737701b8a07ad71fbb0457bbeba3d0662c2fd3f2f",
+      "schema_version": "clean_v1"
+    },
+    {
+      "path": "data/clean/membership_intervals.parquet",
+      "content_hash": "4e50a963fbb21276db7d6dc6ef8d286dc2ed6af554dc12f3e5fd02720eaba075",
+      "file_hash": "4e50a963fbb21276db7d6dc6ef8d286dc2ed6af554dc12f3e5fd02720eaba075",
+      "schema_version": "clean_v1"
+    },
+    {
+      "path": "data/clean/membership_snapshots.parquet",
+      "content_hash": "d8eb59a83d6e37f2ae303d7e1efb6f12ae3b5bc4e82417f2dfe1ed344a6aa6cb",
+      "file_hash": "d8eb59a83d6e37f2ae303d7e1efb6f12ae3b5bc4e82417f2dfe1ed344a6aa6cb",
+      "schema_version": "clean_v1"
+    },
+    {
+      "path": "data/clean/month_end_calendar.parquet",
+      "content_hash": "a01744a2a5c6378917788535794b4cfe6ecbfc168ca08b868d4e400ad0d06906",
+      "file_hash": "a01744a2a5c6378917788535794b4cfe6ecbfc168ca08b868d4e400ad0d06906",
+      "schema_version": "clean_v1"
+    },
+    {
+      "path": "data/clean/security_master.parquet",
+      "content_hash": "33cf8eba0d2b2ce8726b95c19caf669602ee08660f8f6cf51017681b23216223",
+      "file_hash": "33cf8eba0d2b2ce8726b95c19caf669602ee08660f8f6cf51017681b23216223",
+      "schema_version": "clean_v1"
+    },
+    {
+      "path": "data/clean/sep_prices_part01.parquet",
+      "content_hash": "2da0224752d6d4a899ba83631fde90b1f8f88f3bc1fd5b6b6cd9effb58388459",
+      "file_hash": "2da0224752d6d4a899ba83631fde90b1f8f88f3bc1fd5b6b6cd9effb58388459",
+      "schema_version": "clean_v1"
+    },
+    {
+      "path": "data/clean/sep_prices_part02.parquet",
+      "content_hash": "c143d33c9e180e4fe7618cc21d4cd972cb091752ba9a268c9be0764ef5db371d",
+      "file_hash": "c143d33c9e180e4fe7618cc21d4cd972cb091752ba9a268c9be0764ef5db371d",
+      "schema_version": "clean_v1"
+    },
+    {
+      "path": "data/clean/terminal_events.parquet",
+      "content_hash": "41cf80f3b2dc37ede18f26782b303914ecf6b5a263f6354a0ea699c50a8e0521",
+      "file_hash": "41cf80f3b2dc37ede18f26782b303914ecf6b5a263f6354a0ea699c50a8e0521",
+      "schema_version": "clean_v1"
+    }
+  ]
+}

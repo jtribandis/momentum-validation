@@ -18,9 +18,9 @@ def main() -> int:
     Path('data/clean').mkdir(parents=True, exist_ok=True)
     Path('results/phaseB').mkdir(parents=True, exist_ok=True)
     con.execute("""CREATE TABLE sm AS
-        SELECT permaticker, ANY_VALUE(ticker) AS ticker, ANY_VALUE("name") AS co_name,
-               ANY_VALUE(exchange) exchange, ANY_VALUE(category) category,
-               ANY_VALUE(isdelisted) isdelisted, ANY_VALUE(siccode) siccode,
+        SELECT permaticker, MAX(ticker) AS ticker, MAX("name") AS co_name,
+               MAX(exchange) exchange, MAX(category) category,
+               MAX(isdelisted) isdelisted, MAX(siccode) siccode,
                MIN(firstpricedate) firstpricedate, MAX(lastpricedate) lastpricedate
         FROM read_parquet('data/compact_upload/tickers_universe.parquet')
         WHERE "table" = 'SEP' AND permaticker IS NOT NULL

@@ -1,9 +1,9 @@
 {
-  "created_utc": "2026-07-15T17:50:21.539939+00:00",
+  "created_utc": "2026-07-15T18:13:29.721114+00:00",
   "rows": {
     "raw": 65321,
-    "mapped": 65226,
-    "unmapped": 95
+    "mapped": 65246,
+    "unmapped": 75
   },
   "action_vocabulary": [
     {
@@ -12,11 +12,11 @@
     },
     {
       "action": "acquisitionof",
-      "n": 2079
+      "n": 2083
     },
     {
       "action": "split",
-      "n": 1180
+      "n": 1184
     },
     {
       "action": "initiated",
@@ -56,19 +56,19 @@
     },
     {
       "action": "spunofffrom",
-      "n": 101
+      "n": 102
     },
     {
       "action": "bankruptcyliquidation",
       "n": 59
     },
     {
-      "action": "mergerto",
-      "n": 9
+      "action": "mergerfrom",
+      "n": 16
     },
     {
-      "action": "mergerfrom",
-      "n": 5
+      "action": "mergerto",
+      "n": 9
     },
     {
       "action": "adrratiosplit",
@@ -76,6 +76,6 @@
     }
   ],
   "b005_status": "value carried with value_units_unverified=TRUE; no arithmetic on value until B0-05 closes",
-  "output_sha256": "3f292ede147a3cfb3ca4b2fc931bef72677dbfa3d9c0c2d80d6522153765e979",
+  "output_sha256": "a7a473ffb429ef7e566b5a49ef99726de37aff00918a41b362ded4d2f28f30d4",
   "overall": "PASS"
 }

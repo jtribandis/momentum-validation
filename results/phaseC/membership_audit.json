@@ -1,19 +1,7 @@
 {
-  "created_utc": "2026-07-15T17:54:08.066981+00:00",
-  "unmapped_total": 401,
+  "created_utc": "2026-07-15T18:11:36.415822+00:00",
+  "unmapped_total": 386,
   "by_era_reason_action": [
-    {
-      "era": "EVALUATED_ERA",
-      "reason": "DATE_OUTSIDE_PRICE_COVERAGE",
-      "action": "added",
-      "n": 9
-    },
-    {
-      "era": "EVALUATED_ERA",
-      "reason": "DATE_OUTSIDE_PRICE_COVERAGE",
-      "action": "historical",
-      "n": 4
-    },
     {
       "era": "EVALUATED_ERA",
       "reason": "TICKER_STRING_ABSENT_FROM_TICKERS",
@@ -21,10 +9,16 @@
       "n": 1
     },
     {
+      "era": "EVALUATED_ERA",
+      "reason": "DATE_OUTSIDE_PRICE_COVERAGE",
+      "action": "added",
+      "n": 1
+    },
+    {
       "era": "PRE_COVERAGE",
       "reason": "DATE_OUTSIDE_PRICE_COVERAGE",
       "action": "added",
-      "n": 332
+      "n": 329
     },
     {
       "era": "PRE_COVERAGE",
@@ -45,102 +39,13 @@
       "n": 10
     }
   ],
-  "evaluated_era_total": 14,
-  "evaluated_era_snapshot_gaps_by_date": [
-    {
-      "date": "2016-06-30",
-      "missing": 1
-    },
-    {
-      "date": "2013-06-30",
-      "missing": 1
-    },
-    {
-      "date": "2015-06-30",
-      "missing": 1
-    },
-    {
-      "date": "2007-09-30",
-      "missing": 1
-    }
-  ],
+  "evaluated_era_total": 2,
+  "evaluated_era_snapshot_gaps_by_date": [],
   "evaluated_era_worklist": [
     {
       "date": "1998-10-08",
       "action": "added",
       "ticker": "CCE1",
-      "reason": "DATE_OUTSIDE_PRICE_COVERAGE"
-    },
-    {
-      "date": "2001-07-06",
-      "action": "added",
-      "ticker": "AWE",
-      "reason": "DATE_OUTSIDE_PRICE_COVERAGE"
-    },
-    {
-      "date": "2007-09-30",
-      "action": "added",
-      "ticker": "TDC",
-      "reason": "DATE_OUTSIDE_PRICE_COVERAGE"
-    },
-    {
-      "date": "2013-06-30",
-      "action": "added",
-      "ticker": "NWSA",
-      "reason": "DATE_OUTSIDE_PRICE_COVERAGE"
-    },
-    {
-      "date": "2015-06-30",
-      "action": "added",
-      "ticker": "BXLT",
-      "reason": "DATE_OUTSIDE_PRICE_COVERAGE"
-    },
-    {
-      "date": "2015-11-27",
-      "action": "added",
-      "ticker": "CSRA",
-      "reason": "DATE_OUTSIDE_PRICE_COVERAGE"
-    },
-    {
-      "date": "2016-06-30",
-      "action": "added",
-      "ticker": "FTV",
-      "reason": "DATE_OUTSIDE_PRICE_COVERAGE"
-    },
-    {
-      "date": "2017-01-13",
-      "action": "added",
-      "ticker": "FTI",
-      "reason": "DATE_OUTSIDE_PRICE_COVERAGE"
-    },
-    {
-      "date": "2024-07-05",
-      "action": "added",
-      "ticker": "SW",
-      "reason": "DATE_OUTSIDE_PRICE_COVERAGE"
-    },
-    {
-      "date": "2007-09-30",
-      "action": "historical",
-      "ticker": "TDC",
-      "reason": "DATE_OUTSIDE_PRICE_COVERAGE"
-    },
-    {
-      "date": "2013-06-30",
-      "action": "historical",
-      "ticker": "NWSA",
-      "reason": "DATE_OUTSIDE_PRICE_COVERAGE"
-    },
-    {
-      "date": "2015-06-30",
-      "action": "historical",
-      "ticker": "BXLT",
-      "reason": "DATE_OUTSIDE_PRICE_COVERAGE"
-    },
-    {
-      "date": "2016-06-30",
-      "action": "historical",
-      "ticker": "FTV",
       "reason": "DATE_OUTSIDE_PRICE_COVERAGE"
     },
     {
@@ -153,19 +58,15 @@
   "actions_unmapped_by_type": [
     {
       "action": "acquisitionof",
-      "n": 42
+      "n": 38
     },
     {
       "action": "split",
-      "n": 21
+      "n": 17
     },
     {
       "action": "relation",
       "n": 14
-    },
-    {
-      "action": "mergerfrom",
-      "n": 11
     },
     {
       "action": "initiated",
@@ -173,10 +74,6 @@
     },
     {
       "action": "spinoff",
-      "n": 1
-    },
-    {
-      "action": "spunofffrom",
       "n": 1
     },
     {

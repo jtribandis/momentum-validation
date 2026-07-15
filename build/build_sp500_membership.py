@@ -44,7 +44,7 @@ def main() -> int:
     con.execute("CREATE VIEW sp AS SELECT * FROM read_parquet('data/compact_upload/sp500_membership_raw.parquet')")
     con.execute("""CREATE VIEW tk AS
         SELECT permaticker, ticker,
-               MIN(COALESCE(firstpricedate, DATE '1900-01-01')) fp,
+               MIN(COALESCE(firstpricedate, DATE '1900-01-01')) - INTERVAL 10 DAY fp,
                MAX(COALESCE(lastpricedate,  DATE '2999-12-31')) + INTERVAL 30 DAY lp
         FROM read_parquet('data/compact_upload/tickers_universe.parquet')
         WHERE ticker IS NOT NULL

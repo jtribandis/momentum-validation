@@ -20,7 +20,7 @@ action scheduled at a later phase) · RESOLVED (evidence linked) · INFORMATIONA
 | F-007 | 2026-07-09 | F-prep | OPEN_DECISION |
 | F-008 | 2026-07-14 | B | RESOLVED |
 | F-009 | 2026-07-14 | B | RESOLVED |
-| F-010 | 2026-07-14 | C | REGISTERED — audit run: worklist reduced to 14 evaluated-era items |
+| F-010 | 2026-07-14 | C | REGISTERED — fp-grace applied; residual worklist = 2 items, eligible sets hash-proven unchanged |
 | F-011 | 2026-07-15 | C | REGISTERED (protocol doc §1.3 warm-up line superseded by derivation) |
 | F-012 | 2026-07-15 | B/C | RESOLVED |
 

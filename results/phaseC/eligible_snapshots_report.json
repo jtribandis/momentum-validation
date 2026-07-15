@@ -1,5 +1,5 @@
 {
-  "created_utc": "2026-07-15T17:54:07.813763+00:00",
+  "created_utc": "2026-07-15T18:14:15.837326+00:00",
   "formations": 79,
   "first_formation": "1998-09-30",
   "last_formation": "2026-03-31",
@@ -297,9 +297,9 @@
     },
     {
       "formation": "2015-06-30",
-      "members": 501,
+      "members": 502,
       "eligible": 500,
-      "attrition": 1
+      "attrition": 2
     },
     {
       "formation": "2015-09-30",
@@ -321,9 +321,9 @@
     },
     {
       "formation": "2016-06-30",
-      "members": 504,
+      "members": 505,
       "eligible": 503,
-      "attrition": 1
+      "attrition": 2
     },
     {
       "formation": "2016-09-30",
