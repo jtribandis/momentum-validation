@@ -46,7 +46,7 @@ OV-01 (SEP price-field semantics) is SATISFIED by this ruling.
 **R3 — SP500.action vocabulary.** Observed values in the real table: added, removed, current,
 historical (counts: 1,232 / 735 / 503 / 56,690). The membership builder treats
 historical+current as PIT snapshots and added/removed as the event stream.
-RECOMMENDATION: confirm this treatment. → Jason: ____ (pending)
+RECOMMENDATION: confirm this treatment. → Jason: **RULED 2026-07-15 (recorded by session agent at Jason's explicit direction; attested by merge): snapshots gate, events cross-check, day-before removal convention CONFIRMED.**
 
 **Evidence issued 2026-07-15 for this ruling — what to look at:**
 (a) Plain-words treatment: 'historical' and 'current' rows are the vendor's direct statements
