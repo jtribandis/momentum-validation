@@ -18,7 +18,7 @@ action scheduled at a later phase) · RESOLVED (evidence linked) · INFORMATIONA
 | F-005 | 2026-07-09 | B | REGISTERED (blocks Phase K window definition) |
 | F-006 | 2026-07-09 | B | REGISTERED (feeds Phase C identity audit) |
 | F-007 | 2026-07-09 | F-prep | OPEN_DECISION |
-| F-008 | 2026-07-14 | B | OPEN_DECISION (needs real vendor report re-upload) |
+| F-008 | 2026-07-14 | B | RESOLVED |
 | F-009 | 2026-07-14 | B | RESOLVED |
 | F-010 | 2026-07-14 | C | REGISTERED (Phase C audit worklist quantified) |
 
@@ -117,7 +117,7 @@ finding text is never rewritten. Each session branch that adds findings must
 mention the IDs in its commit message.*
 
 ## F-008 — Synthetic fixture artifacts leaked into the shipped package and reached the repo
-**Date:** 2026-07-14 · **Phase:** B · **Status:** OPEN_DECISION (operator action required)
+**Date:** 2026-07-14 · **Phase:** B · **Status:** RESOLVED — real report (SHARADAR_20260620) pushed by Jason 2026-07-15; synthetic artifacts fully purged; B0-02 review sheet issued at results/phaseB/b002_field_classification_review.md
 
 The sandbox fixture test of the reducer wrote `manifests/raw_archive_manifest.json` and
 `results/phaseB/vendor_semantics_report.json` (vintage SYNTH_TEST_V2) into the package tree,
