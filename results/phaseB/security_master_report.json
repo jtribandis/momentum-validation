@@ -1,0 +1,34 @@
+{
+  "created_utc": "2026-07-15T17:34:53.143679+00:00",
+  "rows": 21859,
+  "duplicate_permatickers": 0,
+  "ever_member_category_mix": [
+    {
+      "category": "Domestic Common Stock",
+      "n": 946
+    },
+    {
+      "category": "Domestic Common Stock Primary Class",
+      "n": 192
+    },
+    {
+      "category": "Domestic Common Stock Secondary Class",
+      "n": 8
+    },
+    {
+      "category": "Canadian Common Stock",
+      "n": 3
+    },
+    {
+      "category": "ADR Common Stock Primary Class",
+      "n": 3
+    },
+    {
+      "category": "ADR Common Stock",
+      "n": 1
+    }
+  ],
+  "etf_etn_among_members": 0,
+  "output_sha256": "33cf8eba0d2b2ce8726b95c19caf669602ee08660f8f6cf51017681b23216223",
+  "overall": "PASS"
+}
