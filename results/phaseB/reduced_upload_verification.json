@@ -1,0 +1,43 @@
+{
+  "created_utc": "2026-07-14T14:41:33.107910+00:00",
+  "overall": "PASS",
+  "checks": [
+    {
+      "check": "raw_archive_manifest schema",
+      "result": "PASS",
+      "vintage": "SHARADAR_20260620"
+    },
+    {
+      "check": "vintage match",
+      "result": "PASS"
+    },
+    {
+      "file": "sep_prices_part01.parquet",
+      "result": "PASS"
+    },
+    {
+      "file": "sep_prices_part02.parquet",
+      "result": "PASS"
+    },
+    {
+      "file": "tickers_universe.parquet",
+      "result": "PASS"
+    },
+    {
+      "file": "sp500_membership_raw.parquet",
+      "result": "PASS"
+    },
+    {
+      "file": "actions.parquet",
+      "result": "PASS"
+    },
+    {
+      "file": "sf1_asreported.parquet",
+      "result": "PASS"
+    },
+    {
+      "check": "manifest cross-hash (CRLF-tolerant, F-009)",
+      "result": "PASS"
+    }
+  ]
+}
