@@ -1,0 +1,1539 @@
+{
+  "created_utc": "2026-07-14T14:40:58.230916+00:00",
+  "inputs_sha256": {
+    "sp500_membership_raw.parquet": "b97a4a9b68acc88539df2cdda4fd70b238f1a3ed29f93d85b5584f001459fd8b",
+    "tickers_universe.parquet": "8bf0088bd6b1391cba56d33da15805e8179ca2d17fd7576aca5610b733e5a0ef"
+  },
+  "row_counts": {
+    "membership_rows_total": 59160,
+    "mapped_unique": 58040,
+    "snapshots_rows": 56682,
+    "intervals": 868,
+    "event_anomalies": 147,
+    "unmapped_membership_rows": 1120,
+    "unmapped_distinct_tickers": 883
+  },
+  "snapshot_member_counts": {
+    "min": 499,
+    "max": 505,
+    "avg": 501.6
+  },
+  "cross_validation_snapshot_vs_intervals": {
+    "snapshot_dates_checked": 113,
+    "agree_pairs": 36700,
+    "in_snapshot_not_intervals": 19982,
+    "in_intervals_not_snapshot": 8577,
+    "note": "Disagreements EXPECTED nonzero (event reconstruction vs vendor snapshots); Phase C audit classifies them. Snapshots are the PIT source of truth for the rebalance gate; intervals are the consistency check."
+  },
+  "interval_convention": "added inclusive on event date; removed effective day-before event date; open intervals closed at vendor horizon",
+  "sep_coverage_floor_applied_to_xval": "1997-12-31",
+  "event_anomalies": [
+    {
+      "permaticker": 102444,
+      "ticker": "ITT1",
+      "date": "1998-02-20",
+      "issue": "REMOVED_WITHOUT_OPEN"
+    },
+    {
+      "permaticker": 103017,
+      "ticker": "BBI1",
+      "date": "1998-01-09",
+      "issue": "REMOVED_WITHOUT_OPEN"
+    },
+    {
+      "permaticker": 103166,
+      "ticker": "MST1",
+      "date": "1998-08-14",
+      "issue": "REMOVED_WITHOUT_OPEN"
+    },
+    {
+      "permaticker": 109824,
+      "ticker": "ECH1",
+      "date": "1998-07-09",
+      "issue": "REMOVED_WITHOUT_OPEN"
+    },
+    {
+      "permaticker": 110119,
+      "ticker": "AN1",
+      "date": "1998-12-31",
+      "issue": "REMOVED_WITHOUT_OPEN"
+    },
+    {
+      "permaticker": 110516,
+      "ticker": "JPM1",
+      "date": "2000-12-29",
+      "issue": "REMOVED_WITHOUT_OPEN"
+    },
+    {
+      "permaticker": 110517,
+      "ticker": "GP1",
+      "date": "2005-12-20",
+      "issue": "REMOVED_WITHOUT_OPEN"
+    },
+    {
+      "permaticker": 110618,
+      "ticker": "DEC1",
+      "date": "1998-06-11",
+      "issue": "REMOVED_WITHOUT_OPEN"
+    },
+    {
+      "permaticker": 110780,
+      "ticker": "FLTWQ",
+      "date": "2000-01-31",
+      "issue": "REMOVED_WITHOUT_OPEN"
+    },
+    {
+      "permaticker": 114623,
+      "ticker": "DIGI2",
+      "date": "1998-08-28",
+      "issue": "REMOVED_WITHOUT_OPEN"
+    },
+    {
+      "permaticker": 114755,
+      "ticker": "BAC1",
+      "date": "1998-09-30",
+      "issue": "REMOVED_WITHOUT_OPEN"
+    },
+    {
+      "permaticker": 114765,
+      "ticker": "WAI1",
+      "date": "1998-08-10",
+      "issue": "REMOVED_WITHOUT_OPEN"
+    },
+    {
+      "permaticker": 114784,
+      "ticker": "SAI1",
+      "date": "1989-03-08",
+      "issue": "REMOVED_WITHOUT_OPEN"
+    },
+    {
+      "permaticker": 114785,
+      "ticker": "AHM1",
+      "date": "1998-10-01",
+      "issue": "REMOVED_WITHOUT_OPEN"
+    },
+    {
+      "permaticker": 114880,
+      "ticker": "H2",
+      "date": "2001-06-27",
+      "issue": "REMOVED_WITHOUT_OPEN"
+    },
+    {
+      "permaticker": 114881,
+      "ticker": "OAT",
+      "date": "2001-08-02",
+      "issue": "REMOVED_WITHOUT_OPEN"
+    },
+    {
+      "permaticker": 115541,
+      "ticker": "AMP1",
+      "date": "1999-04-01",
+      "issue": "REMOVED_WITHOUT_OPEN"
+    },
+    {
+      "permaticker": 115557,
+      "ticker": "TCOMA",
+      "date": "1999-03-09",
+      "issue": "REMOVED_WITHOUT_OPEN"
+    },
+    {
+      "permaticker": 115622,
+      "ticker": "BFI1",
+      "date": "1999-07-30",
+      "issue": "REMOVED_WITHOUT_OPEN"
+    },
+    {
+      "permaticker": 115633,
+      "ticker": "PZE1",
+      "date": "1998-12-30",
+      "issue": "REMOVED_WITHOUT_OPEN"
+    },
+    {
+      "permaticker": 116096,
+      "ticker": "T1",
+      "date": "2005-11-18",
+      "issue": "REMOVED_WITHOUT_OPEN"
+    },
+    {
+      "permaticker": 116375,
+      "ticker": "TMC.A",
+      "date": "2000-06-12",
+      "issue": "REMOVED_WITHOUT_OPEN"
+    },
+    {
+      "permaticker": 116426,
+      "ticker": "BFO1",
+      "date": "2000-10-02",
+      "issue": "REMOVED_WITHOUT_OPEN"
+    },
+    {
+      "permaticker": 116531,
+      "ticker": "BT1",
+      "date": "1999-06-03",
+      "issue": "REMOVED_WITHOUT_OPEN"
+    },
+    {
+      "permaticker": 119266,
+      "ticker": "WNDXQ",
+      "date": "2004-12-03",
+      "issue": "REMOVED_WITHOUT_OPEN"
+    },
+    {
+      "permaticker": 119347,
+      "ticker": "BHMSQ",
+      "date": "2000-12-05",
+      "issue": "REMOVED_WITHOUT_OPEN"
+    },
+    {
+      "permaticker": 119350,
+      "ticker": "CCE1",
+      "date": "2016-05-27",
+      "issue": "REMOVED_WITHOUT_OPEN"
+    },
+    {
+      "permaticker": 119454,
+      "ticker": "HON1",
+      "date": "1999-12-01",
+      "issue": "REMOVED_WITHOUT_OPEN"
+    },
+    {
+      "permaticker": 119478,
+      "ticker": "AS1",
+      "date": "1998-11-23",
+      "issue": "REMOVED_WITHOUT_OPEN"
+    },
+    {
+      "permaticker": 119605,
+      "ticker": "AR1",
+      "date": "1999-10-27",
+      "issue": "REMOVED_WITHOUT_OPEN"
+    },
+    {
+      "permaticker": 119833,
+      "ticker": "GTE1",
+      "date": "2000-06-20",
+      "issue": "REMOVED_WITHOUT_OPEN"
+    },
+    {
+      "permaticker": 119877,
+      "ticker": "CNG",
+      "date": "2000-01-28",
+      "issue": "REMOVED_WITHOUT_OPEN"
+    },
+    {
+      "permaticker": 119992,
+      "ticker": "EFU1",
+      "date": "2000-11-02",
+      "issue": "REMOVED_WITHOUT_OPEN"
+    },
+    {
+      "permaticker": 120058,
+      "ticker": "SMS1",
+      "date": "2000-06-08",
+      "issue": "REMOVED_WITHOUT_OPEN"
+    },
+    {
+      "permaticker": 120186,
+      "ticker": "CHA1",
+      "date": "2000-06-19",
+      "issue": "REMOVED_WITHOUT_OPEN"
+    },
+    {
+      "permaticker": 120187,
+      "ticker": "CSR1",
+      "date": "2000-06-15",
+      "issue": "REMOVED_WITHOUT_OPEN"
+    },
+    {
+      "permaticker": 120453,
+      "ticker": "AL1",
+      "date": "2002-07-22",
+      "issue": "REMOVED_WITHOUT_OPEN"
+    },
+    {
+      "permaticker": 120488,
+      "ticker": "DALRQ",
+      "date": "2005-08-19",
+      "issue": "REMOVED_WITHOUT_OPEN"
+    },
+    {
+      "permaticker": 120680,
+      "ticker": "KM",
+      "date": "2002-01-17",
+      "issue": "REMOVED_WITHOUT_OPEN"
+    },
+    {
+      "permaticker": 120882,
+      "ticker": "AWE",
+      "date": "2004-10-26",
+      "issue": "REMOVED_WITHOUT_OPEN"
+    },
+    {
+      "permaticker": 121208,
+      "ticker": "GWOW",
+      "date": "1992-07-02",
+      "issue": "REMOVED_WITHOUT_OPEN"
+    },
+    {
+      "permaticker": 121224,
+      "ticker": "UCM",
+      "date": "2000-10-20",
+      "issue": "REMOVED_WITHOUT_OPEN"
+    },
+    {
+      "permaticker": 121511,
+      "ticker": "PRDCQ",
+      "date": "2000-12-12",
+      "issue": "REMOVED_WITHOUT_OPEN"
+    },
+    {
+      "permaticker": 121575,
+      "ticker": "HM",
+      "date": "2001-12-14",
+      "issue": "REMOVED_WITHOUT_OPEN"
+    },
+    {
+      "permaticker": 121970,
+      "ticker": "SMI1",
+      "date": "2000-12-11",
+      "issue": "REMOVED_WITHOUT_OPEN"
+    },
+    {
+      "permaticker": 122204,
+      "ticker": "NMK1",
+      "date": "2002-01-31",
+      "issue": "REMOVED_WITHOUT_OPEN"
+    },
+    {
+      "permaticker": 122262,
+      "ticker": "MEA1",
+      "date": "2002-01-29",
+      "issue": "REMOVED_WITHOUT_OPEN"
+    },
+    {
+      "permaticker": 122804,
+      "ticker": "HI1",
+      "date": "2003-03-25",
+      "issue": "REMOVED_WITHOUT_OPEN"
+    },
+    {
+      "permaticker": 123020,
+      "ticker": "MZIAQ",
+      "date": "2000-06-28",
+      "issue": "REMOVED_WITHOUT_OPEN"
+    },
+    {
+      "permaticker": 123403,
+      "ticker": "INCLF",
+      "date": "2002-07-22",
+      "issue": "REMOVED_WITHOUT_OPEN"
+    }
+  ],
+  "unmapped": [
+    {
+      "date": "1957-03-04",
+      "action": "added",
+      "ticker": "AAMRQ",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1957-03-04",
+      "action": "added",
+      "ticker": "RLM1",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1957-03-04",
+      "action": "added",
+      "ticker": "PGL",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1957-03-04",
+      "action": "added",
+      "ticker": "RTN",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1957-03-04",
+      "action": "added",
+      "ticker": "WLA",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1957-03-04",
+      "action": "removed",
+      "ticker": "WAB",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1957-03-04",
+      "action": "added",
+      "ticker": "UCC1",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1957-03-04",
+      "action": "added",
+      "ticker": "ED",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1957-03-04",
+      "action": "added",
+      "ticker": "AD2",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1957-03-04",
+      "action": "added",
+      "ticker": "HM",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1957-03-04",
+      "action": "added",
+      "ticker": "COP",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1957-03-04",
+      "action": "added",
+      "ticker": "EKDKQ",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1957-03-04",
+      "action": "added",
+      "ticker": "ET2",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1957-03-04",
+      "action": "added",
+      "ticker": "GSX1",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1957-03-04",
+      "action": "added",
+      "ticker": "HAL",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1957-03-04",
+      "action": "added",
+      "ticker": "HWM",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1957-03-04",
+      "action": "added",
+      "ticker": "KO",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1957-03-04",
+      "action": "added",
+      "ticker": "CVX",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1957-03-04",
+      "action": "added",
+      "ticker": "PCG",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1957-03-04",
+      "action": "added",
+      "ticker": "VO1",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1957-03-04",
+      "action": "added",
+      "ticker": "AS1",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1957-03-04",
+      "action": "added",
+      "ticker": "DI1",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1957-03-04",
+      "action": "added",
+      "ticker": "OWENQ",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1957-03-04",
+      "action": "added",
+      "ticker": "WNDXQ",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1957-03-04",
+      "action": "added",
+      "ticker": "CNG",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1957-03-04",
+      "action": "added",
+      "ticker": "GRA",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1957-03-04",
+      "action": "added",
+      "ticker": "PEG",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1957-03-04",
+      "action": "added",
+      "ticker": "TX1",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1957-03-04",
+      "action": "added",
+      "ticker": "AN1",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1957-03-04",
+      "action": "added",
+      "ticker": "BFO1",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1957-03-04",
+      "action": "added",
+      "ticker": "DD1",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1957-03-04",
+      "action": "added",
+      "ticker": "WGL",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1957-03-04",
+      "action": "added",
+      "ticker": "CAL",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1957-03-04",
+      "action": "added",
+      "ticker": "CG1",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1957-03-04",
+      "action": "added",
+      "ticker": "CUE1",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1957-03-04",
+      "action": "added",
+      "ticker": "DE",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1957-03-04",
+      "action": "added",
+      "ticker": "GE",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1957-03-04",
+      "action": "added",
+      "ticker": "KR",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1957-03-04",
+      "action": "added",
+      "ticker": "MMM",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1957-03-04",
+      "action": "added",
+      "ticker": "MO",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1957-03-04",
+      "action": "added",
+      "ticker": "MRK",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1957-03-04",
+      "action": "added",
+      "ticker": "PEP",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1957-03-04",
+      "action": "added",
+      "ticker": "CBE",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1957-03-04",
+      "action": "added",
+      "ticker": "GWOW",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1957-03-04",
+      "action": "added",
+      "ticker": "IBM",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1957-03-04",
+      "action": "added",
+      "ticker": "KMB",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1957-03-04",
+      "action": "added",
+      "ticker": "PD1",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1957-03-04",
+      "action": "added",
+      "ticker": "C1",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1957-03-04",
+      "action": "added",
+      "ticker": "OAT",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1957-03-04",
+      "action": "added",
+      "ticker": "USG1",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1957-03-04",
+      "action": "added",
+      "ticker": "CGW2",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1957-03-04",
+      "action": "added",
+      "ticker": "CKL",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1957-03-04",
+      "action": "added",
+      "ticker": "D",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1957-03-04",
+      "action": "added",
+      "ticker": "GLW",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1957-03-04",
+      "action": "added",
+      "ticker": "HNZ",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1957-03-04",
+      "action": "added",
+      "ticker": "RYI1",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1957-03-04",
+      "action": "added",
+      "ticker": "SHEL",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1957-03-04",
+      "action": "added",
+      "ticker": "S1",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1957-03-04",
+      "action": "added",
+      "ticker": "ACKHQ",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1957-03-04",
+      "action": "added",
+      "ticker": "GT",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1957-03-04",
+      "action": "added",
+      "ticker": "IP",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1957-03-04",
+      "action": "added",
+      "ticker": "CCK",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1957-03-04",
+      "action": "added",
+      "ticker": "CPPRQ",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1957-03-04",
+      "action": "added",
+      "ticker": "CSR1",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1957-03-04",
+      "action": "added",
+      "ticker": "MAY1",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1957-03-04",
+      "action": "added",
+      "ticker": "BMY",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1957-03-04",
+      "action": "added",
+      "ticker": "CXT",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1957-03-04",
+      "action": "added",
+      "ticker": "ASC1",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1957-03-04",
+      "action": "added",
+      "ticker": "BA",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1957-03-04",
+      "action": "added",
+      "ticker": "BNL1",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1957-03-04",
+      "action": "added",
+      "ticker": "F",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1957-03-04",
+      "action": "added",
+      "ticker": "MEA1",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1957-03-04",
+      "action": "added",
+      "ticker": "MOB1",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1957-03-04",
+      "action": "added",
+      "ticker": "CAT",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1957-03-04",
+      "action": "added",
+      "ticker": "SQD",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1957-03-04",
+      "action": "added",
+      "ticker": "WWY",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1957-03-04",
+      "action": "added",
+      "ticker": "EIX",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1957-03-04",
+      "action": "added",
+      "ticker": "FL",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1957-03-04",
+      "action": "added",
+      "ticker": "FWLT",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1957-03-04",
+      "action": "added",
+      "ticker": "HI1",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1957-03-04",
+      "action": "added",
+      "ticker": "HPC",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1957-03-04",
+      "action": "added",
+      "ticker": "ARC1",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1957-03-04",
+      "action": "added",
+      "ticker": "CPB",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1957-03-04",
+      "action": "added",
+      "ticker": "FALB1",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1957-03-04",
+      "action": "added",
+      "ticker": "GD",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1957-03-04",
+      "action": "added",
+      "ticker": "GR",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1957-03-04",
+      "action": "added",
+      "ticker": "K",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1957-03-04",
+      "action": "added",
+      "ticker": "SO",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1957-03-04",
+      "action": "added",
+      "ticker": "NAV",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1957-03-04",
+      "action": "added",
+      "ticker": "HSY",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1957-03-04",
+      "action": "added",
+      "ticker": "HW1",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1957-03-04",
+      "action": "added",
+      "ticker": "UK1",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1957-03-04",
+      "action": "added",
+      "ticker": "ETN",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1957-03-04",
+      "action": "added",
+      "ticker": "NMK1",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1957-03-04",
+      "action": "added",
+      "ticker": "UNP",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1957-03-04",
+      "action": "added",
+      "ticker": "ABT",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1957-03-04",
+      "action": "added",
+      "ticker": "KM",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1963-06-27",
+      "action": "added",
+      "ticker": "ESB1",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1963-06-27",
+      "action": "removed",
+      "ticker": "ET2",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1963-12-05",
+      "action": "added",
+      "ticker": "RAL1",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1964-01-30",
+      "action": "added",
+      "ticker": "PRDCQ",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1964-02-20",
+      "action": "added",
+      "ticker": "GP1",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1964-02-20",
+      "action": "added",
+      "ticker": "TKR",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1964-02-20",
+      "action": "added",
+      "ticker": "FMC",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1964-02-20",
+      "action": "added",
+      "ticker": "TRW1",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1964-03-31",
+      "action": "added",
+      "ticker": "BEAM2",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1964-03-31",
+      "action": "added",
+      "ticker": "BHMSQ",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1964-03-31",
+      "action": "added",
+      "ticker": "TT",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1964-03-31",
+      "action": "added",
+      "ticker": "XOM",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1964-03-31",
+      "action": "added",
+      "ticker": "MWV",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1964-03-31",
+      "action": "added",
+      "ticker": "ROK",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1964-03-31",
+      "action": "added",
+      "ticker": "WY",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1964-03-31",
+      "action": "added",
+      "ticker": "AR1",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1964-03-31",
+      "action": "added",
+      "ticker": "CBS1",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1964-03-31",
+      "action": "added",
+      "ticker": "CL",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1964-03-31",
+      "action": "added",
+      "ticker": "PPG",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1964-03-31",
+      "action": "added",
+      "ticker": "DD",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1964-03-31",
+      "action": "added",
+      "ticker": "ETR",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1964-03-31",
+      "action": "added",
+      "ticker": "PFE",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1964-03-31",
+      "action": "added",
+      "ticker": "PG",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1964-03-31",
+      "action": "added",
+      "ticker": "SGP1",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1964-03-31",
+      "action": "added",
+      "ticker": "CEG1",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1964-03-31",
+      "action": "added",
+      "ticker": "DTE",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1964-03-31",
+      "action": "added",
+      "ticker": "HON",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1964-03-31",
+      "action": "added",
+      "ticker": "WHR",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1964-03-31",
+      "action": "added",
+      "ticker": "SPGI",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1964-03-31",
+      "action": "added",
+      "ticker": "CVS",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1964-03-31",
+      "action": "added",
+      "ticker": "TXN",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1964-03-31",
+      "action": "added",
+      "ticker": "BNI",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1964-03-31",
+      "action": "added",
+      "ticker": "GTE1",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1964-03-31",
+      "action": "added",
+      "ticker": "ITT",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1964-03-31",
+      "action": "added",
+      "ticker": "PBI",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1964-03-31",
+      "action": "added",
+      "ticker": "PET1",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1964-03-31",
+      "action": "added",
+      "ticker": "RTX",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1964-03-31",
+      "action": "added",
+      "ticker": "MTLQQ",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1964-03-31",
+      "action": "added",
+      "ticker": "XRX",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1964-03-31",
+      "action": "added",
+      "ticker": "DCNAQ",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1964-03-31",
+      "action": "added",
+      "ticker": "AEP",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1964-03-31",
+      "action": "added",
+      "ticker": "BHI",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1964-03-31",
+      "action": "added",
+      "ticker": "FE",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1964-03-31",
+      "action": "added",
+      "ticker": "EXC",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1964-03-31",
+      "action": "added",
+      "ticker": "MSI",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1964-03-31",
+      "action": "added",
+      "ticker": "WYE",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1964-03-31",
+      "action": "added",
+      "ticker": "TXU",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1964-03-31",
+      "action": "added",
+      "ticker": "XEL",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1964-03-31",
+      "action": "added",
+      "ticker": "NSC",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1964-03-31",
+      "action": "added",
+      "ticker": "MYG1",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1964-06-30",
+      "action": "added",
+      "ticker": "TWX",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1964-06-30",
+      "action": "added",
+      "ticker": "SHW",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1964-09-30",
+      "action": "added",
+      "ticker": "PAS",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1965-03-31",
+      "action": "added",
+      "ticker": "CMI",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1965-03-31",
+      "action": "added",
+      "ticker": "SLB",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1965-03-31",
+      "action": "added",
+      "ticker": "EMR",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1965-12-16",
+      "action": "added",
+      "ticker": "TMC.A",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1966-12-15",
+      "action": "added",
+      "ticker": "NCE",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1966-12-15",
+      "action": "removed",
+      "ticker": "CGW2",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1967-02-23",
+      "action": "added",
+      "ticker": "TEK1",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1967-04-13",
+      "action": "added",
+      "ticker": "AMP1",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1967-06-29",
+      "action": "added",
+      "ticker": "SMI1",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1967-06-30",
+      "action": "added",
+      "ticker": "AVP",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1967-09-29",
+      "action": "added",
+      "ticker": "CSX",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1968-02-01",
+      "action": "added",
+      "ticker": "DALRQ",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1968-04-04",
+      "action": "added",
+      "ticker": "BGGSQ",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1968-06-28",
+      "action": "added",
+      "ticker": "MDP",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1969-01-09",
+      "action": "added",
+      "ticker": "LLX",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1969-03-31",
+      "action": "added",
+      "ticker": "GIS",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1969-03-31",
+      "action": "added",
+      "ticker": "CLX",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1969-03-31",
+      "action": "added",
+      "ticker": "SUN1",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1969-05-22",
+      "action": "added",
+      "ticker": "CEN1",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1969-06-30",
+      "action": "added",
+      "ticker": "NEM",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1970-04-23",
+      "action": "added",
+      "ticker": "CHA1",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1970-04-23",
+      "action": "added",
+      "ticker": "PCH",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1970-04-23",
+      "action": "added",
+      "ticker": "OMX",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1970-04-23",
+      "action": "added",
+      "ticker": "SAI1",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1970-06-30",
+      "action": "added",
+      "ticker": "HLT1",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1970-06-30",
+      "action": "added",
+      "ticker": "MCD",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1970-12-31",
+      "action": "added",
+      "ticker": "LLY",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1971-03-04",
+      "action": "added",
+      "ticker": "ACV1",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1971-08-19",
+      "action": "added",
+      "ticker": "MDRIQ",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1972-09-29",
+      "action": "added",
+      "ticker": "BAX",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1972-09-29",
+      "action": "added",
+      "ticker": "BDX",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1973-03-01",
+      "action": "added",
+      "ticker": "BC",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1973-03-30",
+      "action": "added",
+      "ticker": "RSHCQ",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1973-05-31",
+      "action": "added",
+      "ticker": "AHM1",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1973-06-29",
+      "action": "added",
+      "ticker": "JNJ",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1973-11-15",
+      "action": "added",
+      "ticker": "ECH1",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1973-11-15",
+      "action": "removed",
+      "ticker": "ESB1",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1973-12-31",
+      "action": "added",
+      "ticker": "GPC",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1974-05-09",
+      "action": "added",
+      "ticker": "FLTWQ",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1974-10-17",
+      "action": "added",
+      "ticker": "TNB",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1974-10-17",
+      "action": "added",
+      "ticker": "ABI1",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1974-10-17",
+      "action": "added",
+      "ticker": "LPX",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1974-12-31",
+      "action": "added",
+      "ticker": "HPQ",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1975-02-06",
+      "action": "added",
+      "ticker": "MKG",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1975-02-06",
+      "action": "added",
+      "ticker": "CEM1",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1975-03-31",
+      "action": "added",
+      "ticker": "WMB",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1975-06-30",
+      "action": "removed",
+      "ticker": "FALB1",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1975-06-30",
+      "action": "added",
+      "ticker": "JPM",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1975-06-30",
+      "action": "added",
+      "ticker": "BCR",
+      "reason": "NO_COVERING_PERMATICKER"
+    },
+    {
+      "date": "1975-08-14",
+      "action": "added",
+      "ticker": "PBD1",
+      "reason": "NO_COVERING_PERMATICKER"
+    }
+  ],
+  "outputs_sha256": {
+    "membership_snapshots.parquet": "32e4d7801babda02e51afa9751edd9e341ae3eedf1c337f93549502ff97c4f0f",
+    "membership_intervals.parquet": "74f1fd6ef60135a5a5266124a42f550ee8d4acdc14a56956ad3f502d906b1936"
+  },
+  "b004_status": "AUDIT_INPUT_READY - unmapped + anomalies + xval disagreements are the Phase C audit worklist; B0-04 remains OPEN until each evaluated-timeline identity is classified."
+}
