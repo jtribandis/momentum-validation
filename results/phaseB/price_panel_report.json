@@ -1,5 +1,5 @@
 {
-  "created_utc": "2026-07-15T17:36:55.061960+00:00",
+  "created_utc": "2026-07-15T17:53:16.437849+00:00",
   "rows": {
     "raw": 5468910,
     "panel": 5468910,
@@ -30,7 +30,8 @@
     "rule": "signal at M requires month-ends at M-1 and M-7; rebalance months = {3,6,9,12}"
   },
   "outputs_sha256": {
-    "sep_prices.parquet (NOT COMMITTED - deterministic rebuild)": "9a52dc58b669d2aeea440dffbcccf206a2c71c259ac5c65965ab100b3f6609b7",
+    "sep_prices_part01.parquet": "2da0224752d6d4a899ba83631fde90b1f8f88f3bc1fd5b6b6cd9effb58388459",
+    "sep_prices_part02.parquet": "c143d33c9e180e4fe7618cc21d4cd972cb091752ba9a268c9be0764ef5db371d",
     "month_end_calendar.parquet": "a01744a2a5c6378917788535794b4cfe6ecbfc168ca08b868d4e400ad0d06906"
   },
   "overall": "PASS"

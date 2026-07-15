@@ -1,0 +1,488 @@
+{
+  "created_utc": "2026-07-15T17:54:07.813763+00:00",
+  "formations": 79,
+  "first_formation": "1998-09-30",
+  "last_formation": "2026-03-31",
+  "eligible_min": 496,
+  "eligible_max": 505,
+  "eligible_avg": 500.1,
+  "per_formation": [
+    {
+      "formation": "1998-09-30",
+      "members": 500,
+      "eligible": 496,
+      "attrition": 4
+    },
+    {
+      "formation": "1998-12-31",
+      "members": 500,
+      "eligible": 496,
+      "attrition": 4
+    },
+    {
+      "formation": "1999-03-31",
+      "members": 500,
+      "eligible": 498,
+      "attrition": 2
+    },
+    {
+      "formation": "1999-06-30",
+      "members": 500,
+      "eligible": 498,
+      "attrition": 2
+    },
+    {
+      "formation": "1999-09-30",
+      "members": 500,
+      "eligible": 498,
+      "attrition": 2
+    },
+    {
+      "formation": "1999-12-31",
+      "members": 500,
+      "eligible": 497,
+      "attrition": 3
+    },
+    {
+      "formation": "2000-03-31",
+      "members": 500,
+      "eligible": 498,
+      "attrition": 2
+    },
+    {
+      "formation": "2000-06-30",
+      "members": 500,
+      "eligible": 499,
+      "attrition": 1
+    },
+    {
+      "formation": "2001-12-31",
+      "members": 500,
+      "eligible": 497,
+      "attrition": 3
+    },
+    {
+      "formation": "2002-09-30",
+      "members": 500,
+      "eligible": 499,
+      "attrition": 1
+    },
+    {
+      "formation": "2002-12-31",
+      "members": 500,
+      "eligible": 499,
+      "attrition": 1
+    },
+    {
+      "formation": "2003-03-31",
+      "members": 500,
+      "eligible": 500,
+      "attrition": 0
+    },
+    {
+      "formation": "2003-06-30",
+      "members": 500,
+      "eligible": 500,
+      "attrition": 0
+    },
+    {
+      "formation": "2003-09-30",
+      "members": 500,
+      "eligible": 499,
+      "attrition": 1
+    },
+    {
+      "formation": "2003-12-31",
+      "members": 500,
+      "eligible": 499,
+      "attrition": 1
+    },
+    {
+      "formation": "2004-03-31",
+      "members": 500,
+      "eligible": 500,
+      "attrition": 0
+    },
+    {
+      "formation": "2004-06-30",
+      "members": 500,
+      "eligible": 498,
+      "attrition": 2
+    },
+    {
+      "formation": "2004-09-30",
+      "members": 500,
+      "eligible": 499,
+      "attrition": 1
+    },
+    {
+      "formation": "2004-12-31",
+      "members": 500,
+      "eligible": 499,
+      "attrition": 1
+    },
+    {
+      "formation": "2005-03-31",
+      "members": 500,
+      "eligible": 499,
+      "attrition": 1
+    },
+    {
+      "formation": "2005-06-30",
+      "members": 500,
+      "eligible": 499,
+      "attrition": 1
+    },
+    {
+      "formation": "2005-09-30",
+      "members": 500,
+      "eligible": 498,
+      "attrition": 2
+    },
+    {
+      "formation": "2006-03-31",
+      "members": 500,
+      "eligible": 497,
+      "attrition": 3
+    },
+    {
+      "formation": "2006-06-30",
+      "members": 500,
+      "eligible": 498,
+      "attrition": 2
+    },
+    {
+      "formation": "2007-12-31",
+      "members": 500,
+      "eligible": 496,
+      "attrition": 4
+    },
+    {
+      "formation": "2008-03-31",
+      "members": 500,
+      "eligible": 498,
+      "attrition": 2
+    },
+    {
+      "formation": "2008-06-30",
+      "members": 500,
+      "eligible": 497,
+      "attrition": 3
+    },
+    {
+      "formation": "2008-09-30",
+      "members": 500,
+      "eligible": 497,
+      "attrition": 3
+    },
+    {
+      "formation": "2008-12-31",
+      "members": 500,
+      "eligible": 497,
+      "attrition": 3
+    },
+    {
+      "formation": "2009-03-31",
+      "members": 500,
+      "eligible": 500,
+      "attrition": 0
+    },
+    {
+      "formation": "2009-06-30",
+      "members": 500,
+      "eligible": 500,
+      "attrition": 0
+    },
+    {
+      "formation": "2009-09-30",
+      "members": 500,
+      "eligible": 499,
+      "attrition": 1
+    },
+    {
+      "formation": "2009-12-31",
+      "members": 500,
+      "eligible": 499,
+      "attrition": 1
+    },
+    {
+      "formation": "2010-03-31",
+      "members": 500,
+      "eligible": 500,
+      "attrition": 0
+    },
+    {
+      "formation": "2010-06-30",
+      "members": 500,
+      "eligible": 499,
+      "attrition": 1
+    },
+    {
+      "formation": "2010-09-30",
+      "members": 500,
+      "eligible": 499,
+      "attrition": 1
+    },
+    {
+      "formation": "2010-12-31",
+      "members": 500,
+      "eligible": 499,
+      "attrition": 1
+    },
+    {
+      "formation": "2011-03-31",
+      "members": 500,
+      "eligible": 499,
+      "attrition": 1
+    },
+    {
+      "formation": "2011-06-30",
+      "members": 500,
+      "eligible": 498,
+      "attrition": 2
+    },
+    {
+      "formation": "2011-09-30",
+      "members": 500,
+      "eligible": 499,
+      "attrition": 1
+    },
+    {
+      "formation": "2012-12-31",
+      "members": 500,
+      "eligible": 498,
+      "attrition": 2
+    },
+    {
+      "formation": "2013-09-30",
+      "members": 500,
+      "eligible": 499,
+      "attrition": 1
+    },
+    {
+      "formation": "2013-12-31",
+      "members": 500,
+      "eligible": 498,
+      "attrition": 2
+    },
+    {
+      "formation": "2014-03-31",
+      "members": 500,
+      "eligible": 499,
+      "attrition": 1
+    },
+    {
+      "formation": "2014-06-30",
+      "members": 501,
+      "eligible": 499,
+      "attrition": 2
+    },
+    {
+      "formation": "2014-09-30",
+      "members": 502,
+      "eligible": 500,
+      "attrition": 2
+    },
+    {
+      "formation": "2014-12-31",
+      "members": 502,
+      "eligible": 502,
+      "attrition": 0
+    },
+    {
+      "formation": "2015-03-31",
+      "members": 502,
+      "eligible": 502,
+      "attrition": 0
+    },
+    {
+      "formation": "2015-06-30",
+      "members": 501,
+      "eligible": 500,
+      "attrition": 1
+    },
+    {
+      "formation": "2015-09-30",
+      "members": 505,
+      "eligible": 500,
+      "attrition": 5
+    },
+    {
+      "formation": "2015-12-31",
+      "members": 504,
+      "eligible": 497,
+      "attrition": 7
+    },
+    {
+      "formation": "2016-03-31",
+      "members": 504,
+      "eligible": 502,
+      "attrition": 2
+    },
+    {
+      "formation": "2016-06-30",
+      "members": 504,
+      "eligible": 503,
+      "attrition": 1
+    },
+    {
+      "formation": "2016-09-30",
+      "members": 505,
+      "eligible": 503,
+      "attrition": 2
+    },
+    {
+      "formation": "2017-03-31",
+      "members": 505,
+      "eligible": 504,
+      "attrition": 1
+    },
+    {
+      "formation": "2017-06-30",
+      "members": 505,
+      "eligible": 503,
+      "attrition": 2
+    },
+    {
+      "formation": "2018-12-31",
+      "members": 505,
+      "eligible": 503,
+      "attrition": 2
+    },
+    {
+      "formation": "2019-09-30",
+      "members": 505,
+      "eligible": 500,
+      "attrition": 5
+    },
+    {
+      "formation": "2019-12-31",
+      "members": 505,
+      "eligible": 503,
+      "attrition": 2
+    },
+    {
+      "formation": "2020-03-31",
+      "members": 505,
+      "eligible": 505,
+      "attrition": 0
+    },
+    {
+      "formation": "2020-06-30",
+      "members": 505,
+      "eligible": 503,
+      "attrition": 2
+    },
+    {
+      "formation": "2020-09-30",
+      "members": 505,
+      "eligible": 503,
+      "attrition": 2
+    },
+    {
+      "formation": "2020-12-31",
+      "members": 505,
+      "eligible": 504,
+      "attrition": 1
+    },
+    {
+      "formation": "2021-03-31",
+      "members": 505,
+      "eligible": 505,
+      "attrition": 0
+    },
+    {
+      "formation": "2021-06-30",
+      "members": 505,
+      "eligible": 504,
+      "attrition": 1
+    },
+    {
+      "formation": "2021-09-30",
+      "members": 505,
+      "eligible": 504,
+      "attrition": 1
+    },
+    {
+      "formation": "2021-12-31",
+      "members": 505,
+      "eligible": 505,
+      "attrition": 0
+    },
+    {
+      "formation": "2022-03-31",
+      "members": 505,
+      "eligible": 504,
+      "attrition": 1
+    },
+    {
+      "formation": "2022-06-30",
+      "members": 503,
+      "eligible": 502,
+      "attrition": 1
+    },
+    {
+      "formation": "2022-09-30",
+      "members": 503,
+      "eligible": 503,
+      "attrition": 0
+    },
+    {
+      "formation": "2023-03-31",
+      "members": 503,
+      "eligible": 502,
+      "attrition": 1
+    },
+    {
+      "formation": "2023-06-30",
+      "members": 503,
+      "eligible": 502,
+      "attrition": 1
+    },
+    {
+      "formation": "2024-09-30",
+      "members": 503,
+      "eligible": 499,
+      "attrition": 4
+    },
+    {
+      "formation": "2024-12-31",
+      "members": 503,
+      "eligible": 502,
+      "attrition": 1
+    },
+    {
+      "formation": "2025-03-31",
+      "members": 503,
+      "eligible": 503,
+      "attrition": 0
+    },
+    {
+      "formation": "2025-06-30",
+      "members": 503,
+      "eligible": 503,
+      "attrition": 0
+    },
+    {
+      "formation": "2025-09-30",
+      "members": 503,
+      "eligible": 503,
+      "attrition": 0
+    },
+    {
+      "formation": "2025-12-31",
+      "members": 503,
+      "eligible": 502,
+      "attrition": 1
+    },
+    {
+      "formation": "2026-03-31",
+      "members": 503,
+      "eligible": 502,
+      "attrition": 1
+    }
+  ],
+  "rules": "E1 snapshot member; E2 closeadj at M-1 & M-7; E3 openadj within 5 trading days of M+1",
+  "output_sha256": "1bce526545aa5fc48a39378737701b8a07ad71fbb0457bbeba3d0662c2fd3f2f",
+  "overall": "PASS"
+}

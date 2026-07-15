@@ -20,7 +20,9 @@ action scheduled at a later phase) · RESOLVED (evidence linked) · INFORMATIONA
 | F-007 | 2026-07-09 | F-prep | OPEN_DECISION |
 | F-008 | 2026-07-14 | B | RESOLVED |
 | F-009 | 2026-07-14 | B | RESOLVED |
-| F-010 | 2026-07-14 | C | REGISTERED (Phase C audit worklist quantified) |
+| F-010 | 2026-07-14 | C | REGISTERED — audit run: worklist reduced to 14 evaluated-era items |
+| F-011 | 2026-07-15 | C | REGISTERED (protocol doc §1.3 warm-up line superseded by derivation) |
+| F-012 | 2026-07-15 | B/C | RESOLVED |
 
 ---
 
@@ -156,4 +158,27 @@ gate, intervals retained as consistency check. **Required action:** Phase C memb
 (`qa/audit_membership.py`) classifies every unmapped/disagreeing identity that touches the
 evaluated 1998+ timeline; B0-04 stays OPEN until then. Supersedes the preliminary 25-ticker
 estimate in F-006 (that count was SEP-presence; this is the mapping-level count).
+
+## F-011 — Protocol doc §1.3 warm-up estimate superseded by mechanical derivation
+**Date:** 2026-07-15 · **Phase:** C · **Status:** REGISTERED (doc amendment pending)
+
+§1.3 states "first plausible CORE formation month is June 1998 with first deployment in July
+1998" under a 1998-01-01 membership proxy. A June-1998 formation requires the final Nov-1997
+closeadj (M−7), which does not exist in vintage SHARADAR_20260620 (coverage floor 1997-12-31,
+F-005). Mechanical result: **first formation 1998-09-30, first deployment first tradable open
+Oct 1998** (confirmed by build_eligible_snapshots.py: 79 formations 1998-09-30..2026-03-31).
+Required action: amend §1.3 in the next protocol doc revision, citing this finding; the Phase
+K window ruling (F-005) inherits these dates.
+
+## F-012 — Date-coverage mapping had no grace for post-trade events; 2026 'current' snapshot dropped
+**Date:** 2026-07-15 · **Phase:** B/C · **Status:** RESOLVED
+
+The permaticker mapping window ended at lastpricedate exactly, but removals, delistings, and
+the vendor 'current' snapshot stamp postdate the final trade by days. Effect: all 503 rows of
+the 2026-06-20 'current' snapshot and ~200 evaluated-era 'removed' events failed mapping.
+Fix: +30-day grace on the coverage end, documented in-code, applied uniformly to membership
+and actions mapping. Post-fix: unmapped rows 1,120 → 401 (370 tickers, 96% pre-coverage era);
+snapshots now 114 dates including 2026-06-20; member counts unchanged at 499–505. Caught by
+the audit query's era breakdown before eligible sets were built — no downstream artifact ever
+consumed the defective mapping.
 

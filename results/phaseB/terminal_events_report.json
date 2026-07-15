@@ -1,0 +1,27 @@
+{
+  "created_utc": "2026-07-15T17:53:29.271137+00:00",
+  "vintage_horizon": "2026-06-18",
+  "terminated_member_permatickers": 520,
+  "event_type_mix": [
+    {
+      "type": "ACQUIRED",
+      "n": 443
+    },
+    {
+      "type": "BANKRUPTCY_LIQUIDATION",
+      "n": 56
+    },
+    {
+      "type": "DELISTED_OTHER",
+      "n": 12
+    },
+    {
+      "type": "MERGER",
+      "n": 9
+    }
+  ],
+  "no_evidence_worklist_n": 0,
+  "policy": "classification only; Shumway-baseline numeric returns enter engine config at Phase D/E gated on B0-05 + citation confirmation",
+  "output_sha256": "41cf80f3b2dc37ede18f26782b303914ecf6b5a263f6354a0ea699c50a8e0521",
+  "overall": "PASS"
+}

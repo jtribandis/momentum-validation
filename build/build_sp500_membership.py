@@ -45,10 +45,13 @@ def main() -> int:
     con.execute("""CREATE VIEW tk AS
         SELECT permaticker, ticker,
                MIN(COALESCE(firstpricedate, DATE '1900-01-01')) fp,
-               MAX(COALESCE(lastpricedate,  DATE '2999-12-31')) lp
+               MAX(COALESCE(lastpricedate,  DATE '2999-12-31')) + INTERVAL 30 DAY lp
         FROM read_parquet('data/compact_upload/tickers_universe.parquet')
         WHERE ticker IS NOT NULL
-        GROUP BY permaticker, ticker""")
+        GROUP BY permaticker, ticker
+        -- lp grace: +30 days. Membership/corporate events (removals, delistings, 'current'
+        -- snapshot stamps) postdate the final trade by days-to-weeks; without grace the
+        -- 2026-06-20 'current' snapshot and ~200 evaluated-era removals fail mapping (F-012).""")
 
     con.execute("""CREATE TABLE mapped AS
         SELECT s.date, s.action, s.ticker, t.permaticker,
