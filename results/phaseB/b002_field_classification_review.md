@@ -2,7 +2,7 @@
 Prepared for Jason's ruling (session 2026-07-15). B0-02 closes when every ruling below is
 answered and this file's status line is flipped by Jason in a commit.
 
-STATUS: R1_R2_R5_RULED_BY_JASON_2026-07-15 — R3 evidence issued, awaiting confirm; R4 acknowledgment pending
+STATUS: RULINGS_COMPLETE_2026-07-15 — R1/R2/R3/R5 ruled, R4 acknowledged. B0-02 closes at merge.
 
 ## Summary of live headers vs expectations
 - SEP: 10/10 expected fields present, zero unknowns. CLASSIFIED.
@@ -64,9 +64,11 @@ RECOMMENDATION: confirm this treatment. → Jason: ____ (pending)
       absent from the next; interval closes 2023-12-17 (day-before convention).
 To rule: confirm (a) matches your intent. If yes, write RULED next to R3.
 
+**RULED per Jason's instruction 2026-07-15: treatment confirmed (snapshots gate, intervals check).**
+
 **R4 — ACTIONS.value units.** No new information; stays UNVERIFIED under B0-05 with terminal
 events at the Shumway baseline until you verify units against vendor docs. No ruling needed
-here — listed for completeness. → acknowledged: ____ (pending Jason ack)
+here — listed for completeness. → acknowledged: **YES — Jason 2026-07-15; B0-05 remains the open verification item.**
 
 **R5 — SF1 (all 112 fields).** Only relevant if module M3 (quality/value) activates.
 RECOMMENDATION: classify the entire table QUARANTINED_UNUSED_UNTIL_M3, with the five key
