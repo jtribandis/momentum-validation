@@ -192,5 +192,6 @@
       "n": 1
     }
   ],
-  "b004_ruling_needed": "Jason classifies each evaluated-era worklist item (or approves bulk classification); PRE_COVERAGE items are recorded as no-impact."
+  "b004_ruling_needed": "Jason classifies each evaluated-era worklist item (or approves bulk classification); PRE_COVERAGE items are recorded as no-impact.",
+  "b004_ruling": "RULED by Jason 2026-07-15 (recorded by session agent at Jason's direction; attested by merge): both residual items (CCE1 added 1998-10-08, CBB1 removed 1998-01-27) classified ENTITY_TICKER_VARIANT - NO_SELECTION_IMPACT. Basis: eligible_snapshots.parquet hash-identical with and without the 14-item mapping fix; snapshots gate selection and have zero gaps; CBB1 predates first formation."
 }

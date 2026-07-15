@@ -1,0 +1,14 @@
+param,value
+signal,closeadj(M-1)/closeadj(M-7) - 1
+formations,2020-03-31;2020-06-30;2020-09-30
+selection,top 3 by signal desc
+tie_break,"signal desc, then permaticker ASC"
+deploy,first weekday of M+1 at openadj
+exit,first weekday of deploy_month+6 at openadj
+cost_bps_per_side,10
+terminal_deal,"cash per share on event_date, no exit cost"
+sleeve_A_initial,150000 (F1; proceeds redeploy at F3)
+sleeve_B_initial,150000 (F2)
+cash_rate,0%
+lot_weights,"equal 1/3 of sleeve at deployment, drift after"
+open_rule,openadj(first weekday of M) equals closeadj(prior month-end) by construction
