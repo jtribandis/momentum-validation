@@ -15,7 +15,7 @@ action scheduled at a later phase) · RESOLVED (evidence linked) · INFORMATIONA
 | F-002 | 2026-07-09 | A | RESOLVED |
 | F-003 | 2026-07-09 | A | INFORMATIONAL |
 | F-004 | 2026-07-09 | B-prep | RESOLVED |
-| F-005 | 2026-07-09 | B | REGISTERED (blocks Phase K window definition) |
+| F-005 | 2026-07-09 | B | REGISTERED — derivation complete; window ruling remains for Phase K pre-open |
 | F-006 | 2026-07-09 | B | REGISTERED (feeds Phase C identity audit) |
 | F-007 | 2026-07-09 | F-prep | OPEN_DECISION |
 | F-008 | 2026-07-14 | B | RESOLVED |
@@ -77,9 +77,13 @@ likely loses its first one or two 1998 rebalances.
 
 **Required action:** register as an open decision on the Phase K window
 definition (effective start of the 1998–2005 stress holdout) **before that
-holdout is opened**. Do not resolve now; the holdout remains sealed. Exact first
-computable rebalance date must be derived mechanically in Phase C/D from the
-final month-end calendar, not assumed.
+holdout is opened**. Do not resolve now; the holdout remains sealed.
+
+**Derivation completed 2026-07-15 (build_price_panel.py, mechanical from the month-end
+calendar):** first computable signal month-end = **1998-07-31**; first computable quarterly
+rebalance = **1998-09-30** (rule: signal at M requires month-ends at M−1 and M−7; rebalance
+months {3,6,9,12}). The remaining Phase K ruling is only whether the stress window is
+restated as 1998-09-30→2005 or kept nominally 1998–2005 with a documented late start.
 
 ## F-006 — 25 SP500-member tickers have no SEP price rows
 **Date:** 2026-07-09 · **Phase:** B · **Status:** REGISTERED — feeds Phase C identity audit (B0-04)

@@ -2,3 +2,4 @@ __pycache__/
 *.pyc
 .pytest_cache/
 .push_test
+data/clean/sep_prices.parquet
