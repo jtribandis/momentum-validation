@@ -20,8 +20,8 @@ def load():
     cfg = {r['param']: r['value'] for r in csv.DictReader(open(IN/'fixture_config.csv'))}
     return px, op, term, cfg
 
-def main() -> int:
-    px, op, term, cfg = load()
+def compute(px, op, term, cfg):
+    out = []
     COST = float(cfg['cost_bps_per_side']) / 10000.0
     perms = sorted(px)
     open_dates = sorted({d for p in op for d in op[p]})   # actual deploy/exit days from inputs
@@ -30,7 +30,6 @@ def main() -> int:
     formations = [('F1','2020-03-31','2020-02-28','2019-08-30',dep_of['F1'],ext_of['F1']),
                   ('F2','2020-06-30','2020-05-29','2019-11-29',dep_of['F2'],ext_of['F2']),
                   ('F3','2020-09-30','2020-08-31','2020-02-28',dep_of['F3'],ext_of['F3'])]
-    out = []
     signals, top3 = {}, {}
     for fid, fdate, m1, m7, dep, ext in formations:
         sig = {p: px[p][m1]/px[p][m7] - 1 for p in perms if m1 in px[p] and m7 in px[p]}
@@ -76,7 +75,6 @@ def main() -> int:
     # NAV
     me_dates = sorted({d for p in px for d in px[p]})
     nav_dates = [d for d in me_dates if '2020-03-31' <= d <= '2021-03-31']
-    ge_term_date, ge_cash_px = term[900005]
     for d in nav_dates:
         nav = 0.0
         # sleeve cash before deployments
@@ -97,12 +95,17 @@ def main() -> int:
     final += sum(L['exit_val'] for (fid, p), L in lots.items() if fid == 'F2')
     out.append(('nav', '2021-04-01', '', 'final_nav_after_F3_exit_2dp', f"{final:.2f}"))
 
-    with open('results/phaseE/engine_outputs_py.csv', 'w', newline='') as f:
+    return out
+
+def main(out_path='results/phaseE/engine_outputs_py.csv') -> int:
+    px, op, term, cfg = load()
+    out = compute(px, op, term, cfg)
+    with open(out_path, 'w', newline='') as f:
         w = csv.writer(f); w.writerow(['section','formation_or_date','permaticker','field','value'])
         w.writerows(out)
-    print(f'PASS engine run: {len(out)} values -> results/phaseE/engine_outputs_py.csv')
+    print(f'PASS engine run: {len(out)} values -> {out_path}')
     return 0
 
 if __name__ == '__main__':
     Path('results/phaseE').mkdir(parents=True, exist_ok=True)
-    sys.exit(main())
+    sys.exit(main(sys.argv[1] if len(sys.argv) > 1 else 'results/phaseE/engine_outputs_py.csv'))

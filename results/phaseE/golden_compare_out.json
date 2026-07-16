@@ -1,0 +1,60 @@
+{
+  "created_utc": "2026-07-16T13:55:21.688856+00:00",
+  "golden_rows": 77,
+  "engine_rows": 77,
+  "mismatches": [
+    {
+      "key": [
+        "nav",
+        "2020-11-30",
+        "",
+        "total_nav_2dp"
+      ],
+      "golden": "319926.00",
+      "engine": "239837.88"
+    },
+    {
+      "key": [
+        "nav",
+        "2020-12-31",
+        "",
+        "total_nav_2dp"
+      ],
+      "golden": "327170.30",
+      "engine": "247082.18"
+    },
+    {
+      "key": [
+        "nav",
+        "2021-01-29",
+        "",
+        "total_nav_2dp"
+      ],
+      "golden": "331775.32",
+      "engine": "291825.64"
+    },
+    {
+      "key": [
+        "nav",
+        "2021-02-26",
+        "",
+        "total_nav_2dp"
+      ],
+      "golden": "336501.13",
+      "engine": "296551.45"
+    },
+    {
+      "key": [
+        "nav",
+        "2021-03-31",
+        "",
+        "total_nav_2dp"
+      ],
+      "golden": "341226.95",
+      "engine": "301277.26"
+    }
+  ],
+  "engine_missing": [],
+  "engine_extra_keys": [],
+  "overall": "FAIL"
+}

@@ -1,0 +1,57 @@
+{
+  "protocol_version": "3.2.4",
+  "code_commit": "f02dc984c42c85386314b6fcc45931e55d07b482",
+  "dirty_state": true,
+  "config_hash": "48d0841e6ff305aeefeed33baf5e8224d44a7bc477938cc6df2ba5a438ed7a4f",
+  "data_vintage_id": "GOLDEN_FIXTURE_V2",
+  "outputs": [
+    {
+      "path": "results/phaseE/engine_outputs_duckdb.csv",
+      "content_hash": "a77ad8a63fc3a29a2acd4fc1b9b7086bc1075da99f8f7aadce1e1277531af62a",
+      "file_hash": "a77ad8a63fc3a29a2acd4fc1b9b7086bc1075da99f8f7aadce1e1277531af62a",
+      "schema_version": "golden_compare_v1"
+    },
+    {
+      "path": "results/phaseE/engine_outputs_js.csv",
+      "content_hash": "b8f255f966d3bd153e6a7fce2d33622ea80101e474df2c73c45711d563d96877",
+      "file_hash": "b8f255f966d3bd153e6a7fce2d33622ea80101e474df2c73c45711d563d96877",
+      "schema_version": "golden_compare_v1"
+    },
+    {
+      "path": "results/phaseE/engine_outputs_py.csv",
+      "content_hash": "1b9c5460a77ae12b0af25e9d6a574de5afa506e97852d1af4e46b73d4511e5c9",
+      "file_hash": "1b9c5460a77ae12b0af25e9d6a574de5afa506e97852d1af4e46b73d4511e5c9",
+      "schema_version": "golden_compare_v1"
+    },
+    {
+      "path": "results/phaseE/golden_compare_duckdb.json",
+      "content_hash": "d2a1f6c0c204f8d6e417084911e89a9ed56371920273390f5318c44333721476",
+      "file_hash": "d2a1f6c0c204f8d6e417084911e89a9ed56371920273390f5318c44333721476",
+      "schema_version": "golden_compare_v1"
+    },
+    {
+      "path": "results/phaseE/golden_compare_js.json",
+      "content_hash": "74f6f3b052fa66e18d795b5b89c2fad04b8bb4d28088822699fd764cf38e4a62",
+      "file_hash": "74f6f3b052fa66e18d795b5b89c2fad04b8bb4d28088822699fd764cf38e4a62",
+      "schema_version": "golden_compare_v1"
+    },
+    {
+      "path": "results/phaseE/golden_compare_out.json",
+      "content_hash": "86af8889ae3018f9e2623954bfb89db4254595ed7dd67cf0145ead2ee89da067",
+      "file_hash": "86af8889ae3018f9e2623954bfb89db4254595ed7dd67cf0145ead2ee89da067",
+      "schema_version": "golden_compare_v1"
+    },
+    {
+      "path": "results/phaseE/golden_compare_py.json",
+      "content_hash": "0b921f8fd0dad316cefc8c8866658efc05e013264cfc2afb80fb6231638f16ae",
+      "file_hash": "0b921f8fd0dad316cefc8c8866658efc05e013264cfc2afb80fb6231638f16ae",
+      "schema_version": "golden_compare_v1"
+    },
+    {
+      "path": "results/phaseE/mutation_report.json",
+      "content_hash": "047720202d61d6b15a1af25a3fef7487b5b0c92f8565f90d93efcb0fe8d64f91",
+      "file_hash": "047720202d61d6b15a1af25a3fef7487b5b0c92f8565f90d93efcb0fe8d64f91",
+      "schema_version": "golden_compare_v1"
+    }
+  ]
+}

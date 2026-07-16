@@ -13,7 +13,9 @@ def key(r): return (r['section'], r['formation_or_date'], r['permaticker'], r['f
 
 def main() -> int:
     golden = {key(r): r['value_JASON_FILLS'].strip() for r in csv.DictReader(open('fixtures/golden_v2/expected_outputs_SIGNED.csv'))}
-    engine = {key(r): r['value'].strip() for r in csv.DictReader(open('results/phaseE/engine_outputs_py.csv'))}
+    import sys as _s
+    eng_path = _s.argv[1] if len(_s.argv) > 1 else 'results/phaseE/engine_outputs_py.csv'
+    engine = {key(r): r['value'].strip() for r in csv.DictReader(open(eng_path))}
     mismatches, missing = [], []
     for k, gv in golden.items():
         if k not in engine:
@@ -32,7 +34,7 @@ def main() -> int:
            'mismatches': mismatches, 'engine_missing': missing, 'engine_extra_keys': extra,
            'overall': 'PASS' if not mismatches and not missing else 'FAIL'}
     Path('results/phaseE').mkdir(parents=True, exist_ok=True)
-    Path('results/phaseE/golden_compare_py.json').write_text(json.dumps(rep, indent=2) + '\n')
+    Path('results/phaseE/golden_compare_' + Path(eng_path).stem.split('_')[-1] + '.json').write_text(json.dumps(rep, indent=2) + '\n')
     print(rep['overall'] + f" golden compare: {len(golden)} golden rows, {len(mismatches)} mismatches, {len(missing)} missing, {len(extra)} extra")
     for m in mismatches[:15]: print('  MISMATCH', m)
     return 0 if rep['overall'] == 'PASS' else 1
