@@ -77,11 +77,15 @@ def main() -> int:
            'core_cagr': round(core_cagr,6), 'clone_median_cagr': round(med,6),
            'clone_p99_cagr': round(p99,6), 'core_percentile_in_clone_dist': round(pct,4),
            'net_excess_vs_median': round(net_excess,6),
-           'gate_fd01': {'threshold': '99th pct AND 3% floor',
-                         'passes_percentile': passes_pct, 'passes_floor': passes_floor,
-                         'PRIMARY_GATE': 'PASS' if (passes_pct and passes_floor) else 'FAIL'}}
+           # NOT the primary gate: canon S5.2 + Phase F place the primary gate on the
+           # 2006-2015 confirmation CORE behind holdout attestation (see finding F-016).
+           'RESULT_CLASS': '2016-2023 DEVELOPMENT CLONE DIAGNOSTIC - PROVISIONAL TERMINAL ACCOUNTING',
+           'development_diagnostic_vs_fd01_thresholds': {
+                         'threshold_reference': '99th pct AND 3% floor (FD-01, applies formally at Phase F)',
+                         'core_above_p99': passes_pct, 'core_clears_3pct_floor': passes_floor,
+                         'DEV_DIAGNOSTIC_OUTCOME': 'ABOVE_THRESHOLDS' if (passes_pct and passes_floor) else 'BELOW_THRESHOLDS'}}
     Path('results/phaseE/clone_null.json').write_text(json.dumps(rep, indent=2) + '\n')
-    print(json.dumps(rep['gate_fd01'], indent=2))
+    print(json.dumps(rep['development_diagnostic_vs_fd01_thresholds'], indent=2))
     print(f"CORE {rep['core_cagr']} vs clone median {rep['clone_median_cagr']} / p99 {rep['clone_p99_cagr']}; CORE at {rep['core_percentile_in_clone_dist']*100:.1f}th pct")
     return 0
 
