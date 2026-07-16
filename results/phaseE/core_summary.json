@@ -30,5 +30,6 @@
   "core_cagr": 0.180353,
   "terminal_lots": 0,
   "terminal_return_policy": "last-tradable-closeadj placeholder; Shumway numeric pending B0-05 + citation (F-014)",
-  "blotter_sha256": "66a393be8e9228a474e617d47c4091bec4e34cf458fec492bf76fd862c12e216"
+  "blotter_sha256": "66a393be8e9228a474e617d47c4091bec4e34cf458fec492bf76fd862c12e216",
+  "RESULT_CLASS": "2016-2023 DEVELOPMENT CLONE DIAGNOSTIC - PROVISIONAL TERMINAL ACCOUNTING"
 }

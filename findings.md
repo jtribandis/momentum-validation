@@ -26,7 +26,8 @@ action scheduled at a later phase) · RESOLVED (evidence linked) · INFORMATIONA
 | F-013 | 2026-07-16 | E | RESOLVED |
 | F-007 | (see below) | F-prep | RESOLVED — canon says -35%; yaml corrected |
 | F-014 | 2026-07-16 | E | OPEN_DECISION — terminal-return placeholder biases CORE vs clones |
-| F-015 | 2026-07-16 | E | OPEN_DECISION — in-sample primary gate FAILS; interpretation required |
+| F-015 | 2026-07-16 | E | REGISTERED — relabeled: development diagnostic, not primary gate |
+| F-016 | 2026-07-16 | E | RESOLVED — session agent mislabeled dev run as primary gate; corrected |
 
 ---
 
@@ -216,7 +217,7 @@ random clone draws, this placeholder penalizes CORE asymmetrically. Required bef
 decision-grade: close B0-05, confirm the citation, and re-run with the frozen terminal-return
 policy. The current gate result is therefore PRELIMINARY.
 
-## F-015 — In-sample CORE primary gate FAILS (2016-2023); not decision-grade pending F-014
+## F-015 — 2016-2023 development clone diagnostic falls below FD-01 thresholds (RELABELED, see F-016)
 **Date:** 2026-07-16 · **Phase:** E · **Status:** OPEN_DECISION
 
 Result (FD-01 frozen at release 4cb6602e BEFORE the run): CORE CAGR 0.1803 vs clone median
@@ -230,4 +231,24 @@ this unlevered CORE return. Required actions for Jason: rule on whether Stage 5 
 F-014 closes, whether the clone null should be refined per S5.3 (block/stationary bootstrap,
 regime-matched clones), and whether the deployment layer belongs in the primary comparison or
 stays a separate track. No holdout may open while F-015 is OPEN.
+
+## F-016 — Session agent mislabeled the 2016-2023 development run as the formal primary gate
+**Date:** 2026-07-16 · **Phase:** E · **Status:** RESOLVED (self-reported error)
+
+`run_clone_null.py` emitted `PRIMARY_GATE: FAIL` for the 2016-2023 window and the session
+agent reported it as a primary-gate outcome. **The canon says otherwise, explicitly:**
+§5.2 — "The **2006-2015 confirmation CORE** must satisfy both…"; Phase list — "**Phase F —
+CORE confirmation on 2006-2015** … Outputs: … primary_gate.json", runnable only after
+holdout_guard permits access. 2016-2023 is the DEVELOPMENT window (J11); no formal primary
+gate exists there.
+
+Correction applied: both artifacts relabeled `2016-2023 DEVELOPMENT CLONE DIAGNOSTIC -
+PROVISIONAL TERMINAL ACCOUNTING`; the FD-01 comparison is retained only as a labeled
+development yardstick. No holdout was opened; FD-01/FD-02 remain validly frozen (release
+4cb6602e) ahead of any Phase F access — that discipline is unaffected.
+
+Consequence for interpretation: the below-threshold development result **cannot** be
+described as a primary-gate failure, and equally **cannot** be used to argue the strategy
+passed anything. It is a development-period signal-quality diagnostic computed under
+provisional terminal accounting (F-014).
 

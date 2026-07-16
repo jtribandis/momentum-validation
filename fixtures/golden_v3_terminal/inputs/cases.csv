@@ -1,0 +1,7 @@
+case,branch,entry_open,alloc,deploy,event_date,maturity_exit,cash_per_share,exchange_ratio,successor_open_at_maturity,last_tradable_closeadj,maturity_open
+T1,cash_acquisition,60.00,30000,2020-07-01,2020-11-16,2021-01-04,88.00,,,,
+T2,stock_acquisition,60.00,30000,2020-07-01,2020-11-16,2021-01-04,,0.75,95.00,,
+T3,mixed_acquisition,60.00,30000,2020-07-01,2020-11-16,2021-01-04,20.00,0.40,95.00,,
+T4,verified_bankruptcy_zero_recovery,60.00,30000,2020-07-01,2020-11-16,2021-01-04,,,,,
+T5,identity_continuation,60.00,30000,2020-07-01,2020-11-16,2021-01-04,,,,,71.00
+T6,unverified_ma,60.00,30000,2020-07-01,2020-11-16,2021-01-04,,,,57.50,

@@ -1,5 +1,5 @@
 {
-  "created_utc": "2026-07-16T14:35:58.785230+00:00",
+  "created_utc": "2026-07-16T15:08:18.361332+00:00",
   "seed": 12878176638248399935,
   "clones": 10000,
   "window": "2016-01-01..2023-12-31",
@@ -8,10 +8,13 @@
   "clone_p99_cagr": 0.543293,
   "core_percentile_in_clone_dist": 0.3217,
   "net_excess_vs_median": -0.051219,
-  "gate_fd01": {
-    "threshold": "99th pct AND 3% floor",
-    "passes_percentile": false,
-    "passes_floor": false,
-    "PRIMARY_GATE": "FAIL"
-  }
+  "RESULT_CLASS": "2016-2023 DEVELOPMENT CLONE DIAGNOSTIC - PROVISIONAL TERMINAL ACCOUNTING",
+  "development_diagnostic_vs_fd01_thresholds": {
+    "threshold_reference": "99th pct AND 3% floor (FD-01, applies formally at Phase F)",
+    "core_above_p99": false,
+    "core_clears_3pct_floor": false,
+    "DEV_DIAGNOSTIC_OUTCOME": "BELOW_THRESHOLDS"
+  },
+  "canon_correction_S5_2": "Protocol S5.2 reads: 'The 2006-2015 confirmation CORE must satisfy both...' The formal primary gate is the Phase F 2006-2015 confirmation, NOT this 2016-2023 development window (J11). The session agent's original 'PRIMARY_GATE: FAIL' label was a LABELING ERROR, corrected here. No gate has passed or failed. FD-01/FD-02 remain frozen (release 4cb6602e) for their actual use at Phase F, which stays sealed.",
+  "provisional_because": "100% of terminal events are governed by the unverified_ma canon fallback (freeze last tradable closeadj) pending B0-05 vendor semantics + transaction evidence. See config/terminal_policy.yaml."
 }
