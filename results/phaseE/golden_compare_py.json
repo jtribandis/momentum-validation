@@ -1,0 +1,9 @@
+{
+  "created_utc": "2026-07-16T13:45:18.451772+00:00",
+  "golden_rows": 77,
+  "engine_rows": 77,
+  "mismatches": [],
+  "engine_missing": [],
+  "engine_extra_keys": [],
+  "overall": "PASS"
+}
