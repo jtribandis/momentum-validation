@@ -24,6 +24,9 @@ action scheduled at a later phase) · RESOLVED (evidence linked) · INFORMATIONA
 | F-011 | 2026-07-15 | C | REGISTERED (protocol doc §1.3 warm-up line superseded by derivation) |
 | F-012 | 2026-07-15 | B/C | RESOLVED |
 | F-013 | 2026-07-16 | E | RESOLVED |
+| F-007 | (see below) | F-prep | RESOLVED — canon says -35%; yaml corrected |
+| F-014 | 2026-07-16 | E | OPEN_DECISION — terminal-return placeholder biases CORE vs clones |
+| F-015 | 2026-07-16 | E | OPEN_DECISION — in-sample primary gate FAILS; interpretation required |
 
 ---
 
@@ -116,6 +119,15 @@ Phase A freeze requires a new signed release per the design contract.
 freeze and before any Phase F confirmation result is viewed**. The resolution
 commit must reference this finding ID.
 
+**RESOLVED 2026-07-16:** The frozen protocol document FD-02 text specifies −35% for BOTH the
+close-to-next-open and open-to-open selected-lot gap flags. risk_limits.yaml's −25% was a
+transcription error, corrected to −35%; the open-to-open and intra-month flags and the 20%-of-
+HWM terminal-wealth veto from FD-02 canon were also added to the yaml. Cross-referenced against
+general Monte-Carlo risk-protocol consensus (99th-pct robustness boundary; ruin at median MC
+DD>100%): the −80% veto is more conservative than consensus, confirmed SAFE. New release digest
+4cb6602e63251b6e (supersedes 48d0841e). FD-01 and FD-02 frozen this commit BEFORE any Stage-5
+result was viewed.
+
 ---
 
 *Maintenance rule: new findings are appended with the next F-NNN ID and added to
@@ -193,4 +205,29 @@ which feeds the engine random fixtures. Fix: line removed; golden compare re-ver
 both property suites pass (90 randomized examples). Lesson reinforced: the golden gate proves
 agreement on one dataset; property tests are the generality gate — both are required, neither
 substitutes for the other.
+
+## F-014 — Terminal-event returns are a conservative placeholder, not frozen policy
+**Date:** 2026-07-16 · **Phase:** E · **Status:** OPEN_DECISION
+
+The CORE/clone engines assign delisted or acquired lots their last-tradable closeadj as exit
+proceeds, because B0-05 (ACTIONS.value units) and the Shumway-Warther Nasdaq-figure citation
+are unresolved. If momentum selection over-samples names that subsequently delist relative to
+random clone draws, this placeholder penalizes CORE asymmetrically. Required before Stage 5 is
+decision-grade: close B0-05, confirm the citation, and re-run with the frozen terminal-return
+policy. The current gate result is therefore PRELIMINARY.
+
+## F-015 — In-sample CORE primary gate FAILS (2016-2023); not decision-grade pending F-014
+**Date:** 2026-07-16 · **Phase:** E · **Status:** OPEN_DECISION
+
+Result (FD-01 frozen at release 4cb6602e BEFORE the run): CORE CAGR 0.1803 vs clone median
+0.2316, p99 0.5433; CORE at the 32.2nd percentile. Both the percentile test and the 3% net-
+excess floor FAIL. This is in-sample DEVELOPMENT data (J11); holdouts remain sealed and were
+not touched. Interpretation is NOT "strategy invalidated": (a) F-014 terminal-return bias is
+unresolved and directionally against CORE; (b) the clone universe is the full ~500-name index
+with very high random-draw variance (p99=54%), a demanding null in a mega-cap-led regime;
+(c) the leveraged-ETF deployment layer (a confirmed value-add per prior ablation) is NOT in
+this unlevered CORE return. Required actions for Jason: rule on whether Stage 5 re-runs after
+F-014 closes, whether the clone null should be refined per S5.3 (block/stationary bootstrap,
+regime-matched clones), and whether the deployment layer belongs in the primary comparison or
+stays a separate track. No holdout may open while F-015 is OPEN.
 

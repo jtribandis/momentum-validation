@@ -58,6 +58,21 @@
     },
     "aggregate_performance_allowed_before_phaseF": {
       "const": false
+    },
+    "clone_percentile_threshold": {
+      "const": 99
+    },
+    "fd01_frozen": {
+      "const": true
+    },
+    "fd02_frozen": {
+      "const": true
+    },
+    "fd_freeze_date": {
+      "type": "string"
+    },
+    "fd_freeze_note": {
+      "type": "string"
     }
   }
 }

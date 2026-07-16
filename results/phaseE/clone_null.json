@@ -1,0 +1,17 @@
+{
+  "created_utc": "2026-07-16T14:35:58.785230+00:00",
+  "seed": 12878176638248399935,
+  "clones": 10000,
+  "window": "2016-01-01..2023-12-31",
+  "core_cagr": 0.180353,
+  "clone_median_cagr": 0.231572,
+  "clone_p99_cagr": 0.543293,
+  "core_percentile_in_clone_dist": 0.3217,
+  "net_excess_vs_median": -0.051219,
+  "gate_fd01": {
+    "threshold": "99th pct AND 3% floor",
+    "passes_percentile": false,
+    "passes_floor": false,
+    "PRIMARY_GATE": "FAIL"
+  }
+}
