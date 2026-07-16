@@ -1,0 +1,49 @@
+{
+  "created_utc": "2026-07-16T13:55:21.767528+00:00",
+  "mutants": [
+    {
+      "mutant": "M1_tiebreak_desc",
+      "result": "KILLED",
+      "detail": "FAIL golden compare: 77 golden rows, 23 mismatches, 4 missing, 4 extra"
+    },
+    {
+      "mutant": "M2_skip_month_dropped",
+      "result": "KILLED",
+      "detail": "FAIL golden compare: 77 golden rows, 32 mismatches, 4 missing, 4 extra"
+    },
+    {
+      "mutant": "M3_entry_cost_dropped",
+      "result": "KILLED",
+      "detail": "FAIL golden compare: 77 golden rows, 49 mismatches, 0 missing, 0 extra"
+    },
+    {
+      "mutant": "M4_exit_cost_sign",
+      "result": "KILLED",
+      "detail": "FAIL golden compare: 77 golden rows, 28 mismatches, 0 missing, 0 extra"
+    },
+    {
+      "mutant": "M5_terminal_uses_close",
+      "result": "KILLED",
+      "detail": "FAIL golden compare: 77 golden rows, 10 mismatches, 0 missing, 0 extra"
+    },
+    {
+      "mutant": "M6_f3_alloc_not_chained",
+      "result": "KILLED",
+      "detail": "FAIL golden compare: 77 golden rows, 16 mismatches, 0 missing, 0 extra"
+    },
+    {
+      "mutant": "M7_rank_ascending",
+      "result": "KILLED",
+      "detail": "FAIL golden compare: 77 golden rows, 16 mismatches, 36 missing, 36 extra"
+    },
+    {
+      "mutant": "M8_nav_drops_term_cash",
+      "result": "KILLED",
+      "detail": "FAIL golden compare: 77 golden rows, 5 mismatches, 0 missing, 0 extra"
+    }
+  ],
+  "killed": 8,
+  "total": 8,
+  "baseline_passes": true,
+  "overall": "PASS"
+}

@@ -23,6 +23,7 @@ action scheduled at a later phase) · RESOLVED (evidence linked) · INFORMATIONA
 | F-010 | 2026-07-14 | C | REGISTERED — audit run: worklist reduced to 14 evaluated-era items |
 | F-011 | 2026-07-15 | C | REGISTERED (protocol doc §1.3 warm-up line superseded by derivation) |
 | F-012 | 2026-07-15 | B/C | RESOLVED |
+| F-013 | 2026-07-16 | E | RESOLVED |
 
 ---
 
@@ -181,4 +182,15 @@ and actions mapping. Post-fix: unmapped rows 1,120 → 401 (370 tickers, 96% pre
 snapshots now 114 dates including 2026-06-20; member counts unchanged at 499–505. Caught by
 the audit query's era breakdown before eligible sets were built — no downstream artifact ever
 consumed the defective mapping.
+
+## F-013 — Reference engine hardcoded a fixture permaticker; caught by property tests
+**Date:** 2026-07-16 · **Phase:** E (G9) · **Status:** RESOLVED
+
+The Python reference engine contained a leftover line binding terminal-event handling to
+permaticker 900005 (the golden fixture's GE). It was invisible to the golden gate (the
+fixture contains exactly that name) and was caught on the FIRST Hypothesis property run,
+which feeds the engine random fixtures. Fix: line removed; golden compare re-verified 77/77;
+both property suites pass (90 randomized examples). Lesson reinforced: the golden gate proves
+agreement on one dataset; property tests are the generality gate — both are required, neither
+substitutes for the other.
 
