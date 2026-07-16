@@ -1,13 +1,20 @@
-protocol_version: "3.2.4"
-universe: "US_COMMON_STOCKS"
-membership: "PIT_SP500"
-signal: "TRAIL_6_SKIP_1"
+protocol_version: 3.2.4
+universe: US_COMMON_STOCKS
+membership: PIT_SP500
+signal: TRAIL_6_SKIP_1
 selection_count: 3
-rebalance_frequency: "QUARTERLY"
+rebalance_frequency: QUARTERLY
 holding_months: 6
-execution_price: "FIRST_TRADABLE_OPENADJ_M_PLUS_1"
-repeat_lots: "ALLOW_INDEPENDENT_LOTS"
+execution_price: FIRST_TRADABLE_OPENADJ_M_PLUS_1
+repeat_lots: ALLOW_INDEPENDENT_LOTS
 transaction_cost_bps_primary: 10
 clone_count: 10000
 primary_effect_floor_annualized_excess: 0.03
 aggregate_performance_allowed_before_phaseF: false
+clone_percentile_threshold: 99
+fd01_frozen: true
+fd02_frozen: true
+fd_freeze_date: '2026-07-16'
+fd_freeze_note: FD-01 (99th pct + 3% floor) and FD-02 (tail vetoes/flags) frozen before
+  any Stage-5 confirmation result viewed; risk_limits.yaml conformed to FD-02 canon
+  (-35% gap, closing F-007).
