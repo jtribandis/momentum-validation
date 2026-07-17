@@ -1,0 +1,36 @@
+{
+  "generator_file": "build/build_review_queues.py",
+  "generator_blob_sha": "596c49b37094ec6e88317044afe9b6596ac6f4918f8d35157e6d1aa0495eb506",
+  "git_commit": "df79c3e7e4185aca870bc12ffffb8e22d00bb0e7",
+  "exact_command": "python build/build_review_queues.py",
+  "environment_digest": "3.12.3|duckdb 1.5.4|Linux",
+  "input_paths": [
+    "results/phaseE/terminal_exposure_sets.json",
+    "data/clean/actions_clean.parquet",
+    "data/compact_upload/tickers_universe.parquet"
+  ],
+  "input_sha256": {
+    "results/phaseE/terminal_exposure_sets.json": "74e80771948dc1bd28c108232169ef211c0663d50fc4682d1d868e0ccf20cd6e",
+    "data/clean/actions_clean.parquet": "3f292ede147a3cfb3ca4b2fc931bef72677dbfa3d9c0c2d80d6522153765e979",
+    "data/compact_upload/tickers_universe.parquet": "8bf0088bd6b1391cba56d33da15805e8179ca2d17fd7576aca5610b733e5a0ef"
+  },
+  "output_paths": [
+    "results/phaseE/dev_transaction_events.csv",
+    "results/phaseE/dev_transaction_exposures.csv",
+    "results/phaseE/phaseF_transaction_events.csv",
+    "results/phaseE/phaseF_transaction_exposures.csv"
+  ],
+  "output_row_counts": {
+    "dev_events": 61,
+    "dev_exposures": 91,
+    "phaseF_events": 105,
+    "phaseF_exposures": 176
+  },
+  "output_content_sha256": {
+    "results/phaseE/dev_transaction_events.csv": "4b6da12b2f5de69718ee7c2fe69cd351d1b338968ac12306b7753e696c7f8b7a",
+    "results/phaseE/dev_transaction_exposures.csv": "36718228061441984232664250ac7be15183480ec958567d332d7a056b3b68b8",
+    "results/phaseE/phaseF_transaction_events.csv": "4ac3c2a65b80dd95104045ece20e1885618a2a9a82c7eb1ebde34eb5e7553f4b",
+    "results/phaseE/phaseF_transaction_exposures.csv": "6ac6edd29decd1fd0564e00ddcd9cfb4930e388373534ec320b8ff2ab5878cc7"
+  },
+  "created_utc": "2026-07-17T03:19:28.306279+00:00"
+}

@@ -283,3 +283,64 @@ labeled as such. Unit caveat flagged honestly: the vendor text says "final marke
 NOT state the currency unit in the archived file; the reviewer's "USD millions" is not verifiable
 from this text. Moot for the protocol because value is never used in any branch.
 
+## F-018 — DEFECT: unordered eligible-universe SQL made seeded clone draws nondeterministic
+**Date:** 2026-07-16 · **Phase:** E · **Status:** RESOLVED
+
+`random.sample` consumes a list; its output depends on that list's ORDER. The eligible-universe
+queries feeding clone sampling used `SELECT DISTINCT ... JOIN ...` with **no ORDER BY**, so
+row order was not guaranteed across runs or engines. The draws were therefore not reproducible
+from the seed even though a seed was recorded — and the earlier claim that "draws can be
+regenerated from the seed" was unsound. Fix: `ORDER BY permaticker` on every sampling universe;
+exact draws now persisted to results/phaseE/clone_draws.parquet (630,000 rows, 9 columns,
+canonically sorted) with a content hash; two clean regenerations verified identical
+(9c33cd48f8543ded...). Caught by external review, not by our own tests — a gap worth noting:
+determinism was tested for the data builders (Phase D) but never for the sampling layer.
+
+## F-019 — DEFECT: evidence-preparation provenance row unlocked the confirmation gate
+**Date:** 2026-07-16 · **Phase:** F governance · **Status:** RESOLVED
+
+Recording the 2006-2015 evidence-preparation access filled `attestor` and `timestamp` in
+period_provenance.csv, which was all `holdout_guard.check_period` required — so
+`holdout_guard.py --period 2006-2015` began returning **PERMIT**. A governance action intended
+to *document* restricted access had silently *unsealed* the confirmation holdout. Self-caught
+within the same session by running the guard immediately after writing the row. Fix: added an
+`access_type` column; `check_period` now requires `access_type=CONFIRMATION_EXECUTION` and
+explicitly refuses evidence-preparation and unspecified rows; two regression cases added to the
+self-test (12/12 PASS). Both governed periods now correctly BLOCK. Lesson: any write to a
+governance ledger must be followed by re-running the guard that reads it.
+
+## F-020 — DEFECT: clone seed silently truncated from integer to float in the draw artifact
+**Date:** 2026-07-17 · **Phase:** E · **Status:** RESOLVED
+
+`clone_draws.parquet` was written via a CSV staging file read with `read_csv_auto`, which
+inferred the `seed` column as DOUBLE. The frozen seed 12878176638248399935 was stored as
+1.28781766382484e+19 — **lossy**. Anyone reproducing draws from the artifact's own seed column
+would have used the wrong seed. Fix: explicit `read_csv(columns={...})` typing with
+`seed:'VARCHAR'`; seeds are identifiers, not numbers. Verified lossless post-fix. Caught by a
+test written in response to external review item 4 (9-column hash coverage) — the previous
+4-column hash could not have detected it, which is precisely why the reviewer demanded all nine.
+
+## F-021 — DEFECT: duplicate vendor ACTIONS rows minted duplicate exposure_ids
+**Date:** 2026-07-17 · **Phase:** E · **Status:** RESOLVED
+
+The raw-ACTIONS join returned every matching row; where the vendor carries duplicate rows for
+one economic event, the queue builder emitted two exposures sharing an identical exposure_id
+(2 cases: EV-1d435e7c at 2022-06-30 and 2022-09-30). Fix: dedupe raw rows by (action, date)
+before minting IDs. Post-fix dev exposures 95 -> 91, matching the exposure-set count exactly.
+
+## F-022 — GOVERNANCE FAILURE: committed generator code of unaccounted provenance; artifacts not reproducible from repo
+**Date:** 2026-07-17 · **Phase:** governance · **Status:** RESOLVED (process lesson permanent)
+
+External review found `build/build_review_queues.py` and `build/reconcile_terminal_worklist.py`
+in the repo depending on an undeclared `/tmp/_sets.json`, and not matching the committed queue
+CSVs. Investigation confirmed worse: **the committed CSVs were produced by an inline heredoc
+script that was never committed, and the session agent cannot account for how those two .py
+files came to exist.** They entered the repo via `git add -A`. Net effect: committed artifacts
+were unreproducible from committed code, and committed code had never been run — in a protocol
+whose central control is provenance. Resolution: both files deleted and rewritten as authored,
+runnable generators (`build/build_exposure_sets.py`, `build/build_review_queues.py`) with no
+scratch-file dependency, full input/output hash manifests, and a byte-identical regeneration
+proof. Permanent process rules adopted: (1) never `git add -A` — stage explicit paths; (2) every
+committed artifact must name a committed generator, an exact command, and input hashes; (3) a
+regeneration test must assert manifest-vs-bytes on every run.
+

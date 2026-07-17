@@ -1,53 +1,97 @@
-# terminal_policy.yaml — event-level terminal accounting policy
-# STATUS: DRAFT v1.0 — NOT SIGNED. Requires Jason's vendor-semantic evidence (B0-05) and
-# transaction-specific evidence before effective_before_rerun may be set true and before this
-# file may enter protocol_release.json as a frozen artifact.
-# Anti-post-hoc rule (binding): the 2016-2023 development diagnostic result is ALREADY VISIBLE.
-# No branch below may be chosen, altered, or ordered on the basis of whether it improves CORE.
-# Every branch must be justified by vendor evidence, transaction evidence, or a predeclared
-# accounting invariant recorded in this file's rationale field.
-
-terminal_policy_version: "1.0"
-effective_before_rerun: false        # -> true ONLY when evidence_status below is COMPLETE
-evidence_status: INCOMPLETE_AWAITING_VENDOR_AND_TRANSACTION_EVIDENCE
-
+terminal_policy_version: '1.0'
+effective_before_rerun: false
+evidence_status: VENDOR_SEMANTICS_COMPLETE_TRANSACTION_EVIDENCE_PENDING
 identity_continuation:
   treatment: continue_lot
   transaction_cost: 0
-  rationale: "Ticker change / reincorporation is not an economic exit; permaticker continuity is the identity invariant (data_fidelity_contract). Predeclared invariant, no vendor evidence required."
-
+  rationale: Ticker change / reincorporation is not an economic exit; permaticker
+    continuity is the identity invariant (data_fidelity_contract). Predeclared invariant,
+    no vendor evidence required.
 cash_acquisition:
   valuation: verified_cash_per_share
   event_date: legal_completion_date
   transaction_cost: 0
-  evidence_required: ["SEC 8-K Item 2.01 completion or definitive merger agreement", "vendor ACTIONS value semantics"]
-  rationale: "Cash-out is an involuntary corporate action, not a market trade; no spread/commission is paid by the holder."
-
+  evidence_required:
+  - SEC 8-K Item 2.01 completion or definitive merger agreement
+  - vendor ACTIONS value semantics
+  rationale: Cash-out is an involuntary corporate action, not a market trade; no spread/commission
+    is paid by the holder.
 stock_acquisition:
   treatment: convert_to_successor_shares
   valuation: contractual_exchange_ratio
   conversion_cost: 0
   scheduled_exit_cost_bps: 10
-  evidence_required: ["merger agreement exchange ratio", "successor permaticker mapping"]
-  rationale: "Economic exposure continues in the successor; the lot's scheduled maturity exit is a market trade and pays the standard 10bps."
-
+  evidence_required:
+  - merger agreement exchange ratio
+  - successor permaticker mapping
+  rationale: Economic exposure continues in the successor; the lot's scheduled maturity
+    exit is a market trade and pays the standard 10bps.
 mixed_acquisition:
   treatment: cash_plus_successor_shares
   conversion_cost: 0
   scheduled_exit_cost_bps: 10
-  evidence_required: ["merger agreement consideration split"]
-
+  evidence_required:
+  - merger agreement consideration split
 verified_bankruptcy_zero_recovery:
   terminal_return: -1.0
-  evidence_required: ["SEC 8-K Item 1.03 confirmed plan with no equity recovery", "exchange delisting notice"]
-  rationale: "Confirmed zero equity recovery is a verified terminal fact, not an estimate."
-
+  evidence_required:
+  - SEC 8-K Item 1.03 confirmed plan with no equity recovery
+  - exchange delisting notice
+  rationale: Confirmed zero equity recovery is a verified terminal fact, not an estimate.
 unverified_ma:
   treatment: freeze_last_tradable_closeadj
   value_units_unverified: true
   transaction_cost: 0
-  rationale: "CANON FALLBACK (S3.6 tier 3). Applies to every event lacking both vendor-semantic and transaction evidence. This is the branch currently governing 100% of events; it is what makes the present run PROVISIONAL."
-
+  rationale: CANON FALLBACK (S3.6 tier 3). Applies to every event lacking both vendor-semantic
+    and transaction evidence. This is the branch currently governing 100% of events;
+    it is what makes the present run PROVISIONAL.
 required_sensitivity:
   minus_100pct_on_all_unverified: true
-  rationale: "S3.6 requires a -100% sensitivity row; unverified events must be shown at the ruin bound."
+  rationale: S3.6 requires a -100% sensitivity row; unverified events must be shown
+    at the ruin bound.
+vendor_semantics_evidence:
+  file: evidence/vendor_semantics/SHARADAR_INDICATORS_ACTIONS_ACTIONTYPES_20260716.csv
+  sha256: 52ef6da79c66bdee51e25b882185787ea44dfbe2dc67a66cc2d4e5e949d4b420
+  resolved:
+  - ACTIONS field meanings
+  - ACTIONTYPES terminal/non-terminal mapping
+  - value = final market cap (NEVER per-share proceeds)
+  - date = last trade date (NOT legal completion)
+  still_pending:
+  - transaction consideration
+  - legal completion dates
+  - successor exchange ratios
+  - equity recovery
+engine_status:
+  accounting_engine_status: SCAFFOLD_NOT_CERTIFIED
+  previous_claim_withdrawn: 'The 2026-07-16 report described a "common accounting
+    engine implemented, partially certified". That overstated it. engine/accounting_engine.py
+    is a SCAFFOLD: no production run has ever used it and its terminal branches are
+    uncertified.'
+  implemented_and_unit_tested:
+  - independent overlapping lots
+  - entry cost identity
+  - market exit cost
+  - involuntary terminal cash (no exit cost)
+  - verified bankruptcy = -1.0
+  - successor conversion mechanics
+  - lot lineage / parent_lot_ids
+  - redeploy allocation chaining
+  - selection-operator swap (CORE vs clone)
+  NOT_implemented:
+  - sleeve cash ledger with dated cash balances (nav() takes a caller-supplied dict;
+    no engine-owned cash ledger)
+  - cash reconciliation identity as an enforced invariant (reconcile() reports totals;
+    it does not assert closure)
+  - monthly mark series emission
+  - cash_rate accrual (declared but never applied)
+  - mixed_acquisition cash-leg carry to maturity at cash_rate
+  NOT_certified:
+  - every terminal branch value (blocked on golden_v3 hand-derivation)
+  - 'production parity: run_core_backtest.py and run_clone_null.py still use their
+    own private mechanics'
+  blocking_before_any_rerun:
+  - golden_v3 expected_outputs_SIGNED.csv hand-derived by Jason
+  - migrate run_core_backtest.py + run_clone_null.py onto this engine
+  - delete the private mechanics in those scripts
+  - prove CORE and clone differ ONLY by selection operator on production data

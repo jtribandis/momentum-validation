@@ -1,0 +1,31 @@
+{
+  "created_utc": "2026-07-17T03:19:24.954651+00:00",
+  "artifact": "results/phaseE/clone_draws.parquet",
+  "schema_version": "clone_draws_v1",
+  "columns": [
+    "clone_id",
+    "formation_date",
+    "rank_position",
+    "permaticker",
+    "eligible_snapshot_hash",
+    "eligible_universe_size",
+    "seed",
+    "rng_algorithm",
+    "rng_version"
+  ],
+  "canonical_sort": [
+    "clone_id",
+    "formation_date",
+    "rank_position"
+  ],
+  "rows": 630000,
+  "clones": 10000,
+  "formations": 21,
+  "seed": "12878176638248399935",
+  "rng_algorithm": "python-random.Random.sample (Mersenne Twister MT19937)",
+  "rng_version": "CPython 3.12",
+  "content_hash_sha256": "4e9c73722b43ec9918405c10bfc279f46b1295acf820b5cf728e1c15e0ae3353",
+  "parquet_file_sha256": "7133e53ddd0acf4dad10669c55f530db4b1672cbc2b085374977e500e6d27c70",
+  "order_by_fix": "F-018: eligible universes are ORDER BY permaticker; without this the seeded sample was nondeterministic.",
+  "returns_computed": false
+}

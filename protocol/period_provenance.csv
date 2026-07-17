@@ -1,4 +1,4 @@
-period,first_inspection_date,what_was_viewed,decision_made_after,project_source,code_commit,data_vintage_id,spent_YN,attestor,timestamp
-2006-2015,,,,,,,,,
-2024-2026,,,,,,,,,
-1998-2005,,,,,,,,,
+period,first_inspection_date,what_was_viewed,decision_made_after,project_source,code_commit,data_vintage_id,spent_YN,attestor,timestamp,access_type
+2006-2015,2026-07-16,"CORPORATE_ACTION_EVIDENCE_PREPARATION_ONLY: formation dates, eligible identities, lot-calendar windows, terminal-event identities. selections_viewed=N signals_viewed=N returns_viewed=N NAV_viewed=N aggregate_performance_viewed=N",NO DECISION MADE. Access was evidence preparation to build the manual transaction review queue; not confirmation execution.,jtribandis/momentum-validation,1dcde4da (build_terminal_exposures.py) / this branch,SHARADAR_20260620,N,session agent (recorded); Jason attests by merge,2026-07-17T02:27:56.552096+00:00,CORPORATE_ACTION_EVIDENCE_PREPARATION_ONLY
+2024-2026,,,,,,,,,,
+1998-2005,,,,,,,,,,
