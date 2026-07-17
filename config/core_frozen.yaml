@@ -18,3 +18,17 @@ fd_freeze_date: '2026-07-16'
 fd_freeze_note: FD-01 (99th pct + 3% floor) and FD-02 (tail vetoes/flags) frozen before
   any Stage-5 confirmation result viewed; risk_limits.yaml conformed to FD-02 canon
   (-35% gap, closing F-007).
+clone_null:
+  seed: '12878176638248399935'
+  seed_derivation: int(sha256(core_blotter_sha256 + "clone-null")[:16], 16)
+  rng_algorithm: python-random.Random.sample (Mersenne Twister MT19937)
+  clone_count: 10000
+  draw_artifact: results/phaseE/clone_draws.parquet
+  draw_consumption_contract: Clone selections MUST be read from the frozen draw artifact
+    by (clone_id, formation_date, rank_position). Regeneration from the seed is a
+    VERIFICATION path only; no evaluation may sample at evaluation time.
+  universe_ordering_rule: eligible universes ORDER BY permaticker ASC before sampling
+    (F-018)
+  min_universe_size: 3
+  undersized_universe_policy: "HARD_FAIL \u2014 never silently sample fewer than 3\
+    \ names"

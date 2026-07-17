@@ -62,3 +62,36 @@ vendor_semantics_evidence:
   - legal completion dates
   - successor exchange ratios
   - equity recovery
+engine_status:
+  accounting_engine_status: SCAFFOLD_NOT_CERTIFIED
+  previous_claim_withdrawn: 'The 2026-07-16 report described a "common accounting
+    engine implemented, partially certified". That overstated it. engine/accounting_engine.py
+    is a SCAFFOLD: no production run has ever used it and its terminal branches are
+    uncertified.'
+  implemented_and_unit_tested:
+  - independent overlapping lots
+  - entry cost identity
+  - market exit cost
+  - involuntary terminal cash (no exit cost)
+  - verified bankruptcy = -1.0
+  - successor conversion mechanics
+  - lot lineage / parent_lot_ids
+  - redeploy allocation chaining
+  - selection-operator swap (CORE vs clone)
+  NOT_implemented:
+  - sleeve cash ledger with dated cash balances (nav() takes a caller-supplied dict;
+    no engine-owned cash ledger)
+  - cash reconciliation identity as an enforced invariant (reconcile() reports totals;
+    it does not assert closure)
+  - monthly mark series emission
+  - cash_rate accrual (declared but never applied)
+  - mixed_acquisition cash-leg carry to maturity at cash_rate
+  NOT_certified:
+  - every terminal branch value (blocked on golden_v3 hand-derivation)
+  - 'production parity: run_core_backtest.py and run_clone_null.py still use their
+    own private mechanics'
+  blocking_before_any_rerun:
+  - golden_v3 expected_outputs_SIGNED.csv hand-derived by Jason
+  - migrate run_core_backtest.py + run_clone_null.py onto this engine
+  - delete the private mechanics in those scripts
+  - prove CORE and clone differ ONLY by selection operator on production data

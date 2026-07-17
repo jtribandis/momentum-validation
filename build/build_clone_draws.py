@@ -39,6 +39,9 @@ def main() -> int:
             SELECT DISTINCT e.permaticker FROM el e
             JOIN px x ON x.p = e.permaticker AND x.d = DATE '{lw[f][0]}' AND x.o > 0
             WHERE e.formation = DATE '{f}' ORDER BY e.permaticker""").fetchall()]
+        if len(u) < 3:
+            raise SystemExit(f'HARD FAIL (frozen policy undersized_universe_policy): formation {f} '
+                             f'has {len(u)} eligible names; 3 required. Never silently sample fewer.')
         universe[f] = u
         snap_hash[f] = hashlib.sha256(','.join(map(str, u)).encode()).hexdigest()
 
@@ -58,12 +61,18 @@ def main() -> int:
                 'eligible_universe_size','seed','rng_algorithm','rng_version'])
     w.writerows(sorted(rows, key=lambda x: (x[0], x[1], x[2])))
     tmp.close()
-    con.execute(f"""COPY (SELECT * FROM read_csv_auto('{tmp.name}')
+    # Explicit column types: read_csv_auto inferred `seed` as DOUBLE, silently truncating
+    # 12878176638248399935 -> 1.28781766382484e+19 (F-020). Seeds are IDENTIFIERS, not numbers.
+    con.execute(f"""COPY (SELECT * FROM read_csv('{tmp.name}', header=true, columns={{
+        'clone_id':'BIGINT','formation_date':'DATE','rank_position':'INTEGER','permaticker':'BIGINT',
+        'eligible_snapshot_hash':'VARCHAR','eligible_universe_size':'INTEGER','seed':'VARCHAR',
+        'rng_algorithm':'VARCHAR','rng_version':'VARCHAR'}})
         ORDER BY clone_id, formation_date, rank_position)
         TO 'results/phaseE/clone_draws.parquet' (FORMAT PARQUET, COMPRESSION ZSTD)""")
     os.unlink(tmp.name)
     # content hash = canonical sort of the logical rows (parquet bytes may vary; content must not)
-    canon = '\n'.join(f'{c}|{f}|{r}|{p}' for c, f, r, p, *_ in sorted(rows, key=lambda x: (x[0], x[1], x[2])))
+    # content hash covers ALL NINE columns (review item 4), not just the first four
+    canon = '\n'.join('|'.join(map(str, row)) for row in sorted(rows, key=lambda x: (x[0], x[1], x[2])))
     content_hash = hashlib.sha256(canon.encode()).hexdigest()
     man = {'created_utc': datetime.datetime.now(datetime.timezone.utc).isoformat(),
            'artifact': 'results/phaseE/clone_draws.parquet', 'schema_version': 'clone_draws_v1',

@@ -309,3 +309,38 @@ explicitly refuses evidence-preparation and unspecified rows; two regression cas
 self-test (12/12 PASS). Both governed periods now correctly BLOCK. Lesson: any write to a
 governance ledger must be followed by re-running the guard that reads it.
 
+## F-020 — DEFECT: clone seed silently truncated from integer to float in the draw artifact
+**Date:** 2026-07-17 · **Phase:** E · **Status:** RESOLVED
+
+`clone_draws.parquet` was written via a CSV staging file read with `read_csv_auto`, which
+inferred the `seed` column as DOUBLE. The frozen seed 12878176638248399935 was stored as
+1.28781766382484e+19 — **lossy**. Anyone reproducing draws from the artifact's own seed column
+would have used the wrong seed. Fix: explicit `read_csv(columns={...})` typing with
+`seed:'VARCHAR'`; seeds are identifiers, not numbers. Verified lossless post-fix. Caught by a
+test written in response to external review item 4 (9-column hash coverage) — the previous
+4-column hash could not have detected it, which is precisely why the reviewer demanded all nine.
+
+## F-021 — DEFECT: duplicate vendor ACTIONS rows minted duplicate exposure_ids
+**Date:** 2026-07-17 · **Phase:** E · **Status:** RESOLVED
+
+The raw-ACTIONS join returned every matching row; where the vendor carries duplicate rows for
+one economic event, the queue builder emitted two exposures sharing an identical exposure_id
+(2 cases: EV-1d435e7c at 2022-06-30 and 2022-09-30). Fix: dedupe raw rows by (action, date)
+before minting IDs. Post-fix dev exposures 95 -> 91, matching the exposure-set count exactly.
+
+## F-022 — GOVERNANCE FAILURE: committed generator code of unaccounted provenance; artifacts not reproducible from repo
+**Date:** 2026-07-17 · **Phase:** governance · **Status:** RESOLVED (process lesson permanent)
+
+External review found `build/build_review_queues.py` and `build/reconcile_terminal_worklist.py`
+in the repo depending on an undeclared `/tmp/_sets.json`, and not matching the committed queue
+CSVs. Investigation confirmed worse: **the committed CSVs were produced by an inline heredoc
+script that was never committed, and the session agent cannot account for how those two .py
+files came to exist.** They entered the repo via `git add -A`. Net effect: committed artifacts
+were unreproducible from committed code, and committed code had never been run — in a protocol
+whose central control is provenance. Resolution: both files deleted and rewritten as authored,
+runnable generators (`build/build_exposure_sets.py`, `build/build_review_queues.py`) with no
+scratch-file dependency, full input/output hash manifests, and a byte-identical regeneration
+proof. Permanent process rules adopted: (1) never `git add -A` — stage explicit paths; (2) every
+committed artifact must name a committed generator, an exact command, and input hashes; (3) a
+regeneration test must assert manifest-vs-bytes on every run.
+

@@ -1,5 +1,5 @@
 {
-  "created_utc": "2026-07-17T02:28:22.063765+00:00",
+  "created_utc": "2026-07-17T03:17:42.047315+00:00",
   "overall": "PASS",
   "cases": [
     {
@@ -62,77 +62,77 @@
       "case": "evidence-prep permits identities/calendar",
       "expect_allowed": true,
       "got_allowed": true,
-      "reason": "PERMITTED (evidence-preparation only) for 2006-2015: ['eligible_identities', 'formation_dates', 'lot_calendar_windows', 'terminal_event_identities']. Period NOT spent; this is not confirmation execution.",
+      "reason": "EVIDENCE_PREP_PERMITTED for 2006-2015: ['eligible_identities', 'formation_dates', 'lot_calendar_windows', 'terminal_event_identities']. Period NOT spent; this is not confirmation execution.",
       "result": "PASS"
     },
     {
       "case": "evidence-prep REFUSES signals",
       "expect_allowed": false,
       "got_allowed": false,
-      "reason": "REFUSED: evidence-preparation mode forbids emitting ['signals'] for sealed period 2006-2015",
+      "reason": "EVIDENCE_PREP_REFUSED for 2006-2015: forbidden artifacts requested ['signals']",
       "result": "PASS"
     },
     {
       "case": "evidence-prep REFUSES core selections",
       "expect_allowed": false,
       "got_allowed": false,
-      "reason": "REFUSED: evidence-preparation mode forbids emitting ['core_selections'] for sealed period 2006-2015",
+      "reason": "EVIDENCE_PREP_REFUSED for 2006-2015: forbidden artifacts requested ['core_selections']",
       "result": "PASS"
     },
     {
       "case": "evidence-prep REFUSES returns/NAV",
       "expect_allowed": false,
       "got_allowed": false,
-      "reason": "REFUSED: evidence-preparation mode forbids emitting ['nav', 'returns'] for sealed period 2006-2015",
+      "reason": "EVIDENCE_PREP_REFUSED for 2006-2015: forbidden artifacts requested ['nav', 'returns']",
       "result": "PASS"
     },
     {
       "case": "evidence-prep REFUSES aggregate performance",
       "expect_allowed": false,
       "got_allowed": false,
-      "reason": "REFUSED: evidence-preparation mode forbids emitting ['aggregate_performance'] for sealed period 2006-2015",
+      "reason": "EVIDENCE_PREP_REFUSED for 2006-2015: forbidden artifacts requested ['aggregate_performance']",
       "result": "PASS"
     },
     {
       "case": "evidence-prep REFUSES clone performance",
       "expect_allowed": false,
       "got_allowed": false,
-      "reason": "REFUSED: evidence-preparation mode forbids emitting ['clone_performance'] for sealed period 2006-2015",
+      "reason": "EVIDENCE_PREP_REFUSED for 2006-2015: forbidden artifacts requested ['clone_performance']",
       "result": "PASS"
     },
     {
       "case": "evprep permits identities+calendar",
       "expect_allowed": true,
       "got_allowed": true,
-      "reason": "PERMITTED (evidence-preparation only) for 2006-2015: ['eligible_identities', 'formation_dates', 'lot_calendar_windows', 'terminal_event_identities']. Period NOT spent; this is not confirmation execution.",
+      "reason": "EVIDENCE_PREP_PERMITTED for 2006-2015: ['eligible_identities', 'formation_dates', 'lot_calendar_windows', 'terminal_event_identities']. Period NOT spent; this is not confirmation execution.",
       "result": "PASS"
     },
     {
       "case": "evprep REFUSES returns",
       "expect_allowed": false,
       "got_allowed": false,
-      "reason": "REFUSED: evidence-preparation mode forbids emitting ['returns'] for sealed period 2006-2015",
+      "reason": "EVIDENCE_PREP_REFUSED for 2006-2015: forbidden artifacts requested ['returns']",
       "result": "PASS"
     },
     {
       "case": "evprep REFUSES core selections",
       "expect_allowed": false,
       "got_allowed": false,
-      "reason": "REFUSED: evidence-preparation mode forbids emitting ['core_selections'] for sealed period 2006-2015",
+      "reason": "EVIDENCE_PREP_REFUSED for 2006-2015: forbidden artifacts requested ['core_selections']",
       "result": "PASS"
     },
     {
       "case": "evprep REFUSES nav/aggregate",
       "expect_allowed": false,
       "got_allowed": false,
-      "reason": "REFUSED: evidence-preparation mode forbids emitting ['aggregate_performance', 'nav'] for sealed period 2006-2015",
+      "reason": "EVIDENCE_PREP_REFUSED for 2006-2015: forbidden artifacts requested ['aggregate_performance', 'nav']",
       "result": "PASS"
     },
     {
       "case": "evprep REFUSES unknown artifact",
       "expect_allowed": false,
       "got_allowed": false,
-      "reason": "REFUSED: unrecognized emission ['something_else']; evidence-prep allows only ['eligible_identities', 'formation_dates', 'lot_calendar_windows', 'terminal_event_identities']",
+      "reason": "EVIDENCE_PREP_REFUSED for 2006-2015: unrecognized artifacts ['something_else'] (allowlist only)",
       "result": "PASS"
     },
     {

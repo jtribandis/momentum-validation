@@ -128,23 +128,6 @@ def self_test():
     print(('PASS' if ok else 'FAIL') + ' holdout guard self-test; report at results/phaseA/holdout_guard_selftest.json')
     return 0 if ok else 1
 
-EVIDENCE_PREP_ALLOWED = {'formation_dates', 'eligible_identities', 'lot_calendar_windows', 'terminal_event_identities'}
-EVIDENCE_PREP_FORBIDDEN = {'signals', 'ranks', 'core_selections', 'clone_selections', 'clone_performance',
-                           'nav', 'returns', 'aggregate_performance', 'cagr', 'percentile'}
-
-def check_evidence_prep(period, emits):
-    """Evidence-preparation mode: permits identity/calendar facts ONLY for a sealed period.
-    Any attempt to emit a signal, rank, selection, NAV, return, or aggregate is REFUSED.
-    Never marks a period spent and never constitutes confirmation execution."""
-    bad = sorted(set(e.lower() for e in emits) & EVIDENCE_PREP_FORBIDDEN)
-    unknown = sorted(set(e.lower() for e in emits) - EVIDENCE_PREP_ALLOWED - EVIDENCE_PREP_FORBIDDEN)
-    if bad:
-        return False, f'REFUSED: evidence-preparation mode forbids emitting {bad} for sealed period {period}'
-    if unknown:
-        return False, f'REFUSED: unrecognized emission {unknown}; evidence-prep allows only {sorted(EVIDENCE_PREP_ALLOWED)}'
-    return True, (f'PERMITTED (evidence-preparation only) for {period}: {sorted(set(emits))}. '
-                  'Period NOT spent; this is not confirmation execution.')
-
 def main() -> int:
     args = sys.argv[1:]
     if args[:1] == ['--evidence-prep'] and len(args) >= 3:

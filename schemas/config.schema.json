@@ -73,6 +73,9 @@
     },
     "fd_freeze_note": {
       "type": "string"
+    },
+    "clone_null": {
+      "type": "object"
     }
   }
 }
