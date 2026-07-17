@@ -25,7 +25,7 @@ action scheduled at a later phase) · RESOLVED (evidence linked) · INFORMATIONA
 | F-012 | 2026-07-15 | B/C | RESOLVED |
 | F-013 | 2026-07-16 | E | RESOLVED |
 | F-007 | (see below) | F-prep | RESOLVED — canon says -35%; yaml corrected |
-| F-014 | 2026-07-16 | E | OPEN_DECISION — terminal-return placeholder biases CORE vs clones |
+| F-014 | 2026-07-16 | E | REVISED — CORE had ZERO terminal lots; clone impact was unmeasured |
 | F-015 | 2026-07-16 | E | REGISTERED — relabeled: development diagnostic, not primary gate |
 | F-016 | 2026-07-16 | E | RESOLVED — session agent mislabeled dev run as primary gate; corrected |
 
@@ -210,12 +210,17 @@ substitutes for the other.
 ## F-014 — Terminal-event returns are a conservative placeholder, not frozen policy
 **Date:** 2026-07-16 · **Phase:** E · **Status:** OPEN_DECISION
 
-The CORE/clone engines assign delisted or acquired lots their last-tradable closeadj as exit
-proceeds, because B0-05 (ACTIONS.value units) and the Shumway-Warther Nasdaq-figure citation
-are unresolved. If momentum selection over-samples names that subsequently delist relative to
-random clone draws, this placeholder penalizes CORE asymmetrically. Required before Stage 5 is
-decision-grade: close B0-05, confirm the citation, and re-run with the frozen terminal-return
-policy. The current gate result is therefore PRELIMINARY.
+**REVISED 2026-07-16 after exposure measurement.** Terminal accounting remains provisional.
+Measured facts replacing the earlier speculation: the recorded CORE blotter contained **ZERO
+terminal lots** across 2016-2023 (63 lots, no event inside any holding window). Clone impact
+magnitude and direction were **unknown** at the time of the earlier claim because exact clone
+draws and exposures were not preserved; they are now (draws hash in
+results/phaseE/clone_draws.sha256). Corrected measurement: 91 distinct clone (formation,
+permaticker) exposure pairs, 5,451 total clone lot-hits across the 10,000 clones. The earlier
+statement that the placeholder "penalizes CORE asymmetrically" was therefore UNSUPPORTED
+speculation and is withdrawn: with zero CORE exposures, the provisional policy could only have
+affected clones. Direction of any correction is now a measurable question, not an assumption,
+and remains unresolved until transaction evidence closes B0-05.
 
 ## F-015 — 2016-2023 development clone diagnostic falls below FD-01 thresholds (RELABELED, see F-016)
 **Date:** 2026-07-16 · **Phase:** E · **Status:** OPEN_DECISION
@@ -251,4 +256,30 @@ Consequence for interpretation: the below-threshold development result **cannot*
 described as a primary-gate failure, and equally **cannot** be used to argue the strategy
 passed anything. It is a development-period signal-quality diagnostic computed under
 provisional terminal accounting (F-014).
+
+## F-016 — DEFECT: terminal classification inverted mergerto/mergerfrom and treated ticker changes as terminal
+**Date:** 2026-07-16 · **Phase:** B/E · **Status:** RESOLVED
+
+The pre-correction `build_terminal_events.py` mapped `mergerto` -> terminal and included
+`tickerchangeto` in the terminal action set, and omitted `mergerfrom`, `regulatorydelisting`,
+and `voluntarydelisting` entirely. Official vendor semantics (archived, sha256 52ef6da7...)
+state: `mergerto.ticker` = SURVIVING company (not terminal); `mergerfrom.ticker` = NON-SURVIVING
+company (terminal); ticker changes are identity continuation. The defect would have terminated
+lots in surviving entities and in mere ticker renames, while missing genuine non-survivor
+terminations. Fixed; 12 regression tests added (qa/test_terminal_semantics.py) including an
+explicit test that fails against the old mapping. Effect on the recorded run: event mix changed
+from {ACQUIRED 443, BANKRUPTCY 56, DELISTED_OTHER 12, MERGER 9} to {ACQUIRED 443, BANKRUPTCY 56,
+DELISTED_OTHER 21}; the 9 spurious MERGER terminations are gone.
+
+## F-017 — ACTIONS.value is FINAL MARKET CAP, not per-share proceeds
+**Date:** 2026-07-16 · **Phase:** B · **Status:** RESOLVED (vendor semantics); B0-05 remains PARTIAL
+
+Vendor text: for acquisitionby/acquisitionof/mergerfrom/mergerto/bankruptcyliquidation/delisted,
+`value` = **final market cap** of the terminating company; `date` = **last trade date**. Any
+engine using ACTIONS.value as terminal per-share proceeds would be catastrophically wrong (market
+cap vs per-share). Recorded as a binding prohibition in results/phaseB/terminal_event_semantics.json
+and asserted by test. Also binding: ACTIONS.date is NOT a legal completion date and may never be
+labeled as such. Unit caveat flagged honestly: the vendor text says "final market cap" but does
+NOT state the currency unit in the archived file; the reviewer's "USD millions" is not verifiable
+from this text. Moot for the protocol because value is never used in any branch.
 

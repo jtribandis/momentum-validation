@@ -1,27 +1,20 @@
 {
-  "created_utc": "2026-07-15T17:53:29.271137+00:00",
-  "vintage_horizon": "2026-06-18",
+  "created_utc": "2026-07-17T01:32:14.780940+00:00",
+  "vendor_semantics_source": "evidence/vendor_semantics/SHARADAR_INDICATORS_ACTIONS_ACTIONTYPES_20260716.csv",
+  "vendor_semantics_sha256": "52ef6da79c66bdee51e25b882185787ea44dfbe2dc67a66cc2d4e5e949d4b420",
   "terminated_member_permatickers": 520,
-  "event_type_mix": [
-    {
-      "type": "ACQUIRED",
-      "n": 443
-    },
-    {
-      "type": "BANKRUPTCY_LIQUIDATION",
-      "n": 56
-    },
-    {
-      "type": "DELISTED_OTHER",
-      "n": 12
-    },
-    {
-      "type": "MERGER",
-      "n": 9
-    }
+  "event_type_mix": {
+    "ACQUIRED": 443,
+    "DELISTED_OTHER": 21,
+    "BANKRUPTCY_LIQUIDATION": 56
+  },
+  "corrections_applied": [
+    "mergerto REMOVED as terminal (ticker = surviving company) - F-016",
+    "mergerfrom ADDED as terminal (ticker = non-surviving company)",
+    "acquisitionof explicitly non-terminal (ticker = acquirer)",
+    "regulatorydelisting + voluntarydelisting ADDED as terminal",
+    "relation explicitly non-terminal"
   ],
-  "no_evidence_worklist_n": 0,
-  "policy": "classification only; Shumway-baseline numeric returns enter engine config at Phase D/E gated on B0-05 + citation confirmation",
-  "output_sha256": "41cf80f3b2dc37ede18f26782b303914ecf6b5a263f6354a0ea699c50a8e0521",
+  "output_sha256": "fe9fb849680c33d387e3184190856aafe5edfae157a8d67360c102b1784b1935",
   "overall": "PASS"
 }

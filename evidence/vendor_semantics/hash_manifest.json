@@ -1,0 +1,17 @@
+{
+  "archived_utc": "2026-07-17T01:31:32.448050+00:00",
+  "file": "evidence/vendor_semantics/SHARADAR_INDICATORS_ACTIONS_ACTIONTYPES_20260716.csv",
+  "sha256": "52ef6da79c66bdee51e25b882185787ea44dfbe2dc67a66cc2d4e5e949d4b420",
+  "attested_sha256_matches": true,
+  "source": "Nasdaq Data Link SHARADAR/INDICATORS (official vendor metadata table)",
+  "access_date": "2026-07-16",
+  "provided_by": "Jason (independently reviewed)",
+  "covers": [
+    "ACTIONS field definitions (7)",
+    "ACTIONTYPES action-code definitions (19)"
+  ],
+  "limitations": [
+    "Defines VENDOR FIELD SEMANTICS ONLY. Does not supply transaction consideration, legal completion dates, successor exchange ratios, or equity recovery. B0-05 stays PARTIAL.",
+    "ACTIONTYPES text states value = \"final market cap\" but does NOT state the currency unit (USD millions asserted by reviewer, NOT stated in this file text) - flagged, and moot for the protocol because value is never used as terminal proceeds under any branch."
+  ]
+}
