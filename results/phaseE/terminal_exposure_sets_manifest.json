@@ -2,7 +2,7 @@
   "artifact": "results/phaseE/terminal_exposure_sets.json",
   "schema_version": "terminal_exposure_sets_v1",
   "generator_file": "build/build_exposure_sets.py",
-  "generator_blob_sha": "549ee4463e80dbcda5bfaca78a264fe41dde086d8fc513aabe45f21dc0ce1f52",
+  "generator_blob_sha": "8b3b0b6841d5f0849f958579fa4115b1ed2c883660fc383af7b114669b364992",
   "input_paths": [
     "data/clean/eligible_snapshots.parquet",
     "data/clean/terminal_events.parquet",
@@ -15,12 +15,12 @@
     "data/clean/month_end_calendar.parquet": "a01744a2a5c6378917788535794b4cfe6ecbfc168ca08b868d4e400ad0d06906",
     "results/phaseE/clone_draws.parquet": "7133e53ddd0acf4dad10669c55f530db4b1672cbc2b085374977e500e6d27c70"
   },
-  "output_content_sha256": "f90bb6aad81dd461d195d3fe6cf5e026c0edf264e22fccae6666425c7b94b1bd",
+  "output_content_sha256": "ce7f173e3e43bdd68cc40fc16647191994629e4fedc07f0d4d44c2a85c0139ed",
   "counts": {
     "core_exposures": 0,
     "clone_exposures": 91,
     "phaseF_possible_exposures": 176
   },
-  "created_utc": "2026-07-17T03:19:25.630203+00:00",
+  "created_utc": "2026-07-17T03:39:02.265618+00:00",
   "no_tmp_dependency": true
 }

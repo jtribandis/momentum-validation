@@ -83,3 +83,56 @@ def test_frozen_seed_and_consumption_contract_in_config():
     assert c['min_universe_size'] == 3 and c['undersized_universe_policy'].startswith('HARD_FAIL')
     assert 'MUST be read from the frozen draw artifact' in c['draw_consumption_contract']
     assert 'ORDER BY permaticker' in c['universe_ordering_rule']
+
+
+def test_no_scratch_path_dependency_in_generators_AST():
+    """AST-based: scans string LITERALS in executable code, ignoring docstrings/comments.
+    F-023 rationale: the prior substring test was satisfied by editing a DOCSTRING rather than
+    the code — the artifact was changed to fit the test. This version cannot be gamed that way,
+    and still detects a real dependency in a file with no comments at all."""
+    import ast
+    SCRATCH = ('/tmp/', '/var/tmp/', '/dev/shm/', 'C:\\Temp')
+    for f in ('build/build_review_queues.py', 'build/build_exposure_sets.py', 'build/build_clone_draws.py'):
+        tree = ast.parse(open(f).read(), filename=f)
+        docs = set()
+        for node in ast.walk(tree):
+            if isinstance(node, (ast.Module, ast.FunctionDef, ast.AsyncFunctionDef, ast.ClassDef)):
+                d = ast.get_docstring(node, clean=False)
+                if d: docs.add(d)
+        for node in ast.walk(tree):
+            if isinstance(node, ast.Constant) and isinstance(node.value, str) and node.value not in docs:
+                for s in SCRATCH:
+                    assert s not in node.value, f'{f}:{node.lineno} executable literal uses scratch path {s!r}'
+        assert not [n for n in ast.walk(tree) if isinstance(n, ast.Attribute) and n.attr == 'gettempdir'], \
+            f'{f} calls tempfile.gettempdir()'
+
+
+def test_repo_has_no_stale_superseded_artifacts():
+    """F-023: no tracked artifact may come from a superseded generator."""
+    import subprocess
+    tracked = set(subprocess.run(['git','ls-files','results/phaseE','build'], capture_output=True, text=True).stdout.split())
+    banned = {'results/phaseE/clone_draws.sha256', 'results/phaseE/old111_vs_corrected.json',
+              'results/phaseE/old_vs_new_terminal_worklist_diff.csv', 'results/phaseE/terminal_exposures_report.json',
+              'results/phaseE/manual_transaction_review_queue.csv', 'results/phaseE/core_terminal_exposures.csv',
+              'results/phaseE/clone_terminal_exposures.csv', 'results/phaseE/phaseF_possible_terminal_exposures.csv',
+              'results/phaseE/dev_clone_transaction_review_queue.csv', 'results/phaseE/terminal_ledger.json',
+              'results/phaseE/phaseF_possible_transaction_review_queue.csv',
+              'build/build_terminal_exposures.py', 'build/reconcile_terminal_worklist.py', 'build/build_terminal_ledger.py'}
+    assert not (banned & tracked), f'superseded artifacts still tracked: {sorted(banned & tracked)}'
+
+
+def test_clone_hit_stats_scoped_to_exposed_pairs_only():
+    s = json.load(open('results/phaseE/terminal_exposure_sets.json'))
+    assert s['clone_hit_stats_scope'] == 'EXPOSED_PAIRS_ONLY'
+    exposed = {f"{e['formation']}|{e['permaticker']}" for e in s['clone_exposures']}
+    assert set(s['clone_hit_stats']) == exposed, 'clone_hit_stats must cover exactly the exposed pairs'
+    assert len(s['clone_hit_stats']) == 91
+
+
+def test_exposure_set_content_hash_excludes_timestamp():
+    """F-024: a content hash containing created_utc changes every run and cannot detect drift."""
+    s = json.load(open('results/phaseE/terminal_exposure_sets.json'))
+    m = json.load(open('results/phaseE/terminal_exposure_sets_manifest.json'))
+    payload = {k: v for k, v in s.items() if k != 'created_utc'}
+    assert hashlib.sha256(json.dumps(payload, sort_keys=True).encode()).hexdigest() == m['output_content_sha256']
+    assert 'created_utc' in s, 'timestamp still recorded in the artifact, just not inside the hash'

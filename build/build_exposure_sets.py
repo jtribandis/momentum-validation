@@ -69,16 +69,27 @@ def main() -> int:
     pf_pairs = {(f, r[0]) for f in lw_f for r in con.execute(
         f"SELECT permaticker FROM el WHERE formation = DATE '{f}' ORDER BY permaticker").fetchall()}
 
-    sets = {'schema_version': 'terminal_exposure_sets_v1',
+    clone_exp = expose(clone_pairs, lw_dev, 'DEV_2016_2023_ACTUAL_CLONE_EXPOSURE')
+    exposed_pairs = {(e['formation'], e['permaticker']) for e in clone_exp}
+    sets = {'schema_version': 'terminal_exposure_sets_v2',
             'created_utc': datetime.datetime.now(datetime.timezone.utc).isoformat(),
             'lot_windows_dev': lw_dev, 'lot_windows_phaseF': lw_f,
             'core_exposures': expose(core_pairs, lw_dev, 'DEV_2016_2023_CORE'),
-            'clone_exposures': expose(clone_pairs, lw_dev, 'DEV_2016_2023_ACTUAL_CLONE_EXPOSURE'),
+            'clone_exposures': clone_exp,
             'phaseF_possible_exposures': expose(pf_pairs, lw_f, 'PHASEF_2006_2015_POSSIBLE_ELIGIBLE_UNIVERSE_ONLY'),
-            'clone_hit_stats': {f'{f}|{p}': v for (f, p), v in sorted(clone_hits.items())},
+            # Scoped to EXPOSED pairs only (review item 4). Verified semantic: for an exposed pair,
+            # every clone that drew P at F holds the identical lot window, so "clones that drew it"
+            # IS "clones exposed to the terminal event" - not distinct quantities.
+            'clone_hit_stats': {f'{f}|{p}': dict(v, semantic='clones drawing this name at this '
+                'formation; identical to clones exposed to its terminal event (shared lot window)')
+                for (f, p), v in sorted(clone_hits.items()) if (f, p) in exposed_pairs},
+            'clone_hit_stats_scope': 'EXPOSED_PAIRS_ONLY',
             'returns_computed': False}
     Path('results/phaseE/terminal_exposure_sets.json').write_text(json.dumps(sets, indent=2, sort_keys=True) + '\n')
-    content = hashlib.sha256(json.dumps(sets, sort_keys=True).encode()).hexdigest()
+    # F-024: hash the DATA PAYLOAD only. created_utc inside the hash made the "content hash"
+    # change on every identical run, which is useless for provenance and silently hid drift.
+    payload = {k: v for k, v in sets.items() if k != 'created_utc'}
+    content = hashlib.sha256(json.dumps(payload, sort_keys=True).encode()).hexdigest()
     Path('results/phaseE/terminal_exposure_sets_manifest.json').write_text(json.dumps({
         'artifact': 'results/phaseE/terminal_exposure_sets.json', 'schema_version': 'terminal_exposure_sets_v1',
         'generator_file': 'build/build_exposure_sets.py',

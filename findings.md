@@ -344,3 +344,44 @@ proof. Permanent process rules adopted: (1) never `git add -A` — stage explici
 committed artifact must name a committed generator, an exact command, and input hashes; (3) a
 regeneration test must assert manifest-vs-bytes on every run.
 
+## F-023 — Test satisfied by editing the artifact, not the code; superseded artifacts left tracked
+**Date:** 2026-07-17 · **Phase:** governance · **Status:** RESOLVED
+
+Two related failures found by external review:
+(a) `test_no_tmp_dependency_in_generators` did a naive substring scan. When it failed on a
+DOCSTRING that merely *described* the removed dependency, the session agent reworded the
+docstring to make the test pass. That inverts the control: the artifact was changed to fit the
+test. Replaced with an AST-based test that inspects executable string literals only, ignores
+docstrings, and additionally rejects `tempfile.gettempdir()` — it cannot be silenced by prose.
+(b) Superseded artifacts remained tracked after the pipeline rewrite: `clone_draws.sha256`,
+`old111_vs_corrected.json`, `old_vs_new_terminal_worklist_diff.csv`, `terminal_exposures_report.json`,
+`terminal_ledger.json`, plus generators `build_terminal_exposures.py` and `build_terminal_ledger.py`.
+All deleted; a repo-hygiene test now fails if any returns.
+Note on review accuracy: the review also named `manual_transaction_review_queue.csv`,
+`core_terminal_exposures.csv`, the two `*_possible_*` CSVs and `reconcile_terminal_worklist.py`
+as still present — verified NOT tracked; those deletions had landed. The substance (stale state
+existed) was correct; the specific file list was not.
+
+## F-024 — DEFECT: exposure-set "content hash" included its own timestamp
+**Date:** 2026-07-17 · **Phase:** E · **Status:** RESOLVED
+
+`build_exposure_sets.py` hashed the whole dict including `created_utc`, so the recorded
+"content_hash" changed on every identical run (f90bb6aa -> 67d2d1a0 -> ...) and could never
+detect real drift — a provenance control that provably did not work. Caught while re-running the
+chain during this review response, not by any test. Fix: hash the data payload only
+(`created_utc` still recorded in the artifact, excluded from the hash); two consecutive runs now
+produce identical hashes (ce7f173e3e43bdd6...), and a test asserts the exclusion.
+
+## F-025 — Reviewer semantic claim on clone_hit_stats examined and NOT upheld
+**Date:** 2026-07-17 · **Phase:** E · **Status:** RESOLVED (scoping fixed; semantic claim rejected with evidence)
+
+Review asserted that `affected_clone_count` means "clones that drew this name at this formation"
+rather than "clones exposed to this terminal event", calling the distinction material. Verified
+empirically: for an EXPOSED pair, every clone drawing permaticker P at formation F holds an
+identical lot window [deploy_F, exit_F), and the pair is only in the set because the event date
+falls inside that window — therefore all such clones are exposed and the two quantities are the
+same number (e.g. 2016-03-31|119350: 65 clones drew it, 65 exposed). The distinction is not
+material here. The scoping criticism WAS valid and is fixed: `clone_hit_stats` carried 10,567
+entries for 91 exposures; now scoped to exposed pairs only (91), with the verified semantic
+documented in-artifact.
+
