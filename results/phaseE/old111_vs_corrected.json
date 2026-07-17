@@ -1,0 +1,8 @@
+{
+  "old_111_count": 111,
+  "corrected_2016_2023_exposed_pairs": 61,
+  "old_111_false_positives": 50,
+  "old_111_false_negatives": 0,
+  "false_negative_sample": [],
+  "method_note": "Old count = any terminal event on a name that was EVER eligible with an eligible formation touching 2016-2023 (name-level proximity). Corrected = event date falls inside an ACTUAL lot holding window (deploy <= last_trade < scheduled_exit) for a name actually drawn by CORE or by >=1 of the 10,000 clones."
+}

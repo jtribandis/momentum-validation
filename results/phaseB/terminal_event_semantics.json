@@ -1,0 +1,104 @@
+{
+  "source_file": "evidence/vendor_semantics/SHARADAR_INDICATORS_ACTIONS_ACTIONTYPES_20260716.csv",
+  "source_sha256": "52ef6da79c66bdee51e25b882185787ea44dfbe2dc67a66cc2d4e5e949d4b420",
+  "extracted_utc": "2026-07-17T01:31:32.449747+00:00",
+  "binding_semantics_VERIFIED_AGAINST_VENDOR_TEXT": {
+    "acquisitionby": {
+      "ticker": "acquired company",
+      "contraticker": "acquiring company",
+      "value": "final market cap of acquired company",
+      "date": "last trade date of acquired company",
+      "terminal_for_ticker": true
+    },
+    "acquisitionof": {
+      "ticker": "acquiring company",
+      "contraticker": "acquired company",
+      "value": "final market cap of acquired company",
+      "date": "last trade date of acquired company",
+      "terminal_for_ticker": false
+    },
+    "mergerfrom": {
+      "ticker": "non-surviving company",
+      "contraticker": "surviving company",
+      "value": "final market cap of non-surviving company",
+      "date": "last trade date of non-surviving company",
+      "terminal_for_ticker": true
+    },
+    "mergerto": {
+      "ticker": "surviving company",
+      "contraticker": "non-surviving company",
+      "value": "final market cap of non-surviving company",
+      "date": "last trade date of non-surviving company",
+      "terminal_for_ticker": false
+    },
+    "bankruptcyliquidation": {
+      "value": "final market cap",
+      "date": "last trade date",
+      "terminal_for_ticker": true
+    },
+    "delisted": {
+      "value": "final market cap where applicable",
+      "date": "last trade date",
+      "terminal_for_ticker": true
+    },
+    "regulatorydelisting": {
+      "value": "final market cap where applicable",
+      "date": "last trade date",
+      "terminal_for_ticker": true
+    },
+    "voluntarydelisting": {
+      "value": "final market cap where applicable",
+      "date": "last trade date",
+      "terminal_for_ticker": true
+    },
+    "relation": {
+      "meaning": "informational security relationship only",
+      "terminal_for_ticker": false,
+      "identity_continuation": false
+    },
+    "tickerchangefrom": {
+      "terminal_for_ticker": false,
+      "identity_continuation": true,
+      "date": "effective ticker-change date"
+    },
+    "tickerchangeto": {
+      "terminal_for_ticker": false,
+      "identity_continuation": true,
+      "date": "effective ticker-change date"
+    },
+    "split": {
+      "value": "shares held after per one prior share",
+      "date": "effective date",
+      "terminal_for_ticker": false
+    },
+    "dividend": {
+      "value": "split/stock-dividend-adjusted cash dividend per share",
+      "date": "ex-dividend date",
+      "terminal_for_ticker": false
+    }
+  },
+  "BINDING_PROHIBITION": "ACTIONS.value is FINAL MARKET CAP, never per-share proceeds. No engine may use ACTIONS.value as terminal per-share value under any branch.",
+  "DATE_CAVEAT": "ACTIONS.date is the LAST TRADE DATE. It is NOT the legal completion date and must never be labeled as such (terminal_policy cash_acquisition.event_date still requires SEC evidence).",
+  "b005_status": "VENDOR SEMANTICS RESOLVED; B0-05 remains PARTIAL pending transaction-specific evidence.",
+  "vendor_text_verbatim": {
+    "acquisitionby": "Description of action types in the ACTIONS table. Provides details of an acquisition transaction. The ticker field represents the ticker of the acquired company. The contraticker field represents the ticker of the acquiring company. The value field represents the final market cap of the acquired company. The date field represents the last trade date of the acquired company.",
+    "acquisitionof": "Description of action types in the ACTIONS table. Provides details of an acquisition transaction. The ticker field represents the ticker of the acquiring company. The contraticker field represents the ticker of the acquired company. The value field represents the final market cap of the acquired company. The date field represents the last trade date of the acquired company.",
+    "bankruptcyliquidation": "Description of action types in the ACTIONS table. Provides details of a bankruptcy/liquidation transaction.  The value field represents the final market cap of the bankrupt/liquidated company.  The date field represents the last trade date of the bankrupt/liquidated company.",
+    "delisted": "Description of action types in the ACTIONS table. Provides details of a delisting transaction. The value field represents the final market cap of the security provided that it is the primary common stock that is covered in the fundamentals and daily metrics tables.  The date field represents the last trade date of the delisted company.",
+    "dividend": "Description of action types in the ACTIONS table. Provides details of a cash dividend distribution. The value field represents the cash dividend as adjusted for stock splits and stock dividends. The date field represents the ex-dividend date.",
+    "initiated": "Description of action types in the ACTIONS table. Provides details of the initiation of coverage in our price datasets. The date field represents the date that coverage commenced in our price datasets for securities that were already listed prior to this date.",
+    "listed": "Description of action types in the ACTIONS table. Provides details of new listings. The value field represents the initial market cap of the security provided that it is the primary common stock that is covered in the fundamentals and daily metrics tables. The date field represents the date that the company listed for trading.",
+    "mergerfrom": "Description of action types in the ACTIONS table. Provides details of merger transactions. The ticker field represents the ticker of the non-surviving company. The contraticker field represents the ticker of the surviving company. The value field represents the final market cap of the non-surviving company. The date field represents the last trade date of the non-surviving company.",
+    "mergerto": "Description of action types in the ACTIONS table. Provides details of merger transactions. The ticker field represents the ticker of the surviving company. The contraticker field represents the ticker of the non-surviving company. The value field represents the final market cap of the non-surviving company. The date field represents the last trade date of the non-surviving company.",
+    "regulatorydelisting": "Description of action types in the ACTIONS table. Provides details of securities delisted for exchange or regulatory reasons. The value field represents the final market cap of the security provided that it is the primary common stock that is covered in the fundamentals and daily metrics tables. The date field represents the last trade date of the delisted company.",
+    "relation": "Description of action types in the ACTIONS table. Provides linkage between multiple securities issued by the same issuer. The ticker field represents what we consider to be the primary security from the issuer. The contraticker field represents the ticker that is related to the primary ticker.",
+    "spinoff": "Description of action types in the ACTIONS table. Provides details of spinoff transactions.\tThe ticker field represents the parent company that has spunoff another company. The contraticker field represents the company that has been spunoff. The value field represents the number of shares of the spunoff company that are issued for each share of the parent company. The date field represents the date of the spinoff transaction.",
+    "spinoffdividend": "Description of action types in the ACTIONS table. Provides details of spinoff transactions. The ticker field represents the parent company that has spunoff another company. The contraticker field represents the company that has been spunoff. The value field represents the dollar value of shares of the spunoff company that are issued for each share of the parent company. The date field represents the date of the spinoff transaction.",
+    "split": "Description of action types in the ACTIONS table. Provides details of stock split or stock dividend transactions. The value field represents the number of shares that will be held after the transaction is effective for each share held prior to the transaction being effective. The date field represents the effective date of the transaction.",
+    "adrratiosplit": "Description of action types in the ACTIONS table. Provides a split applied to the ADR ratio as represented by the sharefactor indicator.",
+    "spunofffrom": "Description of action types in the ACTIONS table. Provides details of spinoff transactions. The ticker field represents the company that has been spunoff from the parent company. The contraticker field represents the parent company. The value field represents the number of shares of the spunoff company that are issued for each share of the parent company. The date field represents the date of the spinoff transaction.",
+    "tickerchangefrom": "Description of action types in the ACTIONS table. Provides details of ticker change transactions. Must be viewed in conjunction with the tickerchangeto action. The ticker field represents the current ticker in the datasets which is not necessarily the ticker that has been changed to as of this date. The contraticker field represents the ticker that has been changed from as of this date. The tickerchangeto action represents the ticker that was changed to as of the date in the date field. The date field represents the effective date of the ticker change.",
+    "tickerchangeto": "Description of action types in the ACTIONS table. Provides details of ticker change transactions. Must be viewed in conjunction with the tickerchangefrom action. The ticker field represents the current ticker in the datasets which is not necessarily the ticker that has been changed to as of this date. The contraticker field represents the ticker that has been changed to as of this date. The tickerchangefrom action represents the ticker that was changed from as of the date in the date field. The date field represents the effective date of the ticker change.",
+    "voluntarydelisting": "Description of action types in the ACTIONS table. Provides details of securities that have voluntarily delisted. The value field represents the final market cap of the security provided that it is the primary common stock that is covered in the fundamentals and daily metrics tables. The date field represents the last trade date of the delisted company.\t"
+  }
+}

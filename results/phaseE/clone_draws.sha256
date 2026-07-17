@@ -1,0 +1,9 @@
+{
+  "seed": 12878176638248399935,
+  "clones": 10000,
+  "formations": 21,
+  "draw_rows": 210000,
+  "draws_sha256": "bd28fbb58e48eb45b041a51990bc329a0ad01b52d3632fe6c57b29d9172bcf9a",
+  "hashed_before_returns": true,
+  "note": "Exact clone selections preserved as a hash; regenerate with this seed to reproduce identically."
+}
