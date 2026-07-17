@@ -9,9 +9,61 @@ def test_manifest_matches_committed_csv_bytes():
     for p, h in m['output_content_sha256'].items():
         assert hashlib.sha256(open(p,'rb').read()).hexdigest() == h, f'{p} drifted from manifest'
 
-def test_generator_blob_sha_matches_repo_file():
+def test_generator_file_sha256_matches_repo_file():
+    """Renamed from generator_blob_sha (attestation pass). Value must equal the on-disk generator."""
     m = json.load(open('results/phaseE/review_queue_manifest.json'))
-    assert hashlib.sha256(open('build/build_review_queues.py','rb').read()).hexdigest() == m['generator_blob_sha']
+    assert hashlib.sha256(open('build/build_review_queues.py','rb').read()).hexdigest() == m['generator_file_sha256']
+    m2 = json.load(open('results/phaseE/terminal_exposure_sets_manifest.json'))
+    assert hashlib.sha256(open('build/build_exposure_sets.py','rb').read()).hexdigest() == m2['generator_file_sha256']
+
+
+ACCEPTED_QUEUE_CODE_COMMIT = '0c61781dec51e63b6d8c93376855e6221eb486bb'
+
+
+def test_source_code_commit_recorded_in_both_manifests():
+    for p in ('results/phaseE/review_queue_manifest.json',
+              'results/phaseE/terminal_exposure_sets_manifest.json'):
+        m = json.load(open(p))
+        assert m['source_code_commit'] == ACCEPTED_QUEUE_CODE_COMMIT, f'{p} wrong source_code_commit'
+        assert 'git_commit' not in m, f'{p} still carries the ambiguous git_commit label'
+        assert 'generator_blob_sha' not in m, f'{p} still carries the old generator_blob_sha label'
+
+
+def test_working_tree_clean_attested_on_queue_manifest():
+    m = json.load(open('results/phaseE/review_queue_manifest.json'))
+    assert m['working_tree_clean_YN'] == 'Y'
+
+
+def test_attestation_did_not_change_any_output_hash():
+    """Label-only pass: every output hash and row count must equal the ACCEPTED values from
+    commit 0c61781, pinned literally here so a future edit cannot drift them silently."""
+    ACCEPTED = {
+        'results/phaseE/dev_transaction_events.csv':
+            '51a97f53b213564f6f54e7f445f93c0fb4935f3c8b6eff71a2bc1e0ee69e9ec1',
+        'results/phaseE/dev_transaction_exposures.csv':
+            '36718228061441984232664250ac7be15183480ec958567d332d7a056b3b68b8',
+        'results/phaseE/phaseF_transaction_events.csv':
+            '2a8acd4d2920b3e6a528b5f652ce69e3465b22ab1b18fea0e3d1acf3b2c9cd20',
+        'results/phaseE/phaseF_transaction_exposures.csv':
+            '6ac6edd29decd1fd0564e00ddcd9cfb4930e388373534ec320b8ff2ab5878cc7'}
+    ACCEPTED_ARTIFACT = '36ea467536072116a6423e0bf60164b96e172c46913699fb3c115fc6835f6027'
+    ACCEPTED_LOGICAL = 'ab08873c0fb11fa4cc4696eea395e954f272320d029ed69038096fad3411823a'
+
+    m = json.load(open('results/phaseE/review_queue_manifest.json'))
+    assert m['output_content_sha256'] == ACCEPTED, 'queue manifest hashes drifted from accepted'
+    for p, h in ACCEPTED.items():
+        assert hashlib.sha256(open(p, 'rb').read()).hexdigest() == h, f'{p} bytes drifted'
+    assert m['output_row_counts'] == {'dev_events': 61, 'dev_exposures': 91,
+                                      'phaseF_events': 105, 'phaseF_exposures': 176}
+
+    m2 = json.load(open('results/phaseE/terminal_exposure_sets_manifest.json'))
+    assert m2['output_content_sha256'] == ACCEPTED_LOGICAL, 'logical content hash drifted'
+    assert m2['artifact_byte_sha256'] == ACCEPTED_ARTIFACT
+    assert hashlib.sha256(open('results/phaseE/terminal_exposure_sets.json', 'rb').read()).hexdigest() \
+        == ACCEPTED_ARTIFACT, 'canonical exposure artifact bytes drifted'
+    assert m2['counts'] == {'core_exposures': 0, 'clone_exposures': 91, 'phaseF_possible_exposures': 176,
+                            'multi_event_intervals_dev': 0, 'multi_event_intervals_phaseF': 0}
+
 
 def test_no_tmp_dependency_in_generators():
     for f in ('build/build_review_queues.py', 'build/build_exposure_sets.py', 'build/build_clone_draws.py'):

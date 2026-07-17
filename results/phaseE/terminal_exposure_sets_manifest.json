@@ -3,9 +3,9 @@
   "artifact": "results/phaseE/terminal_exposure_sets.json",
   "artifact_byte_sha256": "36ea467536072116a6423e0bf60164b96e172c46913699fb3c115fc6835f6027",
   "output_content_sha256": "ab08873c0fb11fa4cc4696eea395e954f272320d029ed69038096fad3411823a",
-  "created_utc": "2026-07-17T03:59:12.204967+00:00",
   "generator_file": "build/build_exposure_sets.py",
-  "generator_blob_sha": "d78899b701a8a92cd3d553679744e9da6c8c995503042725af80de04d7d396a4",
+  "generator_file_sha256": "d78899b701a8a92cd3d553679744e9da6c8c995503042725af80de04d7d396a4",
+  "source_code_commit": "0c61781dec51e63b6d8c93376855e6221eb486bb",
   "exact_command": "python build/build_exposure_sets.py",
   "controlling_parameters": {
     "development_window": [
@@ -97,6 +97,7 @@
     "multi_event_intervals_dev": 0,
     "multi_event_intervals_phaseF": 0
   },
+  "created_utc": "2026-07-17T03:59:12.204967+00:00",
   "timestamp_excluded_from_artifact": true,
   "no_scratch_dependency": true
 }

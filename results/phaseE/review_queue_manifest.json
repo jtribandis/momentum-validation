@@ -1,7 +1,8 @@
 {
   "generator_file": "build/build_review_queues.py",
-  "generator_blob_sha": "448121c8ad0c492c3ad5b5703ee2ee485932cc2ec612fb1f6f9315bcb6d0fc37",
-  "git_commit": "6a8d844c7146b6c8957b0a44a2a8f45dd2e6f413",
+  "generator_file_sha256": "448121c8ad0c492c3ad5b5703ee2ee485932cc2ec612fb1f6f9315bcb6d0fc37",
+  "source_code_commit": "0c61781dec51e63b6d8c93376855e6221eb486bb",
+  "working_tree_clean_YN": "Y",
   "exact_command": "python build/build_review_queues.py",
   "environment_digest": "3.12.3|duckdb 1.5.4|Linux",
   "input_paths": [
