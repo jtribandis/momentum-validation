@@ -1,0 +1,21 @@
+[
+  {
+    "source_role": "PRIMARY_COMPLETION_EVIDENCE",
+    "source_type": "SEC_8K_ITEM_2_01",
+    "issuer_or_filer": "Nielsen Holdings plc",
+    "cik": "1492633",
+    "SEC_accession_number": "0001193125-22-260583",
+    "filing_date": "2022-10-11",
+    "retrieval_date_utc": "2026-07-17T16:02:03+00:00",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/1492633/000119312522260583/d407513d8k.htm",
+    "local_filename": "primary_filing.html",
+    "byte_count": 48446,
+    "byte_sha256": "885ab14ca762a713c8c209108e9615a758fa2f41bf6cbfa5d5a2376d07575c78",
+    "content_type": "text/html",
+    "http_status": 200,
+    "supporting_fields": "consideration, dates, entity identity, equity treatment",
+    "authoritative_YN": "Y",
+    "repeat_retrieval_verified_YN": "Y",
+    "notes": ""
+  }
+]

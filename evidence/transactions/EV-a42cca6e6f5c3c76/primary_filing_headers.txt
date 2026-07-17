@@ -1,0 +1,24 @@
+source_url: https://www.fdic.gov/resources/resolutions/bank-failures/failed-bank-list/signature-ny.html
+retrieval_date_utc: 2026-07-17T16:02:06+00:00
+http_status: 200
+---
+content-type: text/html; charset=UTF-8
+content-language: en
+x-content-type-options: nosniff
+x-frame-options: SAMEORIGIN
+x-generator: Drupal 10 (https://www.drupal.org)
+access-control-allow-origin: *
+last-modified: Fri, 17 Jul 2026 16:02:08 GMT
+etag: "1784304128-gzip"
+x-request-id: d5c3009c-4842-4d8f-b87d-b3f777bbfa9f
+x-ah-environment: prod
+x-age: 0
+x-akamai-transformed: 9 17711 0 pmb=mRUM,1
+vary: Accept-Encoding
+cache-control: public, max-age=60
+expires: Fri, 17 Jul 2026 16:03:08 GMT
+date: Fri, 17 Jul 2026 16:02:08 GMT
+server-timing: cdn-cache; desc=REVALIDATE
+strict-transport-security: max-age=31536000 ; includeSubDomains ; preload
+connection: close
+transfer-encoding: chunked

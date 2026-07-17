@@ -1,0 +1,19 @@
+source_url: https://www.sec.gov/Archives/edgar/data/941548/000110465916109460/a16-6473_28k.htm
+retrieval_date_utc: 2026-07-17T16:01:56+00:00
+http_status: 200
+---
+content-type: text/html
+x-frame-options: SAMEORIGIN
+x-amz-id-2: j8BX+BsS0F7Phjlqt/0JHR6Z79r6WOMtky0Owt4RFe4ZBixTI+xH9IH4dWgdDH2pnzVAVCoskojM7ubmkeMnu4UveNzjFW+f
+x-amz-request-id: TBDEMCSM968ZWFM6
+x-amz-replication-status: REPLICA
+last-modified: Sat, 30 Sep 2017 00:12:51 GMT
+x-amz-meta-mode: 33188
+x-amz-version-id: a6zT.v3lnpZCRfqB.fdDKpNZEuMRhgs8
+x-content-type-options: nosniff
+x-xss-protection: 1; mode=block
+vary: Accept-Encoding
+date: Fri, 17 Jul 2026 16:01:56 GMT
+content-length: 41861
+strict-transport-security: max-age=31536000 ; includeSubDomains ; preload
+connection: close

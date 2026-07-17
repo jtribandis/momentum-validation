@@ -1,0 +1,40 @@
+[
+  {
+    "source_role": "PRIMARY_COMPLETION_EVIDENCE",
+    "source_type": "SEC_8K_ITEM_2_01",
+    "issuer_or_filer": "Warner Bros. Discovery, Inc. (fka Discovery, Inc.)",
+    "cik": "1437107",
+    "SEC_accession_number": "0001193125-22-103051",
+    "filing_date": "2022-04-12",
+    "retrieval_date_utc": "2026-07-17T16:02:01+00:00",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/1437107/000119312522103051/d328161d8k.htm",
+    "local_filename": "primary_filing.html",
+    "byte_count": 120477,
+    "byte_sha256": "00606b52e6a128d58b79bc1ae8fb09ad8e1423c915bb2eab6f53c818ecd50c0d",
+    "content_type": "text/html",
+    "http_status": 200,
+    "supporting_fields": "consideration, dates, entity identity, equity treatment",
+    "authoritative_YN": "Y",
+    "repeat_retrieval_verified_YN": "Y",
+    "notes": ""
+  },
+  {
+    "source_role": "RECLASSIFICATION_TERMS",
+    "source_type": "SEC_8K_EXHIBIT_3_1_RESTATED_CHARTER",
+    "issuer_or_filer": "Warner Bros. Discovery, Inc.",
+    "cik": "1437107",
+    "SEC_accession_number": "0001193125-22-103051",
+    "filing_date": "2022-04-12",
+    "retrieval_date_utc": "2026-07-17T16:04:05+00:00",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/1437107/000119312522103051/d328161dex31.htm",
+    "local_filename": "primary_transaction_exhibit.html",
+    "byte_count": 31793,
+    "byte_sha256": "a66b52c25ed5e52a93751acb6128e43f13e6b43bdd01f581c2c3457920df82e6",
+    "content_type": "text/html",
+    "http_status": 200,
+    "supporting_fields": "consideration, dates, entity identity, equity treatment",
+    "authoritative_YN": "Y",
+    "repeat_retrieval_verified_YN": "Y",
+    "notes": ""
+  }
+]

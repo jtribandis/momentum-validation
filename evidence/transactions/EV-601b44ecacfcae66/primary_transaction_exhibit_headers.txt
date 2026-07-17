@@ -1,0 +1,19 @@
+source_url: https://www.sec.gov/Archives/edgar/data/1437107/000119312522103051/d328161dex31.htm
+retrieval_date_utc: 2026-07-17T16:04:05+00:00
+http_status: 200
+---
+content-type: text/html
+x-frame-options: SAMEORIGIN
+x-amz-id-2: 7qgQjWeBHo1XntDxj8HV7sdbdQxguDm/xyhBbfUf3Lc0k0TqY64sywstYJ1Q3H5qOLEADmujMP6/u0htdNPIsNubVGZwwWev
+x-amz-request-id: WJVAB11WXVHE5CGP
+x-amz-replication-status: COMPLETED
+last-modified: Tue, 12 Apr 2022 21:22:48 GMT
+x-amz-meta-mode: 33188
+x-amz-version-id: JvYsOHpoaXBvg6YUSGMhG4pWPE07DGm3
+x-content-type-options: nosniff
+x-xss-protection: 1; mode=block
+vary: Accept-Encoding
+date: Fri, 17 Jul 2026 16:04:06 GMT
+content-length: 31793
+strict-transport-security: max-age=31536000 ; includeSubDomains ; preload
+connection: close

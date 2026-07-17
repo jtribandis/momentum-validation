@@ -1,0 +1,21 @@
+[
+  {
+    "source_role": "PRIMARY_COMPLETION_EVIDENCE",
+    "source_type": "SEC_8K_ITEM_2_01",
+    "issuer_or_filer": "Coca-Cola European Partners US, LLC (successor by merger to Coca-Cola Enterprises, Inc.)",
+    "cik": "1491675",
+    "SEC_accession_number": "0001193125-16-610069",
+    "filing_date": "2016-06-01",
+    "retrieval_date_utc": "2026-07-17T16:01:58+00:00",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/1491675/000119312516610069/d201852d8k.htm",
+    "local_filename": "primary_filing.html",
+    "byte_count": 28553,
+    "byte_sha256": "cb8b79958534c89498a7260d58089b36f1de4cb07074fe3dc9989c7c327e4629",
+    "content_type": "text/html",
+    "http_status": 200,
+    "supporting_fields": "consideration, dates, entity identity, equity treatment",
+    "authoritative_YN": "Y",
+    "repeat_retrieval_verified_YN": "Y",
+    "notes": ""
+  }
+]

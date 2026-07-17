@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "directive_path": "protocol/prompt_packages/dev_transaction_evidence_pilot_v1.md",
+  "directive_sha256": "9ae14af00c028cf76a8b335026316767c3eb8b6430f1e1fd3560cf79be87c7d9",
+  "source_queue_path": "results/phaseE/dev_transaction_events.csv",
+  "source_queue_byte_sha256": "51a97f53b213564f6f54e7f445f93c0fb4935f3c8b6eff71a2bc1e0ee69e9ec1",
+  "source_queue_code_commit": "0c61781dec51e63b6d8c93376855e6221eb486bb",
+  "pilot_selection_hash": "ec1ecc90110c7b5ef9692853a5aac698c78ec11200609fbfdd453c43293319b2",
+  "retrieval_script_path": "tools/fetch_sec_transaction_evidence.py",
+  "retrieval_script_sha256": "5eef8da892391377265ebd54aa103941ac7e9414d2f6ae2393fef5594cf4bc03",
+  "code_commit": "f4225cb3b013da5cc509b1e7014aa11a946df5e4",
+  "working_tree_dirty_YN": "Y (pilot artifacts pending commit at manifest time)",
+  "environment_digest": "python 3.12.3; Linux x86_64; urllib stdlib retrieval",
+  "retrieval_start_utc": "2026-07-17T16:01:56+00:00",
+  "retrieval_end_utc": "2026-07-17T16:04:05+00:00",
+  "event_count": 10,
+  "source_count": 12,
+  "output_paths": [
+    "results/phaseE/dev_transaction_evidence_pilot_selection.csv",
+    "results/phaseE/dev_transaction_evidence_pilot.csv",
+    "results/phaseE/dev_transaction_evidence_pilot_report.json",
+    "results/phaseE/dev_transaction_evidence_pilot_exceptions.csv",
+    "results/phaseE/dev_transaction_evidence_pilot_manual_review.md"
+  ],
+  "output_row_counts": {
+    "dev_transaction_evidence_pilot_selection.csv": 10,
+    "dev_transaction_evidence_pilot.csv": 10,
+    "dev_transaction_evidence_pilot_report.json": "NOT_APPLICABLE",
+    "dev_transaction_evidence_pilot_exceptions.csv": 5,
+    "dev_transaction_evidence_pilot_manual_review.md": "NOT_APPLICABLE"
+  },
+  "output_byte_sha256": {
+    "dev_transaction_evidence_pilot_selection.csv": "30a46d426d91ed7f1b72c3a3b255660ac1e658ddea388e9d6bb61c14716c76dd",
+    "dev_transaction_evidence_pilot.csv": "9b64157e74babfee958ac9d2d402f15cb3cd30e7e8b6fa5135d3891dfa16f67b",
+    "dev_transaction_evidence_pilot_report.json": "5edc7d8dead200dcec68b7c11a106d535723b47625c8a909fb1e769acb173d46",
+    "dev_transaction_evidence_pilot_exceptions.csv": "f782c7d3c3780708f67f4573756e64701b90d26613f0a55c403bd54ce9464c45",
+    "dev_transaction_evidence_pilot_manual_review.md": "e427c4da96009799b9fb56d55204aebc3c285ca4be931ade2caef3c38f0362e5"
+  },
+  "output_logical_content_sha256": {
+    "dev_transaction_evidence_pilot_selection.csv": "8f9d50ccff17a0c8971fce6fdb7d306389bbcacfeae60170fbd28493a6aa9f36",
+    "dev_transaction_evidence_pilot.csv": "e0bf2787490152cddf7304d0a117fbf9de4539b9de7d045deca4a7862a26a4b6",
+    "dev_transaction_evidence_pilot_report.json": "5edc7d8dead200dcec68b7c11a106d535723b47625c8a909fb1e769acb173d46",
+    "dev_transaction_evidence_pilot_exceptions.csv": "e245b73076dd06c2c9c608f10db43aaefc0d40171c5032a46bdd3c6cc27c88b6",
+    "dev_transaction_evidence_pilot_manual_review.md": "e427c4da96009799b9fb56d55204aebc3c285ca4be931ade2caef3c38f0362e5"
+  },
+  "returns_computed_YN": "N",
+  "phaseF_accessed_YN": "N",
+  "performance_files_modified_YN": "N"
+}
