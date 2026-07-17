@@ -1,26 +1,102 @@
 {
+  "schema_version": "terminal_exposure_sets_v2",
   "artifact": "results/phaseE/terminal_exposure_sets.json",
-  "schema_version": "terminal_exposure_sets_v1",
+  "artifact_byte_sha256": "36ea467536072116a6423e0bf60164b96e172c46913699fb3c115fc6835f6027",
+  "output_content_sha256": "ab08873c0fb11fa4cc4696eea395e954f272320d029ed69038096fad3411823a",
+  "created_utc": "2026-07-17T03:59:12.204967+00:00",
   "generator_file": "build/build_exposure_sets.py",
-  "generator_blob_sha": "8b3b0b6841d5f0849f958579fa4115b1ed2c883660fc383af7b114669b364992",
-  "input_paths": [
-    "data/clean/eligible_snapshots.parquet",
-    "data/clean/terminal_events.parquet",
-    "data/clean/month_end_calendar.parquet",
-    "results/phaseE/clone_draws.parquet"
-  ],
-  "input_sha256": {
-    "data/clean/eligible_snapshots.parquet": "1bce526545aa5fc48a39378737701b8a07ad71fbb0457bbeba3d0662c2fd3f2f",
-    "data/clean/terminal_events.parquet": "fe9fb849680c33d387e3184190856aafe5edfae157a8d67360c102b1784b1935",
-    "data/clean/month_end_calendar.parquet": "a01744a2a5c6378917788535794b4cfe6ecbfc168ca08b868d4e400ad0d06906",
-    "results/phaseE/clone_draws.parquet": "7133e53ddd0acf4dad10669c55f530db4b1672cbc2b085374977e500e6d27c70"
+  "generator_blob_sha": "d78899b701a8a92cd3d553679744e9da6c8c995503042725af80de04d7d396a4",
+  "exact_command": "python build/build_exposure_sets.py",
+  "controlling_parameters": {
+    "development_window": [
+      "2016-01-01",
+      "2023-12-31"
+    ],
+    "phaseF_window": [
+      "2006-01-01",
+      "2015-12-31"
+    ],
+    "holding_months": 6,
+    "rebalance_months": [
+      3,
+      6,
+      9,
+      12
+    ],
+    "selection_count": 3,
+    "execution_timing": "first tradable open after formation month-end; scheduled exit = first tradable open after month_end(formation)+6",
+    "identity_rule": "permaticker (data_fidelity_contract)",
+    "first_terminal_event_rule": "earliest valid event inside [deploy, scheduled_exit); later events = related evidence only"
   },
-  "output_content_sha256": "ce7f173e3e43bdd68cc40fc16647191994629e4fedc07f0d4d44c2a85c0139ed",
+  "inputs": [
+    {
+      "path": "data/clean/eligible_snapshots.parquet",
+      "byte_sha256": "1bce526545aa5fc48a39378737701b8a07ad71fbb0457bbeba3d0662c2fd3f2f",
+      "schema_sha256": "e70365a86282bcea6fa17ba7fea9a2238a453a1b14cf8980c81c70efef1add48",
+      "row_count": 39511
+    },
+    {
+      "path": "data/clean/terminal_events.parquet",
+      "byte_sha256": "fe9fb849680c33d387e3184190856aafe5edfae157a8d67360c102b1784b1935",
+      "schema_sha256": "a741a52e07bf040d4164822afcfc7637d7a4620862c79c186561ac00e8d98d1b",
+      "row_count": 520
+    },
+    {
+      "path": "data/clean/month_end_calendar.parquet",
+      "byte_sha256": "a01744a2a5c6378917788535794b4cfe6ecbfc168ca08b868d4e400ad0d06906",
+      "schema_sha256": "d8a41675e6fd301c083acedf502b6e1cbd247839fbe472f2368eb5af7f432460",
+      "row_count": 343
+    },
+    {
+      "path": "results/phaseE/clone_draws.parquet",
+      "byte_sha256": "7133e53ddd0acf4dad10669c55f530db4b1672cbc2b085374977e500e6d27c70",
+      "schema_sha256": "696eaf7c8d5abbc4f3aea4c0eb422e0c0379e814d15b41e86d45a8cad611484a",
+      "row_count": 630000
+    },
+    {
+      "path": "data/clean/sep_prices_part01.parquet",
+      "byte_sha256": "2da0224752d6d4a899ba83631fde90b1f8f88f3bc1fd5b6b6cd9effb58388459",
+      "schema_sha256": "3701c547b150468d0c9da1365b01b90f74dd9fb9fe79a253bf4ff2ad924c3200",
+      "row_count": 2734456
+    },
+    {
+      "path": "data/clean/sep_prices_part02.parquet",
+      "byte_sha256": "c143d33c9e180e4fe7618cc21d4cd972cb091752ba9a268c9be0764ef5db371d",
+      "schema_sha256": "3701c547b150468d0c9da1365b01b90f74dd9fb9fe79a253bf4ff2ad924c3200",
+      "row_count": 2734454
+    },
+    {
+      "path": "config/core_frozen.yaml",
+      "byte_sha256": "552a18a586f6d2ee167d3a045d6ea6393da59bffcf3d0cc09b5aa0e6a758b8bc",
+      "schema_sha256": "552a18a586f6d2ee167d3a045d6ea6393da59bffcf3d0cc09b5aa0e6a758b8bc",
+      "row_count": 34
+    },
+    {
+      "path": "config/terminal_policy.yaml",
+      "byte_sha256": "e212653ec76b0131dd1e26f5c229976e792730afb249daacdcd7e8d62612b980",
+      "schema_sha256": "e212653ec76b0131dd1e26f5c229976e792730afb249daacdcd7e8d62612b980",
+      "row_count": 97
+    },
+    {
+      "path": "config/risk_limits.yaml",
+      "byte_sha256": "d44ea375eb6496cb44cf6ed025c797c885d634fc31c0aa7544fc80f920fe4acb",
+      "schema_sha256": "d44ea375eb6496cb44cf6ed025c797c885d634fc31c0aa7544fc80f920fe4acb",
+      "row_count": 12
+    },
+    {
+      "path": "config/tolerance_contract.yaml",
+      "byte_sha256": "f4dcfb985871024dbcf771d636aa54c204a95f971f39c142c481bcdc4864d721",
+      "schema_sha256": "f4dcfb985871024dbcf771d636aa54c204a95f971f39c142c481bcdc4864d721",
+      "row_count": 5
+    }
+  ],
   "counts": {
     "core_exposures": 0,
     "clone_exposures": 91,
-    "phaseF_possible_exposures": 176
+    "phaseF_possible_exposures": 176,
+    "multi_event_intervals_dev": 0,
+    "multi_event_intervals_phaseF": 0
   },
-  "created_utc": "2026-07-17T03:39:02.265618+00:00",
-  "no_tmp_dependency": true
+  "timestamp_excluded_from_artifact": true,
+  "no_scratch_dependency": true
 }

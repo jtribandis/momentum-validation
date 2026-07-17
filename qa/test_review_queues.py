@@ -130,9 +130,111 @@ def test_clone_hit_stats_scoped_to_exposed_pairs_only():
 
 
 def test_exposure_set_content_hash_excludes_timestamp():
-    """F-024: a content hash containing created_utc changes every run and cannot detect drift."""
+    """F-024, superseded by the canonical-artifact rule: created_utc no longer exists in the
+    artifact at all, so the logical content hash covers the whole artifact."""
     s = json.load(open('results/phaseE/terminal_exposure_sets.json'))
     m = json.load(open('results/phaseE/terminal_exposure_sets_manifest.json'))
-    payload = {k: v for k, v in s.items() if k != 'created_utc'}
-    assert hashlib.sha256(json.dumps(payload, sort_keys=True).encode()).hexdigest() == m['output_content_sha256']
-    assert 'created_utc' in s, 'timestamp still recorded in the artifact, just not inside the hash'
+    assert 'created_utc' not in s
+    assert hashlib.sha256(json.dumps(s, sort_keys=True).encode()).hexdigest() == m['output_content_sha256']
+
+
+def test_exact_action_join_never_picks_a_nearby_row():
+    """Review item 1: two same-action rows within 45 days must NOT let the wrong one be chosen.
+    Builds an in-memory ACTIONS table with a decoy 10 days before the true event date and proves
+    the exact join selects the true date or reports NO_EXACT_RAW_ACTION_MATCH — never the decoy."""
+    import duckdb, datetime
+    con = duckdb.connect()
+    con.execute("CREATE TABLE ac (permaticker BIGINT, action VARCHAR, date DATE, value DOUBLE, "
+                "contraticker VARCHAR, contraname VARCHAR, ticker VARCHAR, name VARCHAR)")
+    con.executemany("INSERT INTO ac VALUES (?,?,?,?,?,?,?,?)", [
+        (1, 'acquisitionby', datetime.date(2020, 6, 1), 111.0, 'DECOY', 'Decoy Co', 'AAA', 'A Corp'),
+        (1, 'acquisitionby', datetime.date(2020, 6, 11), 222.0, 'TRUE', 'True Co', 'AAA', 'A Corp')])
+    def exact(p, want, d):
+        return con.execute("SELECT action, date, value, contraticker FROM ac WHERE permaticker=? "
+                           "AND action=? AND date=?", [p, want, d]).fetchall()
+    hit = exact(1, 'acquisitionby', datetime.date(2020, 6, 11))
+    assert len(hit) == 1 and hit[0][3] == 'TRUE', 'exact join must select the true-date row'
+    assert exact(1, 'acquisitionby', datetime.date(2020, 6, 5)) == [], \
+        'a date with no exact row must return nothing, not the nearby decoy'
+    assert exact(1, 'mergerfrom', datetime.date(2020, 6, 11)) == [], \
+        'wrong action code must not match'
+
+
+def test_generator_uses_exact_equality_not_interval_join():
+    src = open('build/build_review_queues.py').read()
+    assert 'INTERVAL 45 DAY' not in src, 'proximity window must be gone from the queue generator'
+    assert 'NO_EXACT_RAW_ACTION_MATCH' in src
+    assert "date = DATE" in src, 'join must use exact date equality'
+
+
+def test_match_modes_are_declared_and_valid():
+    ok = {'EXACT_ACTION_DATE', 'EXACT_LAST_TRADE_DATE_VENDOR_EQUIVALENCE',
+          'NO_EXACT_RAW_ACTION_MATCH', 'NO_EXPECTED_ACTION_CODE'}
+    for f in ('dev', 'phaseF'):
+        for r in csv.DictReader(open(f'results/phaseE/{f}_transaction_events.csv')):
+            assert r['raw_action_match_mode'] in ok, f"bad match mode {r['raw_action_match_mode']}"
+            if r['raw_action_match_mode'] == 'NO_EXACT_RAW_ACTION_MATCH':
+                assert not r['raw_action'], 'unmatched events must carry no raw action fields'
+
+
+def test_conflicting_rows_preserved_and_flagged_not_silently_deduped():
+    found = 0
+    for f in ('dev', 'phaseF'):
+        for r in csv.DictReader(open(f'results/phaseE/{f}_transaction_events.csv')):
+            if r['same_date_conflicting_rows'] == 'YES':
+                found += 1
+                rows = json.loads(r['conflicting_rows_preserved'])
+                assert len(rows) == int(r['conflicting_row_count']) > 1
+                assert len({json.dumps(x, sort_keys=True) for x in rows}) == len(rows), \
+                    'preserved rows must be distinct (identical rows are deduped)'
+            else:
+                assert r['conflicting_rows_preserved'] == ''
+    assert found == 6, f'expected 6 conflicting-row events (1 dev + 5 phaseF), found {found}'
+
+
+def test_conflicts_do_not_inflate_exposures():
+    for f in ('dev', 'phaseF'):
+        ex = list(csv.DictReader(open(f'results/phaseE/{f}_transaction_exposures.csv')))
+        keys = [(r['formation_date'], r['permaticker']) for r in ex]
+        assert len(keys) == len(set(keys)), 'one exposure per lot interval; conflicts must not duplicate it'
+
+
+def test_first_terminal_event_rule_recorded():
+    s = json.load(open('results/phaseE/terminal_exposure_sets.json'))
+    assert s['controlling_parameters']['first_terminal_event_rule'].startswith('earliest valid event')
+    for e in s['clone_exposures'] + s['phaseF_possible_exposures'] + s['core_exposures']:
+        assert e['terminal_event_selection_rule'] == 'FIRST_EVENT_IN_INTERVAL'
+        assert e['events_in_interval'] >= 1
+        if e['events_in_interval'] == 1:
+            assert e['related_evidence_only_events'] == []
+    m = s['multi_terminal_event_intervals']
+    assert m['dev'] == 0 and m['phaseF'] == 0, 'multi-event counts must be explicitly recorded'
+
+
+def test_exposure_manifest_declares_every_input_with_full_provenance():
+    import glob as _g
+    m = json.load(open('results/phaseE/terminal_exposure_sets_manifest.json'))
+    assert m['schema_version'] == 'terminal_exposure_sets_v2'
+    s = json.load(open('results/phaseE/terminal_exposure_sets.json'))
+    assert s['schema_version'] == m['schema_version'], 'artifact and manifest schema versions must match'
+    paths = [i['path'] for i in m['inputs']]
+    for p in sorted(_g.glob('data/clean/sep_prices_part*.parquet')):
+        assert p in paths, f'{p} missing from declared inputs'
+    for c in ('config/core_frozen.yaml', 'config/terminal_policy.yaml', 'config/risk_limits.yaml',
+              'config/tolerance_contract.yaml'):
+        assert c in paths, f'{c} missing from declared inputs'
+    for i in m['inputs']:
+        assert set(('path', 'byte_sha256', 'schema_sha256', 'row_count')) <= set(i)
+        assert hashlib.sha256(open(i['path'], 'rb').read()).hexdigest() == i['byte_sha256']
+    for k in ('development_window', 'phaseF_window', 'holding_months', 'execution_timing',
+              'selection_count', 'identity_rule'):
+        assert k in m['controlling_parameters']
+
+
+def test_artifact_has_no_timestamp_manifest_does():
+    s = json.load(open('results/phaseE/terminal_exposure_sets.json'))
+    assert 'created_utc' not in s, 'artifact must be timestamp-free (canonical bytes)'
+    m = json.load(open('results/phaseE/terminal_exposure_sets_manifest.json'))
+    assert 'created_utc' in m
+    assert hashlib.sha256(open('results/phaseE/terminal_exposure_sets.json', 'rb').read()).hexdigest() \
+        == m['artifact_byte_sha256']

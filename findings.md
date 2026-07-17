@@ -385,3 +385,43 @@ material here. The scoping criticism WAS valid and is fixed: `clone_hit_stats` c
 entries for 91 exposures; now scoped to exposed pairs only (91), with the verified semantic
 documented in-artifact.
 
+## F-026 — DEFECT: ±45-day proximity join could bind a terminal event to the wrong vendor row
+**Date:** 2026-07-17 · **Phase:** E · **Status:** RESOLVED
+
+The queue generator located raw ACTIONS rows with a ±45-day window and took the first match.
+Where an issuer had two rows of the same action code inside 90 days, the join could silently
+bind the wrong row's `value`, `contraticker`, and `contraname` to an event — corrupting the very
+evidence a human is meant to adjudicate. Replaced with an EXACT join on (permaticker, exact
+date, exact expected action code). Fallback to exact `last_trade_date` is permitted ONLY because
+the archived vendor text states `date` IS the last trade date for every terminal action code;
+the fallback is recorded per row as `EXACT_LAST_TRADE_DATE_VENDOR_EQUIVALENCE`. No nearby row is
+ever chosen: a miss emits `NO_EXACT_RAW_ACTION_MATCH` with empty raw fields. Result at this
+vintage: 61/61 dev and 105/105 Phase F events matched on `EXACT_ACTION_DATE`; zero unmatched;
+zero fallbacks needed. A test builds a decoy row 10 days from the true event and proves the exact
+join cannot select it.
+
+## F-027 — Six same-date conflicting vendor ACTIONS rows preserved for manual adjudication
+**Date:** 2026-07-17 · **Phase:** E · **Status:** REGISTERED — manual adjudication required at B0-05
+
+Deduplication is now restricted to rows identical across EVERY raw field. Rows sharing
+(permaticker, action, date) but differing in any other field are CONFLICTS: preserved verbatim
+in `conflicting_rows_preserved`, flagged `same_date_conflicting_rows=YES`, counted, and never
+auto-resolved. Found: **1 development event** (permaticker 192873, 2022-10-10, 3 rows differing
+in contraticker: BBU vs N/A) and **5 Phase F events** (e.g. permaticker 186594, 2006-12-01,
+4 rows: CG vs N/A). All show identical `value`, so the conflict is in counterparty identity, not
+magnitude. Conflicts do NOT inflate exposure counts — an exposure is a lot interval, one row per
+(formation, permaticker), asserted by test. Jason adjudicates each against transaction evidence
+when B0-05 closes.
+
+## F-028 — FIRST_EVENT_IN_INTERVAL rule implemented; zero multi-event intervals at this vintage
+**Date:** 2026-07-17 · **Phase:** E · **Status:** RESOLVED (rule active; count explicitly zero)
+
+Exposure selection now counts ALL terminal events inside a lot interval, designates the earliest
+as applicable, and preserves later ones as `related_evidence_only_events`. Measured at this
+vintage: **0 multi-event intervals in development, 0 in Phase F** — recorded explicitly rather
+than assumed. Structural reason disclosed: `terminal_events.parquet` currently carries at most
+one row per permaticker (build_terminal_events.py collapses by priority), so multi-event
+intervals are presently impossible. The rule is implemented and tested regardless, so a future
+multi-row terminal ledger cannot silently change which event governs a lot. Counts unchanged:
+dev 61 events / 91 exposures; Phase F 105 events / 176 exposures.
+
