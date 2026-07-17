@@ -1,0 +1,26 @@
+{
+  "DENOMINATOR_DEFINITIONS": {
+    "old_111": "UNIQUE TERMINAL EVENTS (permaticker, last_trade_date) on names whose eligible-formation range touched 2016-2023. NAME-LEVEL PROXIMITY, not exposure.",
+    "new_61": "UNIQUE TERMINAL EVENTS (permaticker, last_trade_date) where the event date falls inside an ACTUAL lot window (deploy <= last_trade < scheduled_exit) for a name drawn by CORE or >=1 clone.",
+    "new_91": "FORMATION-PERMATICKER EXPOSURE PAIRS for clones. A DIFFERENT UNIT from the 111/61 event counts: one permaticker can be exposed at several formations.",
+    "new_5451": "TOTAL CLONE LOT HITS = sum over exposure pairs of distinct clones holding that name at that formation. Counts lots, not events."
+  },
+  "counts_by_denominator": {
+    "old_unique_terminal_events": 111,
+    "old_unique_permatickers": 111,
+    "new_unique_exposed_events_core_or_clone": 61,
+    "new_unique_exposed_permatickers": 61,
+    "new_core_unique_exposed_events": 0,
+    "new_clone_unique_exposed_events": 61,
+    "new_clone_formation_permaticker_exposure_pairs": 91,
+    "new_clone_total_lot_hits": 5451
+  },
+  "set_comparison_ON_UNIQUE_EVENTS_ONLY": {
+    "old_only_false_positives": 50,
+    "new_only_false_negatives": 0,
+    "agree_both": 61,
+    "valid_because": "both sides are (permaticker, last_trade_date) unique-event sets; the 91 and 5451 figures are NOT comparable to these and are excluded from this comparison."
+  },
+  "prior_narrative_correction": "The 2026-07-16 report placed 111, 61, 91 and 5451 adjacent without stating that 91 and 5451 use different denominators (formation-pairs and lot-hits) than 111/61 (unique events). The set-comparison 111 -> 61 with 50 false positives / 0 false negatives is valid ONLY on unique events.",
+  "diff_file": "results/phaseE/old_vs_new_terminal_worklist_diff.csv"
+}

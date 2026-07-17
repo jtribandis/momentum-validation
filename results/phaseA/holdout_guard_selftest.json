@@ -1,12 +1,12 @@
 {
-  "created_utc": "2026-07-11T19:05:26.900248+00:00",
+  "created_utc": "2026-07-17T02:28:22.063765+00:00",
   "overall": "PASS",
   "cases": [
     {
       "case": "empty attestation blocks",
       "expect_allowed": false,
       "got_allowed": false,
-      "reason": "attestation incomplete for 2006-2015: missing ['first_inspection_date', 'what_was_viewed', 'decision_made_after', 'data_vintage_id', 'attestor', 'timestamp']",
+      "reason": "2006-2015 has provenance rows but none with access_type=CONFIRMATION_EXECUTION (found: ['UNSPECIFIED']). Evidence-preparation access does NOT unlock confirmation execution.",
       "result": "PASS"
     },
     {
@@ -17,7 +17,7 @@
       "result": "PASS"
     },
     {
-      "case": "complete attestation permits",
+      "case": "complete CONFIRMATION attestation permits",
       "expect_allowed": true,
       "got_allowed": true,
       "reason": "2006-2015 attested by Jason on 2026-07-09T00:00:00Z, vintage V20260709",
@@ -38,6 +38,20 @@
       "result": "PASS"
     },
     {
+      "case": "F-019: EVIDENCE-PREP row does NOT unlock confirmation",
+      "expect_allowed": false,
+      "got_allowed": false,
+      "reason": "2006-2015 has provenance rows but none with access_type=CONFIRMATION_EXECUTION (found: ['CORPORATE_ACTION_EVIDENCE_PREPARATION_ONLY']). Evidence-preparation access does NOT unlock confirmation execution.",
+      "result": "PASS"
+    },
+    {
+      "case": "F-019: unspecified access_type does NOT unlock",
+      "expect_allowed": false,
+      "got_allowed": false,
+      "reason": "2024-2026 has provenance rows but none with access_type=CONFIRMATION_EXECUTION (found: ['UNSPECIFIED']). Evidence-preparation access does NOT unlock confirmation execution.",
+      "result": "PASS"
+    },
+    {
       "case": "non-governed period passes through",
       "expect_allowed": true,
       "got_allowed": true,
@@ -45,21 +59,98 @@
       "result": "PASS"
     },
     {
+      "case": "evidence-prep permits identities/calendar",
+      "expect_allowed": true,
+      "got_allowed": true,
+      "reason": "PERMITTED (evidence-preparation only) for 2006-2015: ['eligible_identities', 'formation_dates', 'lot_calendar_windows', 'terminal_event_identities']. Period NOT spent; this is not confirmation execution.",
+      "result": "PASS"
+    },
+    {
+      "case": "evidence-prep REFUSES signals",
+      "expect_allowed": false,
+      "got_allowed": false,
+      "reason": "REFUSED: evidence-preparation mode forbids emitting ['signals'] for sealed period 2006-2015",
+      "result": "PASS"
+    },
+    {
+      "case": "evidence-prep REFUSES core selections",
+      "expect_allowed": false,
+      "got_allowed": false,
+      "reason": "REFUSED: evidence-preparation mode forbids emitting ['core_selections'] for sealed period 2006-2015",
+      "result": "PASS"
+    },
+    {
+      "case": "evidence-prep REFUSES returns/NAV",
+      "expect_allowed": false,
+      "got_allowed": false,
+      "reason": "REFUSED: evidence-preparation mode forbids emitting ['nav', 'returns'] for sealed period 2006-2015",
+      "result": "PASS"
+    },
+    {
+      "case": "evidence-prep REFUSES aggregate performance",
+      "expect_allowed": false,
+      "got_allowed": false,
+      "reason": "REFUSED: evidence-preparation mode forbids emitting ['aggregate_performance'] for sealed period 2006-2015",
+      "result": "PASS"
+    },
+    {
+      "case": "evidence-prep REFUSES clone performance",
+      "expect_allowed": false,
+      "got_allowed": false,
+      "reason": "REFUSED: evidence-preparation mode forbids emitting ['clone_performance'] for sealed period 2006-2015",
+      "result": "PASS"
+    },
+    {
+      "case": "evprep permits identities+calendar",
+      "expect_allowed": true,
+      "got_allowed": true,
+      "reason": "PERMITTED (evidence-preparation only) for 2006-2015: ['eligible_identities', 'formation_dates', 'lot_calendar_windows', 'terminal_event_identities']. Period NOT spent; this is not confirmation execution.",
+      "result": "PASS"
+    },
+    {
+      "case": "evprep REFUSES returns",
+      "expect_allowed": false,
+      "got_allowed": false,
+      "reason": "REFUSED: evidence-preparation mode forbids emitting ['returns'] for sealed period 2006-2015",
+      "result": "PASS"
+    },
+    {
+      "case": "evprep REFUSES core selections",
+      "expect_allowed": false,
+      "got_allowed": false,
+      "reason": "REFUSED: evidence-preparation mode forbids emitting ['core_selections'] for sealed period 2006-2015",
+      "result": "PASS"
+    },
+    {
+      "case": "evprep REFUSES nav/aggregate",
+      "expect_allowed": false,
+      "got_allowed": false,
+      "reason": "REFUSED: evidence-preparation mode forbids emitting ['aggregate_performance', 'nav'] for sealed period 2006-2015",
+      "result": "PASS"
+    },
+    {
+      "case": "evprep REFUSES unknown artifact",
+      "expect_allowed": false,
+      "got_allowed": false,
+      "reason": "REFUSED: unrecognized emission ['something_else']; evidence-prep allows only ['eligible_identities', 'formation_dates', 'lot_calendar_windows', 'terminal_event_identities']",
+      "result": "PASS"
+    },
+    {
       "case": "live ledger 1998-2005",
       "got_allowed": false,
-      "reason": "attestation incomplete for 1998-2005: missing ['first_inspection_date', 'what_was_viewed', 'decision_made_after', 'data_vintage_id', 'attestor', 'timestamp']",
+      "reason": "1998-2005 has provenance rows but none with access_type=CONFIRMATION_EXECUTION (found: ['UNSPECIFIED']). Evidence-preparation access does NOT unlock confirmation execution.",
       "result": "INFO_BLOCKED_AS_EXPECTED"
     },
     {
       "case": "live ledger 2006-2015",
       "got_allowed": false,
-      "reason": "attestation incomplete for 2006-2015: missing ['first_inspection_date', 'what_was_viewed', 'decision_made_after', 'data_vintage_id', 'attestor', 'timestamp']",
+      "reason": "2006-2015 has provenance rows but none with access_type=CONFIRMATION_EXECUTION (found: ['CORPORATE_ACTION_EVIDENCE_PREPARATION_ONLY']). Evidence-preparation access does NOT unlock confirmation execution.",
       "result": "INFO_BLOCKED_AS_EXPECTED"
     },
     {
       "case": "live ledger 2024-2026",
       "got_allowed": false,
-      "reason": "attestation incomplete for 2024-2026: missing ['first_inspection_date', 'what_was_viewed', 'decision_made_after', 'data_vintage_id', 'attestor', 'timestamp']",
+      "reason": "2024-2026 has provenance rows but none with access_type=CONFIRMATION_EXECUTION (found: ['UNSPECIFIED']). Evidence-preparation access does NOT unlock confirmation execution.",
       "result": "INFO_BLOCKED_AS_EXPECTED"
     }
   ]

@@ -5,7 +5,7 @@ from pathlib import Path
 
 EXPECTED = {
     'blocker_ledger.csv': ['blocker_id','description','affected_phase','affected_claim_tier','status','fix_instruction','evidence_file','fix_command_or_manual_step','residual_limitation_if_unresolved','downgrade_if_unresolved'],
-    'protocol/period_provenance.csv': ['period','first_inspection_date','what_was_viewed','decision_made_after','project_source','code_commit','data_vintage_id','spent_YN','attestor','timestamp'],
+    'protocol/period_provenance.csv': ['period','first_inspection_date','what_was_viewed','decision_made_after','project_source','code_commit','data_vintage_id','spent_YN','attestor','timestamp','access_type'],
     'protocol/research_decisions.csv': ['decision_id','date','variant_or_decision','reason','affected_periods','result_viewed_YN','evidence_file'],
     'protocol/open_tasks.csv': ['task_id','description','affected_phase','status','evidence_file'],
 }

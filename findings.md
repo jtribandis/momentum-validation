@@ -283,3 +283,29 @@ labeled as such. Unit caveat flagged honestly: the vendor text says "final marke
 NOT state the currency unit in the archived file; the reviewer's "USD millions" is not verifiable
 from this text. Moot for the protocol because value is never used in any branch.
 
+## F-018 — DEFECT: unordered eligible-universe SQL made seeded clone draws nondeterministic
+**Date:** 2026-07-16 · **Phase:** E · **Status:** RESOLVED
+
+`random.sample` consumes a list; its output depends on that list's ORDER. The eligible-universe
+queries feeding clone sampling used `SELECT DISTINCT ... JOIN ...` with **no ORDER BY**, so
+row order was not guaranteed across runs or engines. The draws were therefore not reproducible
+from the seed even though a seed was recorded — and the earlier claim that "draws can be
+regenerated from the seed" was unsound. Fix: `ORDER BY permaticker` on every sampling universe;
+exact draws now persisted to results/phaseE/clone_draws.parquet (630,000 rows, 9 columns,
+canonically sorted) with a content hash; two clean regenerations verified identical
+(9c33cd48f8543ded...). Caught by external review, not by our own tests — a gap worth noting:
+determinism was tested for the data builders (Phase D) but never for the sampling layer.
+
+## F-019 — DEFECT: evidence-preparation provenance row unlocked the confirmation gate
+**Date:** 2026-07-16 · **Phase:** F governance · **Status:** RESOLVED
+
+Recording the 2006-2015 evidence-preparation access filled `attestor` and `timestamp` in
+period_provenance.csv, which was all `holdout_guard.check_period` required — so
+`holdout_guard.py --period 2006-2015` began returning **PERMIT**. A governance action intended
+to *document* restricted access had silently *unsealed* the confirmation holdout. Self-caught
+within the same session by running the guard immediately after writing the row. Fix: added an
+`access_type` column; `check_period` now requires `access_type=CONFIRMATION_EXECUTION` and
+explicitly refuses evidence-preparation and unspecified rows; two regression cases added to the
+self-test (12/12 PASS). Both governed periods now correctly BLOCK. Lesson: any write to a
+governance ledger must be followed by re-running the guard that reads it.
+
