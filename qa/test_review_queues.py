@@ -9,9 +9,61 @@ def test_manifest_matches_committed_csv_bytes():
     for p, h in m['output_content_sha256'].items():
         assert hashlib.sha256(open(p,'rb').read()).hexdigest() == h, f'{p} drifted from manifest'
 
-def test_generator_blob_sha_matches_repo_file():
+def test_generator_file_sha256_matches_repo_file():
+    """Renamed from generator_blob_sha (attestation pass). Value must equal the on-disk generator."""
     m = json.load(open('results/phaseE/review_queue_manifest.json'))
-    assert hashlib.sha256(open('build/build_review_queues.py','rb').read()).hexdigest() == m['generator_blob_sha']
+    assert hashlib.sha256(open('build/build_review_queues.py','rb').read()).hexdigest() == m['generator_file_sha256']
+    m2 = json.load(open('results/phaseE/terminal_exposure_sets_manifest.json'))
+    assert hashlib.sha256(open('build/build_exposure_sets.py','rb').read()).hexdigest() == m2['generator_file_sha256']
+
+
+ACCEPTED_QUEUE_CODE_COMMIT = '0c61781dec51e63b6d8c93376855e6221eb486bb'
+
+
+def test_source_code_commit_recorded_in_both_manifests():
+    for p in ('results/phaseE/review_queue_manifest.json',
+              'results/phaseE/terminal_exposure_sets_manifest.json'):
+        m = json.load(open(p))
+        assert m['source_code_commit'] == ACCEPTED_QUEUE_CODE_COMMIT, f'{p} wrong source_code_commit'
+        assert 'git_commit' not in m, f'{p} still carries the ambiguous git_commit label'
+        assert 'generator_blob_sha' not in m, f'{p} still carries the old generator_blob_sha label'
+
+
+def test_working_tree_clean_attested_on_queue_manifest():
+    m = json.load(open('results/phaseE/review_queue_manifest.json'))
+    assert m['working_tree_clean_YN'] == 'Y'
+
+
+def test_attestation_did_not_change_any_output_hash():
+    """Label-only pass: every output hash and row count must equal the ACCEPTED values from
+    commit 0c61781, pinned literally here so a future edit cannot drift them silently."""
+    ACCEPTED = {
+        'results/phaseE/dev_transaction_events.csv':
+            '51a97f53b213564f6f54e7f445f93c0fb4935f3c8b6eff71a2bc1e0ee69e9ec1',
+        'results/phaseE/dev_transaction_exposures.csv':
+            '36718228061441984232664250ac7be15183480ec958567d332d7a056b3b68b8',
+        'results/phaseE/phaseF_transaction_events.csv':
+            '2a8acd4d2920b3e6a528b5f652ce69e3465b22ab1b18fea0e3d1acf3b2c9cd20',
+        'results/phaseE/phaseF_transaction_exposures.csv':
+            '6ac6edd29decd1fd0564e00ddcd9cfb4930e388373534ec320b8ff2ab5878cc7'}
+    ACCEPTED_ARTIFACT = '36ea467536072116a6423e0bf60164b96e172c46913699fb3c115fc6835f6027'
+    ACCEPTED_LOGICAL = 'ab08873c0fb11fa4cc4696eea395e954f272320d029ed69038096fad3411823a'
+
+    m = json.load(open('results/phaseE/review_queue_manifest.json'))
+    assert m['output_content_sha256'] == ACCEPTED, 'queue manifest hashes drifted from accepted'
+    for p, h in ACCEPTED.items():
+        assert hashlib.sha256(open(p, 'rb').read()).hexdigest() == h, f'{p} bytes drifted'
+    assert m['output_row_counts'] == {'dev_events': 61, 'dev_exposures': 91,
+                                      'phaseF_events': 105, 'phaseF_exposures': 176}
+
+    m2 = json.load(open('results/phaseE/terminal_exposure_sets_manifest.json'))
+    assert m2['output_content_sha256'] == ACCEPTED_LOGICAL, 'logical content hash drifted'
+    assert m2['artifact_byte_sha256'] == ACCEPTED_ARTIFACT
+    assert hashlib.sha256(open('results/phaseE/terminal_exposure_sets.json', 'rb').read()).hexdigest() \
+        == ACCEPTED_ARTIFACT, 'canonical exposure artifact bytes drifted'
+    assert m2['counts'] == {'core_exposures': 0, 'clone_exposures': 91, 'phaseF_possible_exposures': 176,
+                            'multi_event_intervals_dev': 0, 'multi_event_intervals_phaseF': 0}
+
 
 def test_no_tmp_dependency_in_generators():
     for f in ('build/build_review_queues.py', 'build/build_exposure_sets.py', 'build/build_clone_draws.py'):
@@ -83,3 +135,158 @@ def test_frozen_seed_and_consumption_contract_in_config():
     assert c['min_universe_size'] == 3 and c['undersized_universe_policy'].startswith('HARD_FAIL')
     assert 'MUST be read from the frozen draw artifact' in c['draw_consumption_contract']
     assert 'ORDER BY permaticker' in c['universe_ordering_rule']
+
+
+def test_no_scratch_path_dependency_in_generators_AST():
+    """AST-based: scans string LITERALS in executable code, ignoring docstrings/comments.
+    F-023 rationale: the prior substring test was satisfied by editing a DOCSTRING rather than
+    the code — the artifact was changed to fit the test. This version cannot be gamed that way,
+    and still detects a real dependency in a file with no comments at all."""
+    import ast
+    SCRATCH = ('/tmp/', '/var/tmp/', '/dev/shm/', 'C:\\Temp')
+    for f in ('build/build_review_queues.py', 'build/build_exposure_sets.py', 'build/build_clone_draws.py'):
+        tree = ast.parse(open(f).read(), filename=f)
+        docs = set()
+        for node in ast.walk(tree):
+            if isinstance(node, (ast.Module, ast.FunctionDef, ast.AsyncFunctionDef, ast.ClassDef)):
+                d = ast.get_docstring(node, clean=False)
+                if d: docs.add(d)
+        for node in ast.walk(tree):
+            if isinstance(node, ast.Constant) and isinstance(node.value, str) and node.value not in docs:
+                for s in SCRATCH:
+                    assert s not in node.value, f'{f}:{node.lineno} executable literal uses scratch path {s!r}'
+        assert not [n for n in ast.walk(tree) if isinstance(n, ast.Attribute) and n.attr == 'gettempdir'], \
+            f'{f} calls tempfile.gettempdir()'
+
+
+def test_repo_has_no_stale_superseded_artifacts():
+    """F-023: no tracked artifact may come from a superseded generator."""
+    import subprocess
+    tracked = set(subprocess.run(['git','ls-files','results/phaseE','build'], capture_output=True, text=True).stdout.split())
+    banned = {'results/phaseE/clone_draws.sha256', 'results/phaseE/old111_vs_corrected.json',
+              'results/phaseE/old_vs_new_terminal_worklist_diff.csv', 'results/phaseE/terminal_exposures_report.json',
+              'results/phaseE/manual_transaction_review_queue.csv', 'results/phaseE/core_terminal_exposures.csv',
+              'results/phaseE/clone_terminal_exposures.csv', 'results/phaseE/phaseF_possible_terminal_exposures.csv',
+              'results/phaseE/dev_clone_transaction_review_queue.csv', 'results/phaseE/terminal_ledger.json',
+              'results/phaseE/phaseF_possible_transaction_review_queue.csv',
+              'build/build_terminal_exposures.py', 'build/reconcile_terminal_worklist.py', 'build/build_terminal_ledger.py'}
+    assert not (banned & tracked), f'superseded artifacts still tracked: {sorted(banned & tracked)}'
+
+
+def test_clone_hit_stats_scoped_to_exposed_pairs_only():
+    s = json.load(open('results/phaseE/terminal_exposure_sets.json'))
+    assert s['clone_hit_stats_scope'] == 'EXPOSED_PAIRS_ONLY'
+    exposed = {f"{e['formation']}|{e['permaticker']}" for e in s['clone_exposures']}
+    assert set(s['clone_hit_stats']) == exposed, 'clone_hit_stats must cover exactly the exposed pairs'
+    assert len(s['clone_hit_stats']) == 91
+
+
+def test_exposure_set_content_hash_excludes_timestamp():
+    """F-024, superseded by the canonical-artifact rule: created_utc no longer exists in the
+    artifact at all, so the logical content hash covers the whole artifact."""
+    s = json.load(open('results/phaseE/terminal_exposure_sets.json'))
+    m = json.load(open('results/phaseE/terminal_exposure_sets_manifest.json'))
+    assert 'created_utc' not in s
+    assert hashlib.sha256(json.dumps(s, sort_keys=True).encode()).hexdigest() == m['output_content_sha256']
+
+
+def test_exact_action_join_never_picks_a_nearby_row():
+    """Review item 1: two same-action rows within 45 days must NOT let the wrong one be chosen.
+    Builds an in-memory ACTIONS table with a decoy 10 days before the true event date and proves
+    the exact join selects the true date or reports NO_EXACT_RAW_ACTION_MATCH — never the decoy."""
+    import duckdb, datetime
+    con = duckdb.connect()
+    con.execute("CREATE TABLE ac (permaticker BIGINT, action VARCHAR, date DATE, value DOUBLE, "
+                "contraticker VARCHAR, contraname VARCHAR, ticker VARCHAR, name VARCHAR)")
+    con.executemany("INSERT INTO ac VALUES (?,?,?,?,?,?,?,?)", [
+        (1, 'acquisitionby', datetime.date(2020, 6, 1), 111.0, 'DECOY', 'Decoy Co', 'AAA', 'A Corp'),
+        (1, 'acquisitionby', datetime.date(2020, 6, 11), 222.0, 'TRUE', 'True Co', 'AAA', 'A Corp')])
+    def exact(p, want, d):
+        return con.execute("SELECT action, date, value, contraticker FROM ac WHERE permaticker=? "
+                           "AND action=? AND date=?", [p, want, d]).fetchall()
+    hit = exact(1, 'acquisitionby', datetime.date(2020, 6, 11))
+    assert len(hit) == 1 and hit[0][3] == 'TRUE', 'exact join must select the true-date row'
+    assert exact(1, 'acquisitionby', datetime.date(2020, 6, 5)) == [], \
+        'a date with no exact row must return nothing, not the nearby decoy'
+    assert exact(1, 'mergerfrom', datetime.date(2020, 6, 11)) == [], \
+        'wrong action code must not match'
+
+
+def test_generator_uses_exact_equality_not_interval_join():
+    src = open('build/build_review_queues.py').read()
+    assert 'INTERVAL 45 DAY' not in src, 'proximity window must be gone from the queue generator'
+    assert 'NO_EXACT_RAW_ACTION_MATCH' in src
+    assert "date = DATE" in src, 'join must use exact date equality'
+
+
+def test_match_modes_are_declared_and_valid():
+    ok = {'EXACT_ACTION_DATE', 'EXACT_LAST_TRADE_DATE_VENDOR_EQUIVALENCE',
+          'NO_EXACT_RAW_ACTION_MATCH', 'NO_EXPECTED_ACTION_CODE'}
+    for f in ('dev', 'phaseF'):
+        for r in csv.DictReader(open(f'results/phaseE/{f}_transaction_events.csv')):
+            assert r['raw_action_match_mode'] in ok, f"bad match mode {r['raw_action_match_mode']}"
+            if r['raw_action_match_mode'] == 'NO_EXACT_RAW_ACTION_MATCH':
+                assert not r['raw_action'], 'unmatched events must carry no raw action fields'
+
+
+def test_conflicting_rows_preserved_and_flagged_not_silently_deduped():
+    found = 0
+    for f in ('dev', 'phaseF'):
+        for r in csv.DictReader(open(f'results/phaseE/{f}_transaction_events.csv')):
+            if r['same_date_conflicting_rows'] == 'YES':
+                found += 1
+                rows = json.loads(r['conflicting_rows_preserved'])
+                assert len(rows) == int(r['conflicting_row_count']) > 1
+                assert len({json.dumps(x, sort_keys=True) for x in rows}) == len(rows), \
+                    'preserved rows must be distinct (identical rows are deduped)'
+            else:
+                assert r['conflicting_rows_preserved'] == ''
+    assert found == 6, f'expected 6 conflicting-row events (1 dev + 5 phaseF), found {found}'
+
+
+def test_conflicts_do_not_inflate_exposures():
+    for f in ('dev', 'phaseF'):
+        ex = list(csv.DictReader(open(f'results/phaseE/{f}_transaction_exposures.csv')))
+        keys = [(r['formation_date'], r['permaticker']) for r in ex]
+        assert len(keys) == len(set(keys)), 'one exposure per lot interval; conflicts must not duplicate it'
+
+
+def test_first_terminal_event_rule_recorded():
+    s = json.load(open('results/phaseE/terminal_exposure_sets.json'))
+    assert s['controlling_parameters']['first_terminal_event_rule'].startswith('earliest valid event')
+    for e in s['clone_exposures'] + s['phaseF_possible_exposures'] + s['core_exposures']:
+        assert e['terminal_event_selection_rule'] == 'FIRST_EVENT_IN_INTERVAL'
+        assert e['events_in_interval'] >= 1
+        if e['events_in_interval'] == 1:
+            assert e['related_evidence_only_events'] == []
+    m = s['multi_terminal_event_intervals']
+    assert m['dev'] == 0 and m['phaseF'] == 0, 'multi-event counts must be explicitly recorded'
+
+
+def test_exposure_manifest_declares_every_input_with_full_provenance():
+    import glob as _g
+    m = json.load(open('results/phaseE/terminal_exposure_sets_manifest.json'))
+    assert m['schema_version'] == 'terminal_exposure_sets_v2'
+    s = json.load(open('results/phaseE/terminal_exposure_sets.json'))
+    assert s['schema_version'] == m['schema_version'], 'artifact and manifest schema versions must match'
+    paths = [i['path'] for i in m['inputs']]
+    for p in sorted(_g.glob('data/clean/sep_prices_part*.parquet')):
+        assert p in paths, f'{p} missing from declared inputs'
+    for c in ('config/core_frozen.yaml', 'config/terminal_policy.yaml', 'config/risk_limits.yaml',
+              'config/tolerance_contract.yaml'):
+        assert c in paths, f'{c} missing from declared inputs'
+    for i in m['inputs']:
+        assert set(('path', 'byte_sha256', 'schema_sha256', 'row_count')) <= set(i)
+        assert hashlib.sha256(open(i['path'], 'rb').read()).hexdigest() == i['byte_sha256']
+    for k in ('development_window', 'phaseF_window', 'holding_months', 'execution_timing',
+              'selection_count', 'identity_rule'):
+        assert k in m['controlling_parameters']
+
+
+def test_artifact_has_no_timestamp_manifest_does():
+    s = json.load(open('results/phaseE/terminal_exposure_sets.json'))
+    assert 'created_utc' not in s, 'artifact must be timestamp-free (canonical bytes)'
+    m = json.load(open('results/phaseE/terminal_exposure_sets_manifest.json'))
+    assert 'created_utc' in m
+    assert hashlib.sha256(open('results/phaseE/terminal_exposure_sets.json', 'rb').read()).hexdigest() \
+        == m['artifact_byte_sha256']
