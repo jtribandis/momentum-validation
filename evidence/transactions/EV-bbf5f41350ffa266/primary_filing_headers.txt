@@ -1,0 +1,19 @@
+source_url: https://www.sec.gov/Archives/edgar/data/1491675/000119312516610069/d201852d8k.htm
+retrieval_date_utc: 2026-07-17T16:01:58+00:00
+http_status: 200
+---
+content-type: text/html
+x-frame-options: SAMEORIGIN
+x-amz-id-2: eATrbUe1SlD43ncTflMOiBSmcZYNygBk1lRtGs8v/39zS0rQPA/UonUOKL1kJez3vGKl4/We676HnZ/TOAHlfJim7MEZsPxg
+x-amz-request-id: 9VS8TJCWWJM6HXVG
+x-amz-replication-status: REPLICA
+last-modified: Thu, 12 Oct 2017 21:44:46 GMT
+x-amz-meta-mode: 33188
+x-amz-version-id: R9yzOYKji7Xf4Ol_A2qzVJHqYmBSNAvl
+x-content-type-options: nosniff
+x-xss-protection: 1; mode=block
+vary: Accept-Encoding
+date: Fri, 17 Jul 2026 16:01:59 GMT
+content-length: 28553
+strict-transport-security: max-age=31536000 ; includeSubDomains ; preload
+connection: close

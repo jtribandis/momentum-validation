@@ -1,0 +1,21 @@
+[
+  {
+    "source_role": "PRIMARY_RESOLUTION_EVIDENCE",
+    "source_type": "FDIC_FAILED_BANK_PAGE",
+    "issuer_or_filer": "Federal Deposit Insurance Corporation (Receiver for First Republic Bank)",
+    "cik": "NOT_APPLICABLE",
+    "SEC_accession_number": "NOT_APPLICABLE",
+    "filing_date": "NOT_APPLICABLE",
+    "retrieval_date_utc": "2026-07-17T16:02:08+00:00",
+    "source_url": "https://www.fdic.gov/resources/resolutions/bank-failures/failed-bank-list/first-republic.html",
+    "local_filename": "primary_filing.html",
+    "byte_count": 83688,
+    "byte_sha256": "ba026a4f8260891fcd2c25235d0a3561687b6bf289545c88370982b6b5434c45",
+    "content_type": "text/html",
+    "http_status": 200,
+    "supporting_fields": "consideration, dates, entity identity, equity treatment",
+    "authoritative_YN": "Y",
+    "repeat_retrieval_verified_YN": "N",
+    "notes": "Repeat retrieval returned non-identical bytes (dynamically generated page) - provenance exception recorded"
+  }
+]

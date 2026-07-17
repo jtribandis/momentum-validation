@@ -1,0 +1,21 @@
+[
+  {
+    "source_role": "PRIMARY_COMPLETION_EVIDENCE",
+    "source_type": "SEC_8K_ITEM_2_01",
+    "issuer_or_filer": "FMC Technologies, Inc.",
+    "cik": "1135152",
+    "SEC_accession_number": "0001193125-17-010427",
+    "filing_date": "2017-01-17",
+    "retrieval_date_utc": "2026-07-17T16:01:59+00:00",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/1135152/000119312517010427/d326621d8k.htm",
+    "local_filename": "primary_filing.html",
+    "byte_count": 23925,
+    "byte_sha256": "081cb252edeec94ef66583e45d6d7fb1d11bd09ad11c81b1994dfed6c580c0dc",
+    "content_type": "text/html",
+    "http_status": 200,
+    "supporting_fields": "consideration, dates, entity identity, equity treatment",
+    "authoritative_YN": "Y",
+    "repeat_retrieval_verified_YN": "Y",
+    "notes": ""
+  }
+]

@@ -1,0 +1,21 @@
+[
+  {
+    "source_role": "PRIMARY_COMPLETION_EVIDENCE",
+    "source_type": "SEC_8K_ITEM_2_01",
+    "issuer_or_filer": "Cameron International Corporation",
+    "cik": "941548",
+    "SEC_accession_number": "0001104659-16-109460",
+    "filing_date": "2016-04-04",
+    "retrieval_date_utc": "2026-07-17T16:01:56+00:00",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/941548/000110465916109460/a16-6473_28k.htm",
+    "local_filename": "primary_filing.html",
+    "byte_count": 41861,
+    "byte_sha256": "cfd79e9e1440ea383a691b8c28de3bc94d9d8d46bc847e77583d59b43f97ae5a",
+    "content_type": "text/html",
+    "http_status": 200,
+    "supporting_fields": "consideration, dates, entity identity, equity treatment",
+    "authoritative_YN": "Y",
+    "repeat_retrieval_verified_YN": "Y",
+    "notes": ""
+  }
+]

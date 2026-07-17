@@ -1,0 +1,21 @@
+[
+  {
+    "source_role": "PRIMARY_COMPLETION_EVIDENCE",
+    "source_type": "SEC_8K_ITEM_2_01",
+    "issuer_or_filer": "Twenty-First Century Fox, Inc.",
+    "cik": "1308161",
+    "SEC_accession_number": "0000950157-19-000308",
+    "filing_date": "2019-03-20",
+    "retrieval_date_utc": "2026-07-17T16:02:00+00:00",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/1308161/000095015719000308/form8k.htm",
+    "local_filename": "primary_filing.html",
+    "byte_count": 60794,
+    "byte_sha256": "496a420758597e952180b38cafc85d52be443144dbefa9e66345ce877f141d4a",
+    "content_type": "text/html",
+    "http_status": 200,
+    "supporting_fields": "consideration, dates, entity identity, equity treatment",
+    "authoritative_YN": "Y",
+    "repeat_retrieval_verified_YN": "Y",
+    "notes": ""
+  }
+]

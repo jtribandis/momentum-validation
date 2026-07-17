@@ -1,0 +1,19 @@
+source_url: https://www.sec.gov/Archives/edgar/data/1308161/000095015719000308/form8k.htm
+retrieval_date_utc: 2026-07-17T16:02:00+00:00
+http_status: 200
+---
+content-type: text/html
+x-frame-options: SAMEORIGIN
+x-amz-id-2: xTToOFLK6vskKpWteTiG5sbToS73ko0WbHzo1qwlDvHm0PFjobQO2AjY1V55QVfrUtEtL9Zy7IGWzyc7He/d+jMaE8TJr3Is
+x-amz-request-id: 6GNVQWC4K8CC5WKS
+x-amz-replication-status: COMPLETED
+last-modified: Wed, 20 Mar 2019 13:19:30 GMT
+x-amz-meta-mode: 33188
+x-amz-version-id: Q0s92XqEmpobQrwwbe8Jl.y5LWomBuTK
+x-content-type-options: nosniff
+x-xss-protection: 1; mode=block
+vary: Accept-Encoding
+date: Fri, 17 Jul 2026 16:02:01 GMT
+strict-transport-security: max-age=31536000 ; includeSubDomains ; preload
+connection: close
+transfer-encoding: chunked

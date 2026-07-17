@@ -1,0 +1,20 @@
+source_url: https://www.sec.gov/Archives/edgar/data/719739/000119312523073665/d485308d8k.htm
+retrieval_date_utc: 2026-07-17T16:02:04+00:00
+http_status: 200
+---
+content-type: text/html
+x-frame-options: SAMEORIGIN
+x-amz-id-2: /dNv1ktH4kqf3p8osVQL+BZGlA/StIwo7W+jz17/Sk/V5usKlH3dsegmXHQbVvVPgw6QZiGx3xs=
+x-amz-request-id: KHFV4GD8VW9YWYKE
+x-amz-replication-status: COMPLETED
+last-modified: Fri, 17 Mar 2023 17:47:21 GMT
+x-amz-server-side-encryption: AES256
+x-amz-meta-mode: 33188
+x-amz-version-id: 38rOpPgL1kDp28CC8SQTBVZmmK9DtWb.
+x-content-type-options: nosniff
+x-xss-protection: 1; mode=block
+vary: Accept-Encoding
+date: Fri, 17 Jul 2026 16:02:05 GMT
+content-length: 33250
+strict-transport-security: max-age=31536000 ; includeSubDomains ; preload
+connection: close

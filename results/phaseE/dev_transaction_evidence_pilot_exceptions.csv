@@ -1,0 +1,6 @@
+event_id,exception_type,detail,severity
+EV-a42cca6e6f5c3c76,REPEAT_RETRIEVAL_MISMATCH,FDIC failed-bank page returned non-identical bytes on repeat fetch (dynamic page generation); first-response bytes preserved and hashed,PROVENANCE_EXCEPTION
+EV-130c8b20c0203051,REPEAT_RETRIEVAL_MISMATCH,FDIC failed-bank page returned non-identical bytes on repeat fetch (dynamic page generation); first-response bytes preserved and hashed,PROVENANCE_EXCEPTION
+EV-bbf5f41350ffa266,INTERNAL_INCONSISTENCY_IN_PRIMARY_DOCUMENT,"8-K states Merger Agreement 'dated as of August 6, 2016' which postdates the 2016-05-28 completion it reports; transcribed verbatim, not corrected",AMBIGUOUS_PRIMARY_EVIDENCE
+EV-a42cca6e6f5c3c76,NO_SEC_FILINGS_FOR_ISSUER,Bank reported under Exchange Act s.12(i) to FDIC; SEC CIK contains only third-party ownership filings; FDIC used as primary source per hierarchy level 5/6,SOURCE_HIERARCHY_FALLBACK
+EV-130c8b20c0203051,NO_SEC_FILINGS_FOR_ISSUER,Bank reported under Exchange Act s.12(i) to FDIC; SEC CIK contains only third-party ownership filings; FDIC used as primary source per hierarchy level 5/6,SOURCE_HIERARCHY_FALLBACK

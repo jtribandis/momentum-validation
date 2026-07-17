@@ -1,0 +1,40 @@
+[
+  {
+    "source_role": "PRIMARY_BANKRUPTCY_EVIDENCE",
+    "source_type": "SEC_8K_ITEM_1_03",
+    "issuer_or_filer": "SVB Financial Group",
+    "cik": "719739",
+    "SEC_accession_number": "0001193125-23-073665",
+    "filing_date": "2023-03-17",
+    "retrieval_date_utc": "2026-07-17T16:02:04+00:00",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/719739/000119312523073665/d485308d8k.htm",
+    "local_filename": "primary_filing.html",
+    "byte_count": 33250,
+    "byte_sha256": "69f3b20dfab4c9c43641a3c38a99f288129665af40e5ae3e6993ec36ccf4fcef",
+    "content_type": "text/html",
+    "http_status": 200,
+    "supporting_fields": "consideration, dates, entity identity, equity treatment",
+    "authoritative_YN": "Y",
+    "repeat_retrieval_verified_YN": "Y",
+    "notes": ""
+  },
+  {
+    "source_role": "PLAN_EFFECTIVENESS_EVIDENCE",
+    "source_type": "SEC_8K_ITEMS_1_02_1_03_3_03",
+    "issuer_or_filer": "SVB Financial Group",
+    "cik": "719739",
+    "SEC_accession_number": "0001193125-24-254186",
+    "filing_date": "2024-11-08",
+    "retrieval_date_utc": "2026-07-17T16:02:05+00:00",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/719739/000119312524254186/d904756d8k.htm",
+    "local_filename": "additional_primary_source.html",
+    "byte_count": 54478,
+    "byte_sha256": "14371aef1566bfdcda9ca3171b1ced46d095adf34d899a8bde6d8e038d68e231",
+    "content_type": "text/html",
+    "http_status": 200,
+    "supporting_fields": "consideration, dates, entity identity, equity treatment",
+    "authoritative_YN": "Y",
+    "repeat_retrieval_verified_YN": "Y",
+    "notes": ""
+  }
+]
